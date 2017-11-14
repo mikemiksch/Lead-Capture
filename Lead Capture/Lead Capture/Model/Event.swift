@@ -10,4 +10,6 @@ import Foundation
 
 class Event {
     var id : UUID
+    var createdOn : Date
+    var name : String
 }
