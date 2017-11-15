@@ -15,6 +15,10 @@
 		836B5FEC1FB4E36F00B78D74 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836B5FEB1FB4E36F00B78D74 /* CloudKit.framework */; };
 		836B5FF21FB640D500B78D74 /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FF11FB640D500B78D74 /* Lead.swift */; };
 		836B5FF41FB640E600B78D74 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FF31FB640E600B78D74 /* Event.swift */; };
+		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
+		83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */; };
+		83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */; };
+		83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8D1FBD011F00CCACD7 /* AddLeadViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		836B5FEB1FB4E36F00B78D74 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		836B5FF11FB640D500B78D74 /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
 		836B5FF31FB640E600B78D74 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
+		83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
+		83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
+		83F46C8D1FBD011F00CCACD7 /* AddLeadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeadViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,17 +71,12 @@
 		836B5FD61FB4E34300B78D74 /* Lead Capture */ = {
 			isa = PBXGroup;
 			children = (
-				836B5FED1FB6408700B78D74 /* Model */,
-				836B5FEE1FB6408800B78D74 /* View */,
-				836B5FEF1FB6408800B78D74 /* Controller */,
-				836B5FF01FB6408B00B78D74 /* Support */,
-				836B5FE91FB4E36800B78D74 /* Lead Capture.entitlements */,
-				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
-				836B5FD91FB4E34300B78D74 /* ViewController.swift */,
-				836B5FDB1FB4E34300B78D74 /* Main.storyboard */,
-				836B5FDE1FB4E34300B78D74 /* Assets.xcassets */,
-				836B5FE01FB4E34300B78D74 /* LaunchScreen.storyboard */,
 				836B5FE31FB4E34300B78D74 /* Info.plist */,
+				836B5FE91FB4E36800B78D74 /* Lead Capture.entitlements */,
+				836B5FED1FB6408700B78D74 /* Model */,
+				83F46C841FBCF9B200CCACD7 /* View */,
+				83F46C851FBCF9B900CCACD7 /* Controller */,
+				83F46C861FBCF9CE00CCACD7 /* Support */,
 			);
 			path = "Lead Capture";
 			sourceTree = "<group>";
@@ -89,34 +92,40 @@
 		836B5FED1FB6408700B78D74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
 				836B5FF11FB640D500B78D74 /* Lead.swift */,
 				836B5FF31FB640E600B78D74 /* Event.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		836B5FEE1FB6408800B78D74 /* View */ = {
+		83F46C841FBCF9B200CCACD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				836B5FDB1FB4E34300B78D74 /* Main.storyboard */,
+				836B5FE01FB4E34300B78D74 /* LaunchScreen.storyboard */,
 			);
-			name = View;
-			path = "New Group/New Group";
+			path = View;
 			sourceTree = "<group>";
 		};
-		836B5FEF1FB6408800B78D74 /* Controller */ = {
+		83F46C851FBCF9B900CCACD7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				836B5FD91FB4E34300B78D74 /* ViewController.swift */,
+				83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */,
+				83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */,
+				83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */,
+				83F46C8D1FBD011F00CCACD7 /* AddLeadViewController.swift */,
 			);
-			name = Controller;
-			path = "New Group/New Group/New Group";
+			path = Controller;
 			sourceTree = "<group>";
 		};
-		836B5FF01FB6408B00B78D74 /* Support */ = {
+		83F46C861FBCF9CE00CCACD7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				836B5FDE1FB4E34300B78D74 /* Assets.xcassets */,
 			);
-			name = Support;
-			path = "New Group/New Group/New Group/New Group";
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,10 +208,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */,
 				836B5FF41FB640E600B78D74 /* Event.swift in Sources */,
+				83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */,
 				836B5FF21FB640D500B78D74 /* Lead.swift in Sources */,
+				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
 				836B5FDA1FB4E34300B78D74 /* ViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,
+				83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

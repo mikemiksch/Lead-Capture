@@ -9,10 +9,14 @@
 import Foundation
 
 class Lead {
-    var eventID : UUID
-    var name : String
-    var email : String
-    var date : Date
-    var phoneNum : String
-    var comments: String
+    let leadID = UUID().uuidString
+    let eventID : String
+    var name : String?
+    var email : String?
+    var date : Date?
+    var phoneNum : String?
+    var comments: String?
+    init(eventID: String) {
+        self.eventID = eventID
+    }
 }

@@ -9,7 +9,11 @@
 import Foundation
 
 class Event {
-    var id : UUID
-    var createdOn : Date
+    let eventID = UUID().uuidString
+    let createdOn : Date
     var name : String
+    init(name: String) {
+        self.name = name
+        self.createdOn = Date()
+    }
 }
