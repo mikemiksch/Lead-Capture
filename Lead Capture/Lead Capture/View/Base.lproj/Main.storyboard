@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Zb6-Xd-Bcj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jHG-aP-wZ5">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,14 +36,13 @@
                     <navigationItem key="navigationItem" title="Events" id="eAG-gq-KvT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="bGd-vR-0Mq">
                             <connections>
-                                <action selector="addButtonPressed:" destination="BYZ-38-t0r" id="DZZ-MT-93b"/>
+                                <action selector="addButtonPressed:" destination="BYZ-38-t0r" id="AXW-es-j7h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButtonPressed" destination="bGd-vR-0Mq" id="XHn-XC-Pbq"/>
                         <outlet property="eventsTable" destination="tbN-RP-WSL" id="aX7-jO-CLV"/>
-                        <segue destination="1SS-lz-p5r" kind="show" id="XPl-u0-pIB"/>
+                        <segue destination="1SS-lz-p5r" kind="show" id="dUi-xY-SLU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -114,7 +113,7 @@
                                 <rect key="frame" x="16" y="105" width="56" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="peR-BK-kGB">
                                 <rect key="frame" x="16" y="143" width="118" height="30"/>
@@ -137,6 +136,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac3-cG-tdm">
+                                <rect key="frame" x="16" y="617" width="34" height="30"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButtonPressed:" destination="jHG-aP-wZ5" eventType="touchUpInside" id="HeF-aY-ssF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -150,8 +156,10 @@
                             <constraint firstItem="35j-EX-p6v" firstAttribute="bottom" secondItem="V6p-PT-rOY" secondAttribute="bottom" constant="320" id="R8I-i4-zBs"/>
                             <constraint firstItem="EaN-jk-6Wa" firstAttribute="top" secondItem="peR-BK-kGB" secondAttribute="bottom" constant="8" id="UZ6-o7-ZLD"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g10-N4-VaK" secondAttribute="trailing" constant="20" symbolic="YES" id="Vse-An-ZdT"/>
+                            <constraint firstItem="35j-EX-p6v" firstAttribute="bottom" secondItem="ac3-cG-tdm" secondAttribute="bottom" constant="20" id="YYJ-Ca-Iyx"/>
                             <constraint firstItem="V6p-PT-rOY" firstAttribute="leading" secondItem="kEq-rS-2as" secondAttribute="leading" id="dhd-8B-SaN"/>
                             <constraint firstItem="g10-N4-VaK" firstAttribute="top" secondItem="kEq-rS-2as" secondAttribute="bottom" constant="8" id="doS-ae-8Uw"/>
+                            <constraint firstItem="ac3-cG-tdm" firstAttribute="leading" secondItem="35j-EX-p6v" secondAttribute="leading" constant="16" id="hax-Uy-3qH"/>
                             <constraint firstItem="V6p-PT-rOY" firstAttribute="leading" secondItem="g10-N4-VaK" secondAttribute="leading" id="jsK-MV-PKZ"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="peR-BK-kGB" secondAttribute="trailing" constant="20" symbolic="YES" id="k5W-SX-IYQ"/>
                             <constraint firstAttribute="trailing" secondItem="o6G-tB-mvX" secondAttribute="trailing" id="mx8-4e-mtO"/>
@@ -161,6 +169,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="35j-EX-p6v"/>
                     </view>
+                    <connections>
+                        <outlet property="dateField" destination="EaN-jk-6Wa" id="jSY-tO-nqw"/>
+                        <outlet property="emailField" destination="g10-N4-VaK" id="0yP-LX-1In"/>
+                        <outlet property="infoField" destination="V6p-PT-rOY" id="tfn-J9-5W6"/>
+                        <outlet property="nameField" destination="kEq-rS-2as" id="3E0-8p-gyg"/>
+                        <outlet property="phoneField" destination="peR-BK-kGB" id="i0U-mx-Tx3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXv-YE-lsg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
