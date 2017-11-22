@@ -13,7 +13,7 @@ class Lead {
     let eventID : String
     var name : String?
     var email : String?
-    var date : Date?
+    var date : String?
     var phoneNum : String?
     var comments: String?
     init(eventID: String) {

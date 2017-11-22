@@ -19,13 +19,22 @@ class AddLeadViewController: UIViewController {
     @IBOutlet weak var infoField: UITextView!
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        let newLead = Lead(eventID: currentEvent.eventID)
+//        let newLead = Lead(eventID: currentEvent.eventID)
+        let newLead = Lead(eventID: UUID().uuidString)
         newLead.name = nameField.text
         newLead.email = emailField.text
         newLead.phoneNum = phoneField.text
-        print(dateField.text)
+        newLead.date = dateField.text
         newLead.comments = infoField.text
+        print(String(describing: newLead))
         
+    }
+    
+    @IBAction func dateEditingDidBegin(_ sender: UITextField) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        sender.text = dateFormatter.string(from: Date())
     }
     
     override func viewDidLoad() {
@@ -34,12 +43,21 @@ class AddLeadViewController: UIViewController {
         let toolBar = UIToolbar().ToolbarButtons(selection: #selector(self.dismissPicker))
         
         datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateValueChanged(sender:)), for: UIControlEvents.valueChanged)
+        
         dateField.inputView = datePicker
         dateField.inputAccessoryView = toolBar
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
+    }
+    
+    @objc func dateValueChanged(sender: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        dateField.text = dateFormatter.string(from: sender.date)
     }
     
     @objc func dismissPicker() {

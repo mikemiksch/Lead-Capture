@@ -126,6 +126,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="dateEditingDidBegin:" destination="jHG-aP-wZ5" eventType="editingDidBegin" id="f1m-ED-oSG"/>
+                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="info" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V6p-PT-rOY">
                                 <rect key="frame" x="16" y="219" width="240" height="128"/>
