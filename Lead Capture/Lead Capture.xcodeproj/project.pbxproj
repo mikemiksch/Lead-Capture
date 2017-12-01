@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */; };
+		836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AD34D1FD0D8A700450EEF /* UIExtensions.swift */; };
 		836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FD71FB4E34300B78D74 /* AppDelegate.swift */; };
 		836B5FDA1FB4E34300B78D74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FD91FB4E34300B78D74 /* ViewController.swift */; };
 		836B5FDD1FB4E34300B78D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836B5FDB1FB4E34300B78D74 /* Main.storyboard */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar + doneButton.swift"; sourceTree = "<group>"; };
+		836AD34D1FD0D8A700450EEF /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		836B5FD41FB4E34300B78D74 /* Lead Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lead Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		836B5FD71FB4E34300B78D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836B5FD91FB4E34300B78D74 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
 				836B5FF11FB640D500B78D74 /* Lead.swift */,
 				836B5FF31FB640E600B78D74 /* Event.swift */,
+				831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */,
+				836AD34D1FD0D8A700450EEF /* UIExtensions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -211,7 +217,9 @@
 				83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */,
 				836B5FF41FB640E600B78D74 /* Event.swift in Sources */,
 				83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */,
+				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
 				836B5FF21FB640D500B78D74 /* Lead.swift in Sources */,
+				831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */,
 				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
 				836B5FDA1FB4E34300B78D74 /* ViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,

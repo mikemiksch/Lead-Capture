@@ -9,6 +9,7 @@
 import Foundation
 
 class Event {
+    var leads = [Lead]()
     let eventID = UUID().uuidString
     let createdOn : Date
     var name : String
