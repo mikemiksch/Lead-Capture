@@ -11,12 +11,6 @@ import UIKit
 class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate {
     
     var selectedEvent : Event!
-    var leads = [Lead]() {
-        didSet {
-            print(leads)
-            leadsTable.reloadData()
-        }
-    }
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
@@ -32,6 +26,10 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         titleBar.title = selectedEvent.name
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        leadsTable.reloadData()
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationViewController = segue.destination as? AddLeadViewController {
             destinationViewController.delegate = self
@@ -39,12 +37,12 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return leads.count
+        return selectedEvent.leads.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
-        let lead = self.leads[indexPath.row]
+        let lead = self.selectedEvent.leads[indexPath.row]
         if lead.name != "" {
             cell.textLabel!.text = lead.name
         } else {
@@ -60,7 +58,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func addLead(lead: Lead) {
-        self.leads.append(lead)
+        self.selectedEvent.leads.append(lead)
     }
 
 }
