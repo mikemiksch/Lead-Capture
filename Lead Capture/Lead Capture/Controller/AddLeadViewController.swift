@@ -12,11 +12,17 @@ class AddLeadViewController: UIViewController {
     
     var currentEvent : Event!
     
+    var delegate : AddLeadDelegate?
+    
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var infoField: UITextView!
+    
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
 //        let newLead = Lead(eventID: currentEvent.eventID)
@@ -26,10 +32,19 @@ class AddLeadViewController: UIViewController {
         newLead.phoneNum = phoneField.text
         newLead.date = dateField.text
         newLead.comments = infoField.text
-        print(String(describing: newLead))
-        
+        self.delegate?.addLead(lead: newLead)
+        for view in self.view.subviews {
+            if view is UITextField {
+                let textField = view as? UITextField
+                textField?.text = nil
+            }
+        }
+        infoField.text = nil
+        print(newLead.date)
     }
     
+    
+    // Note to self: Set minimum date
     @IBAction func dateEditingDidBegin(_ sender: UITextField) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateStyle = .short
@@ -64,4 +79,8 @@ class AddLeadViewController: UIViewController {
         view.endEditing(true)
     }
 
+}
+
+protocol AddLeadDelegate {
+    func addLead(lead: Lead)
 }

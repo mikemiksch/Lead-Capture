@@ -8,11 +8,12 @@
 
 import UIKit
 
-class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate {
     
     var selectedEvent : Event!
     var leads = [Lead]() {
         didSet {
+            print(leads)
             leadsTable.reloadData()
         }
     }
@@ -21,8 +22,8 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var titleBar: UINavigationItem!
     
     @IBAction func addButtonPressed(_ sender: Any) {
+        
     }
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,35 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         titleBar.title = selectedEvent.name
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationViewController = segue.destination as? AddLeadViewController {
+            destinationViewController.delegate = self
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return leads.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let lead = self.leads[indexPath.row]
+        if lead.name != "" {
+            cell.textLabel!.text = lead.name
+        } else {
+            cell.textLabel!.text = "No name given"
+        }
+        
+        if lead.date != "" {
+            cell.detailTextLabel!.text = lead.date
+        } else {
+            cell.detailTextLabel!.text = "No date given"
+        }
+        return cell
+    }
+    
+    func addLead(lead: Lead) {
+        self.leads.append(lead)
     }
 
 }
