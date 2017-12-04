@@ -31,8 +31,14 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
         if let destinationViewController = segue.destination as? AddLeadViewController {
             destinationViewController.delegate = self
+        }
+        if let destinationViewController = segue.destination as? LeadDetailViewController {
+            let selectedIndex = leadsTable.indexPathForSelectedRow!.row
+            let selectedLead = selectedEvent.leads[selectedIndex]
+            destinationViewController.currentLead = selectedLead
         }
     }
     
@@ -55,6 +61,11 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             cell.detailTextLabel!.text = "No date given"
         }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "LeadDetailViewController", sender: nil)
+        leadsTable.deselectRow(at: indexPath, animated: true)
     }
     
     func addLead(lead: Lead) {

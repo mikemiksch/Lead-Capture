@@ -9,11 +9,28 @@
 import UIKit
 
 class LeadDetailViewController: UIViewController {
-
+    
+    var currentLead : Lead!
+    
+    @IBOutlet weak var nameField: UILabel!
+    @IBOutlet weak var emailField: UILabel!
+    @IBOutlet weak var phoneField: UILabel!
+    @IBOutlet weak var dateField: UILabel!
+    @IBOutlet weak var infoField: UILabel!
+    @IBOutlet weak var navBarTitle: UINavigationItem!
+    
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        nameField.text = currentLead.name
+        emailField.text = currentLead.email
+        phoneField.text = currentLead.phoneNum
+        dateField.text = currentLead.date
+        infoField.text = currentLead.comments
+        navBarTitle.title = currentLead.name
     }
 
     override func didReceiveMemoryWarning() {
