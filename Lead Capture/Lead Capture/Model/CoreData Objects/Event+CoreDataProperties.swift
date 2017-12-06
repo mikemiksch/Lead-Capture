@@ -17,7 +17,6 @@ extension Event {
         return NSFetchRequest<Event>(entityName: "Event")
     }
 
-    @NSManaged public var leads: NSObject?
     @NSManaged public var eventID: String?
     @NSManaged public var createdOn: NSDate?
     @NSManaged public var name: String?

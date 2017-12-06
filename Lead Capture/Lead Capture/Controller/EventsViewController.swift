@@ -17,12 +17,17 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addAlertController.addTextField(configurationHandler: nil)
         let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             if let eventName = addAlertController.textFields?[0].text {
+                print(eventName)
+                let newEvent = Event(context: PersistenceService.context)
                 if eventName == "" {
-                    self.events.append(Event(name: "Unnamed Event"))
+                    newEvent.name = "Unnamed Event"
                 } else {
-                    let newEvent = Event(name: String(describing: eventName))
-                    self.events.append(newEvent)
+                    newEvent.name = eventName
                 }
+                newEvent.createdOn = NSDate()
+                newEvent.eventID = UUID().uuidString
+                PersistenceService.saveContext()
+                self.events.append(newEvent)
             }
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -44,18 +49,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         eventsTable.delegate = self
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == "LeadsViewController" {
-            let selectedIndex = eventsTable.indexPathForSelectedRow!.row
-            let selectedEvent = self.events[selectedIndex]
-            
-            if let destinationViewController = segue.destination as? LeadsViewController {
-                destinationViewController.selectedEvent = selectedEvent
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: sender)
+//
+//        if segue.identifier == "LeadsViewController" {
+//            let selectedIndex = eventsTable.indexPathForSelectedRow!.row
+//            let selectedEvent = self.events[selectedIndex]
+//
+//            if let destinationViewController = segue.destination as? LeadsViewController {
+//                destinationViewController.selectedEvent = selectedEvent
+//            }
+//        }
+//    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count

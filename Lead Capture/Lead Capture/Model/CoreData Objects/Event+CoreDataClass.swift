@@ -12,12 +12,5 @@ import CoreData
 
 
 public class Event: NSManagedObject {
-//    var leads = [Lead]()
-//    let eventID = UUID().uuidString
-//    let createdOn : Date
-//    var name : String
-//    init(name: String) {
-//        self.name = name
-//        self.createdOn = NSDate()
-//    }
+
 }
