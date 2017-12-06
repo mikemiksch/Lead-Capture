@@ -94,7 +94,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == UITableViewCellEditingStyle.delete) {
-            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all leads?", preferredStyle: .alert)
+            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
             let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
                 if let deleteEventID = self.events[indexPath.row].eventID {
                     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
