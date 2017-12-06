@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,7 +18,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addAlertController.addTextField(configurationHandler: nil)
         let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             if let eventName = addAlertController.textFields?[0].text {
-                print(eventName)
                 let newEvent = Event(context: PersistenceService.context)
                 if eventName == "" {
                     newEvent.name = "Unnamed Event"
@@ -47,6 +47,14 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         eventsTable.dataSource = self
         eventsTable.delegate = self
+        let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
+        
+        do {
+            let events = try PersistenceService.context.fetch(fetchRequest)
+            self.events = events
+        } catch {
+            print("Error fetching events from managed object context")
+        }
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -69,8 +77,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let event = self.events[indexPath.row]
-        let eventName = event.name
-        cell.textLabel!.text = String(describing: eventName)
+        if let eventName = event.name {
+            cell.textLabel!.text = String(describing: eventName)
+        }
         return cell
     }
     
