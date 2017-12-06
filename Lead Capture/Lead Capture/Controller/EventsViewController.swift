@@ -57,18 +57,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: sender)
-//
-//        if segue.identifier == "LeadsViewController" {
-//            let selectedIndex = eventsTable.indexPathForSelectedRow!.row
-//            let selectedEvent = self.events[selectedIndex]
-//
-//            if let destinationViewController = segue.destination as? LeadsViewController {
-//                destinationViewController.selectedEvent = selectedEvent
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+
+        if segue.identifier == "LeadsViewController" {
+            let selectedIndex = eventsTable.indexPathForSelectedRow!.row
+            let selectedEvent = self.events[selectedIndex]
+
+            if let destinationViewController = segue.destination as? LeadsViewController {
+                destinationViewController.selectedEvent = selectedEvent
+            }
+        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return events.count
@@ -84,7 +84,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.performSegue(withIdentifier: "LeadsViewController", sender: nil)
+        self.performSegue(withIdentifier: "LeadsViewController", sender: nil)
         eventsTable.deselectRow(at: indexPath, animated: true)
     }
     

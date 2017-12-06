@@ -4,7 +4,7 @@
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="lead" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="event" inverseEntity="Lead" syncable="YES"/>
+        <relationship name="leads" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Lead" inverseName="event" inverseEntity="Lead" syncable="YES"/>
     </entity>
     <entity name="Lead" representedClassName=".Lead" syncable="YES">
         <attribute name="comments" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,10 +14,10 @@
         <attribute name="leadID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneNum" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="lead" inverseEntity="Event" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="leads" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="205" positionY="72" width="128" height="105"/>
+        <element name="Event" positionX="205" positionY="72" width="128" height="103"/>
         <element name="Lead" positionX="9" positionY="36" width="128" height="165"/>
     </elements>
 </model>
