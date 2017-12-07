@@ -31,6 +31,7 @@ class AddLeadViewController: UIViewController {
         newLead.phoneNum = phoneField.text
         newLead.date = dateField.text
         newLead.comments = infoField.text
+        newLead.createdOn = NSDate()
         newLead.event = self.currentEvent
         self.delegate?.addLead(lead: newLead)
         for view in self.view.subviews {
@@ -40,7 +41,6 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
-        print(newLead.date)
     }
     
     

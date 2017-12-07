@@ -51,10 +51,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         do {
             let events = try PersistenceService.context.fetch(fetchRequest)
-            self.events = events
+            self.events = events.sorted(by: { (first, second) -> Bool in
+                second.createdOn! as Date > first.createdOn! as Date
+            })
         } catch {
             print("Error fetching events from managed object context")
         }
+        fetchAllLeadds()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +66,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if segue.identifier == "LeadsViewController" {
             let selectedIndex = eventsTable.indexPathForSelectedRow!.row
             let selectedEvent = self.events[selectedIndex]
-
             if let destinationViewController = segue.destination as? LeadsViewController {
                 destinationViewController.selectedEvent = selectedEvent
             }
@@ -116,6 +118,18 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             deleteAlert.addAction(confirmDelete)
             deleteAlert.addAction(cancelDelete)
             present(deleteAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func fetchAllLeadds() {
+        let fetchRequest : NSFetchRequest<Lead> = Lead.fetchRequest()
+        
+        do {
+            let leads = try PersistenceService.context.fetch(fetchRequest)
+            print("Leads count")
+            print(leads.count)
+        } catch {
+            print("Error fetching all leads")
         }
     }
 

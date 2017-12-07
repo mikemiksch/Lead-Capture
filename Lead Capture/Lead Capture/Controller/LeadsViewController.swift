@@ -26,7 +26,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         leadsTable.dataSource = self
         leadsTable.delegate = self
         titleBar.title = selectedEvent.name
-        self.leads = selectedEvent.leads?.allObjects as! [Lead]
+        self.leads = (selectedEvent.leads?.allObjects as! [Lead]).sorted(by: { (first, second) -> Bool in
+            second.createdOn! as Date > first.createdOn! as Date
+        })
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -37,6 +39,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.prepare(for: segue, sender: sender)
         if let destinationViewController = segue.destination as? AddLeadViewController {
             destinationViewController.delegate = self
+            destinationViewController.currentEvent = self.selectedEvent
         }
         if let destinationViewController = segue.destination as? LeadDetailViewController {
             let selectedIndex = leadsTable.indexPathForSelectedRow!.row
@@ -73,8 +76,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     func addLead(lead: Lead) {
         self.leads.append(lead)
-//        self.selectedEvent.addToLeads(lead)
-        print(selectedEvent.leads)
+        self.selectedEvent.leads?.adding(lead)
         PersistenceService.saveContext()
     }
 

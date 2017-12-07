@@ -17,6 +17,7 @@ extension Lead {
         return NSFetchRequest<Lead>(entityName: "Lead")
     }
 
+    @NSManaged public var createdOn: NSDate?
     @NSManaged public var comments: String?
     @NSManaged public var date: String?
     @NSManaged public var email: String?
