@@ -57,6 +57,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             print("Error fetching events from managed object context")
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         fetchAllLeadds()
     }
     
@@ -95,7 +98,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if (editingStyle == UITableViewCellEditingStyle.delete) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
             let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
             let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
                 if let deleteEventID = self.events[indexPath.row].eventID {
@@ -120,6 +123,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             present(deleteAlert, animated: true, completion: nil)
         }
     }
+    
+    // MARK: - fetchAllLeads function
     
     func fetchAllLeadds() {
         let fetchRequest : NSFetchRequest<Lead> = Lead.fetchRequest()

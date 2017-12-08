@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import CoreData
 
 class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate {
 
     var selectedEvent : Event!
     
-    var leads = [Lead]()
+    var leads = [Lead]() {
+        didSet {
+            leadsTable.reloadData()
+        }
+    }
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
@@ -72,6 +77,37 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "LeadDetailViewController", sender: nil)
         leadsTable.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let deleteAlert = UIAlertController(title: "Delete Lead?", message: "Are you sure you want to delete this lead?", preferredStyle: .alert)
+            let confirmDelete = UIAlertAction(title: "Delete Lead", style: .destructive, handler: { (_ UIAlertAction) in
+                if let deleteLeadID = self.leads[indexPath.row].leadID {
+                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Lead")
+                    request.predicate = NSPredicate(format: "leadID == %@", deleteLeadID)
+
+                    do {
+                        let result = try PersistenceService.context.fetch(request)
+                        for object in result {
+                            PersistenceService.context.delete(object as! NSManagedObject)
+                        }
+                        PersistenceService.saveContext()
+                        self.leads.remove(at: indexPath.row)
+                    } catch {
+                        print(error)
+                    }
+                }
+            })
+            let cancelDelete = UIAlertAction(title: "Keep Lead", style: .cancel, handler: nil)
+            deleteAlert.addAction(confirmDelete)
+            deleteAlert.addAction(cancelDelete)
+            present(deleteAlert, animated: true, completion: nil)
+        }
     }
 
     func addLead(lead: Lead) {

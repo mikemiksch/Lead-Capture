@@ -32,6 +32,7 @@ class AddLeadViewController: UIViewController {
         newLead.date = dateField.text
         newLead.comments = infoField.text
         newLead.createdOn = NSDate()
+        newLead.leadID = UUID().uuidString
         newLead.event = self.currentEvent
         self.delegate?.addLead(lead: newLead)
         for view in self.view.subviews {
