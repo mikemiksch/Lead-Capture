@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -17,12 +18,16 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addAlertController.addTextField(configurationHandler: nil)
         let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
             if let eventName = addAlertController.textFields?[0].text {
+                let newEvent = Event(context: PersistenceService.context)
                 if eventName == "" {
-                    self.events.append(Event(name: "Unnamed Event"))
+                    newEvent.name = "Unnamed Event"
                 } else {
-                    let newEvent = Event(name: String(describing: eventName))
-                    self.events.append(newEvent)
+                    newEvent.name = eventName
                 }
+                newEvent.createdOn = NSDate()
+                newEvent.eventID = UUID().uuidString
+                PersistenceService.saveContext()
+                self.events.append(newEvent)
             }
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -42,15 +47,28 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         eventsTable.dataSource = self
         eventsTable.delegate = self
+        let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
+        
+        do {
+            let events = try PersistenceService.context.fetch(fetchRequest)
+            self.events = events.sorted(by: { (first, second) -> Bool in
+                second.createdOn! as Date > first.createdOn! as Date
+            })
+        } catch {
+            print("Error fetching events from managed object context")
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        fetchAllLeadds()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
+
         if segue.identifier == "LeadsViewController" {
             let selectedIndex = eventsTable.indexPathForSelectedRow!.row
             let selectedEvent = self.events[selectedIndex]
-            
             if let destinationViewController = segue.destination as? LeadsViewController {
                 destinationViewController.selectedEvent = selectedEvent
             }
@@ -64,8 +82,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
         let event = self.events[indexPath.row]
-        let eventName = event.name
-        cell.textLabel!.text = String(describing: eventName)
+        if let eventName = event.name {
+            cell.textLabel!.text = String(describing: eventName)
+        }
         return cell
     }
     
@@ -74,5 +93,49 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         eventsTable.deselectRow(at: indexPath, animated: true)
     }
     
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCellEditingStyle.delete {
+            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
+            let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
+                if let deleteEventID = self.events[indexPath.row].eventID {
+                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+                    request.predicate = NSPredicate(format: "eventID == %@", deleteEventID)
+                    
+                    do {
+                        let result = try PersistenceService.context.fetch(request)
+                        for object in result {
+                            PersistenceService.context.delete(object as! NSManagedObject)
+                        }
+                        PersistenceService.saveContext()
+                        self.events.remove(at: indexPath.row)
+                    } catch {
+                        print(error)
+                    }
+                }
+            })
+            let cancelDelete = UIAlertAction(title: "Keep Event", style: .cancel, handler: nil)
+            deleteAlert.addAction(confirmDelete)
+            deleteAlert.addAction(cancelDelete)
+            present(deleteAlert, animated: true, completion: nil)
+        }
+    }
+    
+    // MARK: - fetchAllLeads function
+    
+    func fetchAllLeadds() {
+        let fetchRequest : NSFetchRequest<Lead> = Lead.fetchRequest()
+        
+        do {
+            let leads = try PersistenceService.context.fetch(fetchRequest)
+            print("Leads count")
+            print(leads.count)
+        } catch {
+            print("Error fetching all leads")
+        }
+    }
 
 }

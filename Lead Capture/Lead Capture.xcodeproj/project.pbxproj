@@ -8,15 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */; };
+		833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */; };
+		8368B1B31FD8AF9A0087B97D /* Lead+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1AF1FD8AF9A0087B97D /* Lead+CoreDataClass.swift */; };
+		8368B1B41FD8AF9A0087B97D /* Lead+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1B01FD8AF9A0087B97D /* Lead+CoreDataProperties.swift */; };
+		8368B1B51FD8AF9A0087B97D /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1B11FD8AF9A0087B97D /* Event+CoreDataClass.swift */; };
+		8368B1B61FD8AF9A0087B97D /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1B21FD8AF9A0087B97D /* Event+CoreDataProperties.swift */; };
 		836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AD34D1FD0D8A700450EEF /* UIExtensions.swift */; };
 		836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FD71FB4E34300B78D74 /* AppDelegate.swift */; };
-		836B5FDA1FB4E34300B78D74 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FD91FB4E34300B78D74 /* ViewController.swift */; };
 		836B5FDD1FB4E34300B78D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836B5FDB1FB4E34300B78D74 /* Main.storyboard */; };
 		836B5FDF1FB4E34300B78D74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 836B5FDE1FB4E34300B78D74 /* Assets.xcassets */; };
 		836B5FE21FB4E34300B78D74 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836B5FE01FB4E34300B78D74 /* LaunchScreen.storyboard */; };
 		836B5FEC1FB4E36F00B78D74 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 836B5FEB1FB4E36F00B78D74 /* CloudKit.framework */; };
-		836B5FF21FB640D500B78D74 /* Lead.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FF11FB640D500B78D74 /* Lead.swift */; };
-		836B5FF41FB640E600B78D74 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FF31FB640E600B78D74 /* Event.swift */; };
+		839ADBCA1FD88302000F15A0 /* PersistenceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839ADBC91FD88302000F15A0 /* PersistenceService.swift */; };
 		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
 		83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */; };
 		83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */; };
@@ -25,18 +28,21 @@
 
 /* Begin PBXFileReference section */
 		831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar + doneButton.swift"; sourceTree = "<group>"; };
+		833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lead Capture.xcdatamodel"; sourceTree = "<group>"; };
+		8368B1AF1FD8AF9A0087B97D /* Lead+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8368B1B01FD8AF9A0087B97D /* Lead+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8368B1B11FD8AF9A0087B97D /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
+		8368B1B21FD8AF9A0087B97D /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		836AD34D1FD0D8A700450EEF /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		836B5FD41FB4E34300B78D74 /* Lead Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lead Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		836B5FD71FB4E34300B78D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		836B5FD91FB4E34300B78D74 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		836B5FDC1FB4E34300B78D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		836B5FDE1FB4E34300B78D74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		836B5FE11FB4E34300B78D74 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		836B5FE31FB4E34300B78D74 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		836B5FE91FB4E36800B78D74 /* Lead Capture.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Lead Capture.entitlements"; sourceTree = "<group>"; };
 		836B5FEB1FB4E36F00B78D74 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
-		836B5FF11FB640D500B78D74 /* Lead.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lead.swift; sourceTree = "<group>"; };
-		836B5FF31FB640E600B78D74 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		839ADBC91FD88302000F15A0 /* PersistenceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceService.swift; sourceTree = "<group>"; };
 		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
@@ -96,13 +102,25 @@
 		836B5FED1FB6408700B78D74 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				839ADBCB1FD88A54000F15A0 /* CoreData Objects */,
 				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
-				836B5FF11FB640D500B78D74 /* Lead.swift */,
-				836B5FF31FB640E600B78D74 /* Event.swift */,
 				831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */,
 				836AD34D1FD0D8A700450EEF /* UIExtensions.swift */,
+				839ADBC91FD88302000F15A0 /* PersistenceService.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		839ADBCB1FD88A54000F15A0 /* CoreData Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8368B1AF1FD8AF9A0087B97D /* Lead+CoreDataClass.swift */,
+				8368B1B01FD8AF9A0087B97D /* Lead+CoreDataProperties.swift */,
+				8368B1B11FD8AF9A0087B97D /* Event+CoreDataClass.swift */,
+				8368B1B21FD8AF9A0087B97D /* Event+CoreDataProperties.swift */,
+				833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */,
+			);
+			path = "CoreData Objects";
 			sourceTree = "<group>";
 		};
 		83F46C841FBCF9B200CCACD7 /* View */ = {
@@ -117,7 +135,6 @@
 		83F46C851FBCF9B900CCACD7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				836B5FD91FB4E34300B78D74 /* ViewController.swift */,
 				83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */,
 				83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */,
 				83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */,
@@ -215,14 +232,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */,
-				836B5FF41FB640E600B78D74 /* Event.swift in Sources */,
+				833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */,
 				83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */,
+				8368B1B31FD8AF9A0087B97D /* Lead+CoreDataClass.swift in Sources */,
 				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
-				836B5FF21FB640D500B78D74 /* Lead.swift in Sources */,
+				839ADBCA1FD88302000F15A0 /* PersistenceService.swift in Sources */,
+				8368B1B61FD8AF9A0087B97D /* Event+CoreDataProperties.swift in Sources */,
+				8368B1B41FD8AF9A0087B97D /* Lead+CoreDataProperties.swift in Sources */,
 				831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */,
 				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
-				836B5FDA1FB4E34300B78D74 /* ViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,
+				8368B1B51FD8AF9A0087B97D /* Event+CoreDataClass.swift in Sources */,
 				83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -410,6 +430,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */,
+			);
+			currentVersion = 833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */;
+			path = "Lead Capture.xcdatamodeld";
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 836B5FCC1FB4E34300B78D74 /* Project object */;
 }

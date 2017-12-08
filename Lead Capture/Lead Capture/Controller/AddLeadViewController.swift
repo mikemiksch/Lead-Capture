@@ -25,13 +25,15 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-//        let newLead = Lead(eventID: currentEvent.eventID)
-        let newLead = Lead(eventID: UUID().uuidString)
+        let newLead = Lead(context: PersistenceService.context)
         newLead.name = nameField.text
         newLead.email = emailField.text
         newLead.phoneNum = phoneField.text
         newLead.date = dateField.text
         newLead.comments = infoField.text
+        newLead.createdOn = NSDate()
+        newLead.leadID = UUID().uuidString
+        newLead.event = self.currentEvent
         self.delegate?.addLead(lead: newLead)
         for view in self.view.subviews {
             if view is UITextField {
@@ -40,7 +42,6 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
-        print(newLead.date)
     }
     
     
@@ -84,3 +85,4 @@ class AddLeadViewController: UIViewController {
 protocol AddLeadDelegate {
     func addLead(lead: Lead)
 }
+
