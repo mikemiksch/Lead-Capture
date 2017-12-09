@@ -18,6 +18,7 @@ extension Event {
     }
 
     @NSManaged public var createdOn: NSDate?
+    @NSManaged public var date: String?
     @NSManaged public var eventID: String?
     @NSManaged public var name: String?
     @NSManaged public var leads: NSSet?

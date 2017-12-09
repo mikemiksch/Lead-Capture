@@ -9,31 +9,37 @@
 import UIKit
 import CoreData
 
-class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DeleteEventDelegate {
+class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DeleteEventDelegate, AddEventDelegate {
     
     @IBOutlet weak var eventsTable: UITableView!
 
     @IBAction func addButtonPressed(_ sender: Any) {
-        let addAlertController = UIAlertController(title: "Add New Event", message: "Enter a name for a new event", preferredStyle: .alert)
-        addAlertController.addTextField(configurationHandler: nil)
-        let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-            if let eventName = addAlertController.textFields?[0].text {
-                let newEvent = Event(context: PersistenceService.context)
-                if eventName == "" {
-                    newEvent.name = "Unnamed Event"
-                } else {
-                    newEvent.name = eventName
-                }
-                newEvent.createdOn = NSDate()
-                newEvent.eventID = UUID().uuidString
-                PersistenceService.saveContext()
-                self.events.append(newEvent)
-            }
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        addAlertController.addAction(confirm)
-        addAlertController.addAction(cancel)
-        present(addAlertController, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
+        addEventAlert.delegate = self
+        addEventAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        addEventAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(addEventAlert, animated: true, completion: nil)
+//        let addAlertController = UIAlertController(title: "Add New Event", message: "Enter a name for a new event", preferredStyle: .alert)
+//        addAlertController.addTextField(configurationHandler: nil)
+//        let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
+//            if let eventName = addAlertController.textFields?[0].text {
+//                let newEvent = Event(context: PersistenceService.context)
+//                if eventName == "" {
+//                    newEvent.name = "Unnamed Event"
+//                } else {
+//                    newEvent.name = eventName
+//                }
+//                newEvent.createdOn = NSDate()
+//                newEvent.eventID = UUID().uuidString
+//                PersistenceService.saveContext()
+//                self.events.append(newEvent)
+//            }
+//        })
+//        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+//        addAlertController.addAction(confirm)
+//        addAlertController.addAction(cancel)
+//        present(addAlertController, animated: true, completion: nil)
     }
     
     
@@ -107,29 +113,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             present(deleteAlert, animated: true, completion: nil)
-//            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
-//            let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
-//                if let deleteEventID = self.events[indexPath.row].eventID {
-//                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
-//                    request.predicate = NSPredicate(format: "eventID == %@", deleteEventID)
-//
-//                    do {
-//                        let result = try PersistenceService.context.fetch(request)
-//                        for object in result {
-//                            PersistenceService.context.delete(object as! NSManagedObject)
-//                        }
-//                        PersistenceService.saveContext()
-//                        self.events.remove(at: indexPath.row)
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//            })
-//            let cancelDelete = UIAlertAction(title: "Keep Event", style: .cancel, handler: nil)
-//            deleteAlert.addAction(confirmDelete)
-//            deleteAlert.addAction(cancelDelete)
-//            deleteAlert.view.backgroundColor = UIColor.cyan
-//            present(deleteAlert, animated: true, completion: nil)
         }
     }
     
@@ -147,6 +130,23 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             print(error)
         }
+    }
+    
+    func addEvent(name: String, date: String) {
+        let newEvent = Event(context: PersistenceService.context)
+        if name == "" {
+            newEvent.name = "Unnamed Event"
+        } else {
+            newEvent.name = name
+        }
+        
+        if date != "" {
+            newEvent.date = date
+        }
+        newEvent.createdOn = NSDate()
+        newEvent.eventID = UUID().uuidString
+        PersistenceService.saveContext()
+        self.events.append(newEvent)
     }
     
     // MARK: - fetchAllLeads function
