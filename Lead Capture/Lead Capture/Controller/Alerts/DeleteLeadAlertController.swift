@@ -10,26 +10,25 @@ import UIKit
 
 class DeleteLeadAlertController: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var lead : Lead!
+    var index : Int!
+    var delegate : DeleteLeadDelegate?
+    
+    @IBAction func cancelButtonPressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func deleteButtonPressed(_ sender: Any) {
+        delegate?.deleteLead(index: index, lead: lead)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
 
+}
+
+protocol DeleteLeadDelegate {
+    func deleteLead(index: Int, lead: Lead)
 }

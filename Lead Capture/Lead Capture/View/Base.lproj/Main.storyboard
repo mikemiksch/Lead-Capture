@@ -90,6 +90,86 @@
             </objects>
             <point key="canvasLocation" x="193" y="-657"/>
         </scene>
+        <!--Delete Lead Alert Controller-->
+        <scene sceneID="frj-eW-LPl">
+            <objects>
+                <viewController storyboardIdentifier="DeleteLeadAlert" id="Iqe-ma-1Tn" customClass="DeleteLeadAlertController" customModule="Lead_Capture" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Fad-qo-P9k">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JUs-YL-Fys">
+                                <rect key="frame" x="71" y="276" width="273" height="184"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2NA-Fh-bfW">
+                                        <rect key="frame" x="0.0" y="138" width="137" height="46"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonPressed:" destination="Iqe-ma-1Tn" eventType="touchUpInside" id="5Pg-WC-EVa"/>
+                                            <action selector="cancelButtonPressed:" destination="wKv-T7-XmR" eventType="touchUpInside" id="M7C-nG-HuI"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pe0-kA-aTx">
+                                        <rect key="frame" x="137" y="138" width="136" height="46"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <state key="normal" title="Delete Lead"/>
+                                        <connections>
+                                            <action selector="deleteButtonPressed:" destination="Iqe-ma-1Tn" eventType="touchUpInside" id="hru-Od-caJ"/>
+                                            <action selector="deleteButtonPressed:" destination="wKv-T7-XmR" eventType="touchUpInside" id="vAI-O0-qpg"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delete Lead?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="gMV-YP-9mr">
+                                        <rect key="frame" x="0.0" y="8" width="273" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to delete this lead?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rke-E4-C8A">
+                                        <rect key="frame" x="13" y="53" width="246" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2NA-Fh-bfW" firstAttribute="width" secondItem="JUs-YL-Fys" secondAttribute="width" multiplier="0.5" id="0JJ-Oc-Rxo"/>
+                                    <constraint firstItem="2NA-Fh-bfW" firstAttribute="height" secondItem="JUs-YL-Fys" secondAttribute="height" multiplier="0.25" id="16x-hE-6ec"/>
+                                    <constraint firstItem="rke-E4-C8A" firstAttribute="top" secondItem="gMV-YP-9mr" secondAttribute="bottom" constant="21" id="4ob-cI-RMU"/>
+                                    <constraint firstItem="gMV-YP-9mr" firstAttribute="centerX" secondItem="JUs-YL-Fys" secondAttribute="centerX" id="5St-bJ-iB6"/>
+                                    <constraint firstAttribute="bottom" secondItem="pe0-kA-aTx" secondAttribute="bottom" id="8gY-C6-rEY"/>
+                                    <constraint firstItem="rke-E4-C8A" firstAttribute="width" secondItem="JUs-YL-Fys" secondAttribute="width" multiplier="0.9" id="Ke9-5N-aqZ"/>
+                                    <constraint firstItem="2NA-Fh-bfW" firstAttribute="leading" secondItem="JUs-YL-Fys" secondAttribute="leading" id="Nis-Er-wfQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="pe0-kA-aTx" secondAttribute="trailing" id="WSg-0e-FTx"/>
+                                    <constraint firstItem="gMV-YP-9mr" firstAttribute="height" secondItem="JUs-YL-Fys" secondAttribute="height" multiplier="0.13" id="bZf-4C-hrX"/>
+                                    <constraint firstItem="rke-E4-C8A" firstAttribute="centerX" secondItem="JUs-YL-Fys" secondAttribute="centerX" id="dXx-Se-J4O"/>
+                                    <constraint firstItem="gMV-YP-9mr" firstAttribute="top" secondItem="JUs-YL-Fys" secondAttribute="top" constant="8" id="i3S-rd-uBu"/>
+                                    <constraint firstItem="pe0-kA-aTx" firstAttribute="height" secondItem="JUs-YL-Fys" secondAttribute="height" multiplier="0.25" id="iAd-Qg-4we"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="2NA-Fh-bfW" secondAttribute="trailing" constant="20" symbolic="YES" id="jas-uY-mwZ"/>
+                                    <constraint firstItem="pe0-kA-aTx" firstAttribute="width" secondItem="JUs-YL-Fys" secondAttribute="width" multiplier="0.5" id="myK-WH-CFg"/>
+                                    <constraint firstItem="gMV-YP-9mr" firstAttribute="width" secondItem="JUs-YL-Fys" secondAttribute="width" id="osI-qX-KqW"/>
+                                    <constraint firstItem="pe0-kA-aTx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="JUs-YL-Fys" secondAttribute="leading" constant="20" symbolic="YES" id="wnf-Ew-wGe"/>
+                                    <constraint firstAttribute="bottom" secondItem="2NA-Fh-bfW" secondAttribute="bottom" id="y7b-E5-vSU"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="JUs-YL-Fys" firstAttribute="top" secondItem="gov-wY-nSS" secondAttribute="top" constant="256" id="28f-E8-5Dh"/>
+                            <constraint firstItem="JUs-YL-Fys" firstAttribute="centerY" secondItem="Fad-qo-P9k" secondAttribute="centerY" id="CBI-EA-GSn"/>
+                            <constraint firstItem="JUs-YL-Fys" firstAttribute="leading" secondItem="gov-wY-nSS" secondAttribute="leading" constant="71" id="EIz-Yv-WWd"/>
+                            <constraint firstItem="JUs-YL-Fys" firstAttribute="centerX" secondItem="Fad-qo-P9k" secondAttribute="centerX" id="VDA-eB-PdJ"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="gov-wY-nSS"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bvm-Lk-sxh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1213" y="-657"/>
+        </scene>
         <!--Events-->
         <scene sceneID="tne-QT-ifu">
             <objects>
