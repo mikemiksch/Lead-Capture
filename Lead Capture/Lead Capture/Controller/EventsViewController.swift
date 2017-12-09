@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DeleteEventDelegate {
     
     @IBOutlet weak var eventsTable: UITableView!
 
@@ -99,28 +99,53 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCellEditingStyle.delete {
-            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
-            let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
-                if let deleteEventID = self.events[indexPath.row].eventID {
-                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
-                    request.predicate = NSPredicate(format: "eventID == %@", deleteEventID)
-                    
-                    do {
-                        let result = try PersistenceService.context.fetch(request)
-                        for object in result {
-                            PersistenceService.context.delete(object as! NSManagedObject)
-                        }
-                        PersistenceService.saveContext()
-                        self.events.remove(at: indexPath.row)
-                    } catch {
-                        print(error)
-                    }
-                }
-            })
-            let cancelDelete = UIAlertAction(title: "Keep Event", style: .cancel, handler: nil)
-            deleteAlert.addAction(confirmDelete)
-            deleteAlert.addAction(cancelDelete)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteEventAlert") as! DeleteEventAlertController
+            deleteAlert.delegate = self
+            deleteAlert.event = self.events[indexPath.row]
+            deleteAlert.index = indexPath.row
+            deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             present(deleteAlert, animated: true, completion: nil)
+//            let deleteAlert = UIAlertController(title: "Delete Event?", message: "Are you sure you want to delete this event and all associated leads?", preferredStyle: .alert)
+//            let confirmDelete = UIAlertAction(title: "Delete Event", style: .destructive, handler: { (_ action: UIAlertAction) in
+//                if let deleteEventID = self.events[indexPath.row].eventID {
+//                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+//                    request.predicate = NSPredicate(format: "eventID == %@", deleteEventID)
+//
+//                    do {
+//                        let result = try PersistenceService.context.fetch(request)
+//                        for object in result {
+//                            PersistenceService.context.delete(object as! NSManagedObject)
+//                        }
+//                        PersistenceService.saveContext()
+//                        self.events.remove(at: indexPath.row)
+//                    } catch {
+//                        print(error)
+//                    }
+//                }
+//            })
+//            let cancelDelete = UIAlertAction(title: "Keep Event", style: .cancel, handler: nil)
+//            deleteAlert.addAction(confirmDelete)
+//            deleteAlert.addAction(cancelDelete)
+//            deleteAlert.view.backgroundColor = UIColor.cyan
+//            present(deleteAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func deleteEvent(index: Int, event: Event) {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Event")
+        request.predicate = NSPredicate(format: "eventID == %@", event.eventID!)
+        
+        do {
+            let result = try PersistenceService.context.fetch(request)
+            for object in result {
+                PersistenceService.context.delete(object as! NSManagedObject)
+            }
+            PersistenceService.saveContext()
+            self.events.remove(at: index)
+        } catch {
+            print(error)
         }
     }
     
