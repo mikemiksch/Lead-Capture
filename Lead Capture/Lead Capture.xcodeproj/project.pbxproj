@@ -23,6 +23,7 @@
 		839BD18C1FDB557800D81BC0 /* DeleteEventAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD18B1FDB557800D81BC0 /* DeleteEventAlertController.swift */; };
 		839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD18D1FDB558A00D81BC0 /* DeleteLeadAlertController.swift */; };
 		839BD1911FDB658500D81BC0 /* AddEventAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1901FDB658500D81BC0 /* AddEventAlertController.swift */; };
+		839BD1931FDB736300D81BC0 /* ThankYouAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1921FDB736300D81BC0 /* ThankYouAlertController.swift */; };
 		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
 		83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */; };
 		83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */; };
@@ -49,6 +50,7 @@
 		839BD18B1FDB557800D81BC0 /* DeleteEventAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEventAlertController.swift; sourceTree = "<group>"; };
 		839BD18D1FDB558A00D81BC0 /* DeleteLeadAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLeadAlertController.swift; sourceTree = "<group>"; };
 		839BD1901FDB658500D81BC0 /* AddEventAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventAlertController.swift; sourceTree = "<group>"; };
+		839BD1921FDB736300D81BC0 /* ThankYouAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouAlertController.swift; sourceTree = "<group>"; };
 		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 				839BD18D1FDB558A00D81BC0 /* DeleteLeadAlertController.swift */,
 				839BD18B1FDB557800D81BC0 /* DeleteEventAlertController.swift */,
 				839BD1901FDB658500D81BC0 /* AddEventAlertController.swift */,
+				839BD1921FDB736300D81BC0 /* ThankYouAlertController.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				8368B1B61FD8AF9A0087B97D /* Event+CoreDataProperties.swift in Sources */,
 				839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */,
 				8368B1B41FD8AF9A0087B97D /* Lead+CoreDataProperties.swift in Sources */,
+				839BD1931FDB736300D81BC0 /* ThankYouAlertController.swift in Sources */,
 				831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */,
 				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,

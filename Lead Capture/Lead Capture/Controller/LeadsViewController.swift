@@ -93,29 +93,6 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             present(deleteAlert, animated: true, completion: nil)
-        
-//            let deleteAlert = UIAlertController(title: "Delete Lead?", message: "Are you sure you want to delete this lead?", preferredStyle: .alert)
-//            let confirmDelete = UIAlertAction(title: "Delete Lead", style: .destructive, handler: { (_ UIAlertAction) in
-//                if let deleteLeadID = self.leads[indexPath.row].leadID {
-//                    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Lead")
-//                    request.predicate = NSPredicate(format: "leadID == %@", deleteLeadID)
-//
-//                    do {
-//                        let result = try PersistenceService.context.fetch(request)
-//                        for object in result {
-//                            PersistenceService.context.delete(object as! NSManagedObject)
-//                        }
-//                        PersistenceService.saveContext()
-//                        self.leads.remove(at: indexPath.row)
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//            })
-//            let cancelDelete = UIAlertAction(title: "Keep Lead", style: .cancel, handler: nil)
-//            deleteAlert.addAction(confirmDelete)
-//            deleteAlert.addAction(cancelDelete)
-//            present(deleteAlert, animated: true, completion: nil)
         }
     }
     

@@ -25,23 +25,14 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        let newLead = Lead(context: PersistenceService.context)
-        newLead.name = nameField.text
-        newLead.email = emailField.text
-        newLead.phoneNum = phoneField.text
-        newLead.date = dateField.text
-        newLead.comments = infoField.text
-        newLead.createdOn = NSDate()
-        newLead.leadID = UUID().uuidString
-        newLead.event = self.currentEvent
-        self.delegate?.addLead(lead: newLead)
-        for view in self.view.subviews {
-            if view is UITextField {
-                let textField = view as? UITextField
-                textField?.text = nil
-            }
-        }
-        infoField.text = nil
+        createLead()
+        resetForm()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
+        thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(thankYouAlert, animated: true, completion: nil)
+
     }
     
     
@@ -78,6 +69,29 @@ class AddLeadViewController: UIViewController {
     
     @objc func dismissPicker() {
         view.endEditing(true)
+    }
+    
+    func createLead() {
+        let newLead = Lead(context: PersistenceService.context)
+        newLead.name = nameField.text
+        newLead.email = emailField.text
+        newLead.phoneNum = phoneField.text
+        newLead.date = dateField.text
+        newLead.comments = infoField.text
+        newLead.createdOn = NSDate()
+        newLead.leadID = UUID().uuidString
+        newLead.event = self.currentEvent
+        self.delegate?.addLead(lead: newLead)
+    }
+    
+    func resetForm() {
+        for view in self.view.subviews {
+            if view is UITextField {
+                let textField = view as? UITextField
+                textField?.text = nil
+            }
+        }
+        infoField.text = nil
     }
 
 }
