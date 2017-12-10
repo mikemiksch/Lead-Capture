@@ -24,6 +24,9 @@
 		839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD18D1FDB558A00D81BC0 /* DeleteLeadAlertController.swift */; };
 		839BD1911FDB658500D81BC0 /* AddEventAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1901FDB658500D81BC0 /* AddEventAlertController.swift */; };
 		839BD1931FDB736300D81BC0 /* ThankYouAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1921FDB736300D81BC0 /* ThankYouAlertController.swift */; };
+		839BD1951FDD089900D81BC0 /* JosefinSlab-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1941FDD07F200D81BC0 /* JosefinSlab-Bold.ttf */; };
+		839BD1971FDD090F00D81BC0 /* Existence-UnicaseLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1961FDD090F00D81BC0 /* Existence-UnicaseLight.otf */; };
+		839BD19B1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD19A1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift */; };
 		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
 		83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */; };
 		83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */; };
@@ -51,6 +54,9 @@
 		839BD18D1FDB558A00D81BC0 /* DeleteLeadAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteLeadAlertController.swift; sourceTree = "<group>"; };
 		839BD1901FDB658500D81BC0 /* AddEventAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventAlertController.swift; sourceTree = "<group>"; };
 		839BD1921FDB736300D81BC0 /* ThankYouAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThankYouAlertController.swift; sourceTree = "<group>"; };
+		839BD1941FDD07F200D81BC0 /* JosefinSlab-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSlab-Bold.ttf"; sourceTree = "<group>"; };
+		839BD1961FDD090F00D81BC0 /* Existence-UnicaseLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Existence-UnicaseLight.otf"; sourceTree = "<group>"; };
+		839BD19A1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+asShadowImage.swift"; sourceTree = "<group>"; };
 		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
@@ -72,6 +78,7 @@
 		836B5FCB1FB4E34300B78D74 = {
 			isa = PBXGroup;
 			children = (
+				839BD19A1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift */,
 				836B5FD61FB4E34300B78D74 /* Lead Capture */,
 				836B5FD51FB4E34300B78D74 /* Products */,
 				836B5FEA1FB4E36F00B78D74 /* Frameworks */,
@@ -166,6 +173,8 @@
 		83F46C861FBCF9CE00CCACD7 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				839BD1961FDD090F00D81BC0 /* Existence-UnicaseLight.otf */,
+				839BD1941FDD07F200D81BC0 /* JosefinSlab-Bold.ttf */,
 				836B5FDE1FB4E34300B78D74 /* Assets.xcassets */,
 			);
 			path = Support;
@@ -240,6 +249,8 @@
 			files = (
 				836B5FE21FB4E34300B78D74 /* LaunchScreen.storyboard in Resources */,
 				836B5FDF1FB4E34300B78D74 /* Assets.xcassets in Resources */,
+				839BD1951FDD089900D81BC0 /* JosefinSlab-Bold.ttf in Resources */,
+				839BD1971FDD090F00D81BC0 /* Existence-UnicaseLight.otf in Resources */,
 				836B5FDD1FB4E34300B78D74 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,6 +265,7 @@
 				83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */,
 				833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */,
 				83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */,
+				839BD19B1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift in Sources */,
 				8368B1B31FD8AF9A0087B97D /* Lead+CoreDataClass.swift in Sources */,
 				839BD18C1FDB557800D81BC0 /* DeleteEventAlertController.swift in Sources */,
 				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
