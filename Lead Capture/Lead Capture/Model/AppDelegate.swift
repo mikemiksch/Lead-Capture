@@ -15,8 +15,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
+        [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
+        var navBarAppearance = UINavigationBar.appearance()
+        var navBarButtonAppearance = UIBarButtonItem.appearance()
+        
+        let buttonAttributes = [NSAttributedStringKey.font: Settings.shared.navBarFont]
+        let titleAttributes = [NSAttributedStringKey.font : Settings.shared.titleFont]
+        
+        navBarAppearance.titleTextAttributes = titleAttributes
+        navBarAppearance.barTintColor = Settings.shared.backgroundColor
+        navBarAppearance.tintColor = Settings.shared.accentColor
+        navBarAppearance.shadowImage = Settings.shared.accentColor.asShadowImage()
+        navBarButtonAppearance.setTitleTextAttributes(buttonAttributes, for: UIControlState.normal)
+        navBarButtonAppearance.setTitleTextAttributes(buttonAttributes, for: UIControlState.highlighted)
         return true
     }
 

@@ -11,6 +11,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Delete Event Alert Controller-->
         <scene sceneID="7hq-68-2wh">
@@ -178,17 +183,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-RP-WSL">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tbN-RP-WSL">
+                                <rect key="frame" x="10" y="74" width="394" height="652"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="separatorColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.99215686274509807" green="0.97647058823529409" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="tbN-RP-WSL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4hy-OX-Nze"/>
-                            <constraint firstItem="tbN-RP-WSL" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="pH7-Hx-xqw"/>
-                            <constraint firstItem="tbN-RP-WSL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="xBr-c7-4aO"/>
-                            <constraint firstItem="tbN-RP-WSL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="yRg-pE-0wL"/>
+                            <constraint firstItem="tbN-RP-WSL" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="4hy-OX-Nze"/>
+                            <constraint firstItem="tbN-RP-WSL" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" constant="-10" id="pH7-Hx-xqw"/>
+                            <constraint firstItem="tbN-RP-WSL" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-10" id="xBr-c7-4aO"/>
+                            <constraint firstItem="tbN-RP-WSL" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="yRg-pE-0wL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -206,7 +212,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="104"/>
+            <point key="canvasLocation" x="192.75362318840581" y="103.53260869565219"/>
         </scene>
         <!--Event Name-->
         <scene sceneID="hAh-Jn-cYM">
@@ -256,12 +262,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.90000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ALr-I8-TYf">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.99215686270000003" green="0.97647058819999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kUs-cd-cIq">
                                 <rect key="frame" x="71" y="276" width="273" height="184"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ua-VR-YVi">
                                         <rect key="frame" x="0.0" y="138" width="137" height="46"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <state key="normal" title="Cancel">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -281,7 +293,7 @@
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add New Event" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="1" translatesAutoresizingMaskIntoConstraints="NO" id="UhA-XI-cVz">
                                         <rect key="frame" x="0.0" y="8" width="273" height="24"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -352,7 +364,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zi8-FR-eLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="193" y="812"/>
+            <point key="canvasLocation" x="192.75362318840581" y="811.95652173913049"/>
         </scene>
         <!--Add Lead View Controller-->
         <scene sceneID="ZHL-lh-Fvm">
@@ -565,6 +577,7 @@
                             <constraint firstItem="CYS-8S-kPR" firstAttribute="leading" secondItem="W16-bR-hkB" secondAttribute="leading" id="2DS-QG-fSR"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Q0Z-oI-Wgb" secondAttribute="trailing" constant="20" symbolic="YES" id="2HV-lb-A3w"/>
                             <constraint firstItem="W16-bR-hkB" firstAttribute="top" secondItem="Q0Z-oI-Wgb" secondAttribute="bottom" constant="8" id="4Bl-xt-0x4"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gvn-6w-yun" secondAttribute="trailing" constant="20" symbolic="YES" id="5AS-kL-N1i"/>
                             <constraint firstItem="CYS-8S-kPR" firstAttribute="leading" secondItem="30T-vh-WVJ" secondAttribute="leading" id="5Ae-dp-Oyb"/>
                             <constraint firstItem="dzv-gw-QMq" firstAttribute="bottom" secondItem="CYS-8S-kPR" secondAttribute="bottom" constant="456" id="85m-4N-9QS"/>
                             <constraint firstItem="CYS-8S-kPR" firstAttribute="top" secondItem="W16-bR-hkB" secondAttribute="bottom" constant="37" id="9GK-cx-G3q"/>

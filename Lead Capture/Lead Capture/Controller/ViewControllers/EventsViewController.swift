@@ -20,28 +20,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         addEventAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         addEventAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(addEventAlert, animated: true, completion: nil)
-//        let addAlertController = UIAlertController(title: "Add New Event", message: "Enter a name for a new event", preferredStyle: .alert)
-//        addAlertController.addTextField(configurationHandler: nil)
-//        let confirm = UIAlertAction(title: "OK", style: .default, handler: {(_ action: UIAlertAction) -> Void in
-//            if let eventName = addAlertController.textFields?[0].text {
-//                let newEvent = Event(context: PersistenceService.context)
-//                if eventName == "" {
-//                    newEvent.name = "Unnamed Event"
-//                } else {
-//                    newEvent.name = eventName
-//                }
-//                newEvent.createdOn = NSDate()
-//                newEvent.eventID = UUID().uuidString
-//                PersistenceService.saveContext()
-//                self.events.append(newEvent)
-//            }
-//        })
-//        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-//        addAlertController.addAction(confirm)
-//        addAlertController.addAction(cancel)
-//        present(addAlertController, animated: true, completion: nil)
     }
-    
     
     var events = [Event]() {
         didSet {
@@ -53,8 +32,17 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         eventsTable.dataSource = self
         eventsTable.delegate = self
-        let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
+        eventsTable.separatorColor = Settings.shared.accentColor
+        eventsTable.backgroundColor = UIColor.clear
+        eventsTable.tableFooterView = UIView(frame: CGRect.zero)
+        eventsTable.estimatedRowHeight = UITableViewAutomaticDimension
+        eventsTable.rowHeight = UITableViewAutomaticDimension
+        eventsTable.layer.cornerRadius = 10
         
+        let eventNib = UINib(nibName: "EventCell", bundle: nil)
+        eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
+        
+        let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
         do {
             let events = try PersistenceService.context.fetch(fetchRequest)
             self.events = events.sorted(by: { (first, second) -> Bool in
@@ -67,6 +55,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidAppear(_ animated: Bool) {
         fetchAllLeadds()
+        eventsTable.reloadData()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,11 +75,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        let cell = eventsTable.dequeueReusableCell(withIdentifier: "EventCell", for: indexPath) as! EventCell
         let event = self.events[indexPath.row]
-        if let eventName = event.name {
-            cell.textLabel!.text = String(describing: eventName)
-        }
+        cell.dateField.text = event.date
+        cell.eventNameField.text = event.name
+        cell.eventNameField.adjustsFontSizeToFitWidth = true
+        cell.leadCountField.text = "\(event.leads!.count) Leads"
         return cell
     }
     
@@ -138,10 +128,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             newEvent.name = "Unnamed Event"
         } else {
             newEvent.name = name
-        }
-        
-        if date != "" {
-            newEvent.date = date
         }
         newEvent.createdOn = NSDate()
         newEvent.eventID = UUID().uuidString

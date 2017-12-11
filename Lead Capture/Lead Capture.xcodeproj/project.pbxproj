@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */; };
 		833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */; };
 		8368B1B31FD8AF9A0087B97D /* Lead+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1AF1FD8AF9A0087B97D /* Lead+CoreDataClass.swift */; };
 		8368B1B41FD8AF9A0087B97D /* Lead+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8368B1B01FD8AF9A0087B97D /* Lead+CoreDataProperties.swift */; };
@@ -27,6 +26,11 @@
 		839BD1951FDD089900D81BC0 /* JosefinSlab-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1941FDD07F200D81BC0 /* JosefinSlab-Bold.ttf */; };
 		839BD1971FDD090F00D81BC0 /* Existence-UnicaseLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1961FDD090F00D81BC0 /* Existence-UnicaseLight.otf */; };
 		839BD19B1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD19A1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift */; };
+		839BD19D1FDF25E600D81BC0 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD19C1FDF25E600D81BC0 /* Settings.swift */; };
+		839BD1A31FDF2B8D00D81BC0 /* EventCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1A11FDF2B8D00D81BC0 /* EventCell.swift */; };
+		839BD1A41FDF2B8D00D81BC0 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1A21FDF2B8D00D81BC0 /* EventCell.xib */; };
+		839BD1A71FDF2BA300D81BC0 /* LeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1A51FDF2BA300D81BC0 /* LeadCell.swift */; };
+		839BD1A81FDF2BA300D81BC0 /* LeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1A61FDF2BA300D81BC0 /* LeadCell.xib */; };
 		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
 		83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */; };
 		83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */; };
@@ -34,7 +38,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIToolbar + doneButton.swift"; sourceTree = "<group>"; };
 		833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lead Capture.xcdatamodel"; sourceTree = "<group>"; };
 		8368B1AF1FD8AF9A0087B97D /* Lead+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataClass.swift"; sourceTree = "<group>"; };
 		8368B1B01FD8AF9A0087B97D /* Lead+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -57,6 +60,11 @@
 		839BD1941FDD07F200D81BC0 /* JosefinSlab-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "JosefinSlab-Bold.ttf"; sourceTree = "<group>"; };
 		839BD1961FDD090F00D81BC0 /* Existence-UnicaseLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Existence-UnicaseLight.otf"; sourceTree = "<group>"; };
 		839BD19A1FDD15AD00D81BC0 /* UIColor+asShadowImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+asShadowImage.swift"; sourceTree = "<group>"; };
+		839BD19C1FDF25E600D81BC0 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		839BD1A11FDF2B8D00D81BC0 /* EventCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventCell.swift; sourceTree = "<group>"; };
+		839BD1A21FDF2B8D00D81BC0 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
+		839BD1A51FDF2BA300D81BC0 /* LeadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadCell.swift; sourceTree = "<group>"; };
+		839BD1A61FDF2BA300D81BC0 /* LeadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadCell.xib; sourceTree = "<group>"; };
 		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
 		83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadsViewController.swift; sourceTree = "<group>"; };
 		83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadDetailViewController.swift; sourceTree = "<group>"; };
@@ -118,8 +126,9 @@
 			isa = PBXGroup;
 			children = (
 				839ADBCB1FD88A54000F15A0 /* CoreData Objects */,
+				839BD19E1FDF2ACF00D81BC0 /* TableCells */,
+				839BD19C1FDF25E600D81BC0 /* Settings.swift */,
 				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
-				831543E31FC52C4500468A05 /* UIToolbar + doneButton.swift */,
 				836AD34D1FD0D8A700450EEF /* UIExtensions.swift */,
 				839ADBC91FD88302000F15A0 /* PersistenceService.swift */,
 			);
@@ -149,9 +158,31 @@
 			path = Alerts;
 			sourceTree = "<group>";
 		};
+		839BD19E1FDF2ACF00D81BC0 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				839BD1A11FDF2B8D00D81BC0 /* EventCell.swift */,
+				839BD1A51FDF2BA300D81BC0 /* LeadCell.swift */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		839BD19F1FDF2AE900D81BC0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */,
+				83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */,
+				83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */,
+				83F46C8D1FBD011F00CCACD7 /* AddLeadViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
 		83F46C841FBCF9B200CCACD7 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				839BD1A61FDF2BA300D81BC0 /* LeadCell.xib */,
+				839BD1A21FDF2B8D00D81BC0 /* EventCell.xib */,
 				836B5FDB1FB4E34300B78D74 /* Main.storyboard */,
 				836B5FE01FB4E34300B78D74 /* LaunchScreen.storyboard */,
 			);
@@ -161,11 +192,8 @@
 		83F46C851FBCF9B900CCACD7 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				839BD19F1FDF2AE900D81BC0 /* ViewControllers */,
 				839BD18F1FDB63EF00D81BC0 /* Alerts */,
-				83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */,
-				83F46C891FBCFDAE00CCACD7 /* LeadsViewController.swift */,
-				83F46C8B1FBD010E00CCACD7 /* LeadDetailViewController.swift */,
-				83F46C8D1FBD011F00CCACD7 /* AddLeadViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +279,8 @@
 				836B5FDF1FB4E34300B78D74 /* Assets.xcassets in Resources */,
 				839BD1951FDD089900D81BC0 /* JosefinSlab-Bold.ttf in Resources */,
 				839BD1971FDD090F00D81BC0 /* Existence-UnicaseLight.otf in Resources */,
+				839BD1A81FDF2BA300D81BC0 /* LeadCell.xib in Resources */,
+				839BD1A41FDF2B8D00D81BC0 /* EventCell.xib in Resources */,
 				836B5FDD1FB4E34300B78D74 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,16 +300,18 @@
 				839BD18C1FDB557800D81BC0 /* DeleteEventAlertController.swift in Sources */,
 				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
 				839ADBCA1FD88302000F15A0 /* PersistenceService.swift in Sources */,
+				839BD1A31FDF2B8D00D81BC0 /* EventCell.swift in Sources */,
 				8368B1B61FD8AF9A0087B97D /* Event+CoreDataProperties.swift in Sources */,
 				839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */,
 				8368B1B41FD8AF9A0087B97D /* Lead+CoreDataProperties.swift in Sources */,
 				839BD1931FDB736300D81BC0 /* ThankYouAlertController.swift in Sources */,
-				831543E41FC52C4500468A05 /* UIToolbar + doneButton.swift in Sources */,
 				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,
+				839BD1A71FDF2BA300D81BC0 /* LeadCell.swift in Sources */,
 				8368B1B51FD8AF9A0087B97D /* Event+CoreDataClass.swift in Sources */,
 				83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */,
 				839BD1911FDB658500D81BC0 /* AddEventAlertController.swift in Sources */,
+				839BD19D1FDF25E600D81BC0 /* Settings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
