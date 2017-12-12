@@ -24,8 +24,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-pk-qfX">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                    <view alpha="0.59999999999999998" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X4U-pk-qfX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="70"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="eventIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KXU-oV-aD1">
@@ -36,19 +36,19 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-yr-1Rd">
-                        <rect key="frame" x="58" y="7" width="209" height="28"/>
+                        <rect key="frame" x="58" y="7" width="211" height="28"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leads" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4E4-Mg-7hi">
-                        <rect key="frame" x="58" y="34" width="46.5" height="20"/>
+                        <rect key="frame" x="58" y="34" width="43" height="20"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                         <color key="textColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shj-B8-KU5">
-                        <rect key="frame" x="283" y="26" width="21" height="12"/>
+                        <rect key="frame" x="285" y="26" width="19" height="12"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="10"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>

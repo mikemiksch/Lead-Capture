@@ -11,6 +11,14 @@ import CoreData
 
 class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DeleteEventDelegate, AddEventDelegate {
     
+    var events = [Event]() {
+        didSet {
+            eventsTable.reloadData()
+        }
+    }
+    
+    var animateFlag = false
+    
     @IBOutlet weak var eventsTable: UITableView!
 
     @IBAction func addButtonPressed(_ sender: Any) {
@@ -22,25 +30,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         present(addEventAlert, animated: true, completion: nil)
     }
     
-    var events = [Event]() {
-        didSet {
-            eventsTable.reloadData()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventsTable.dataSource = self
-        eventsTable.delegate = self
-        eventsTable.separatorColor = Settings.shared.accentColor
-        eventsTable.backgroundColor = UIColor.clear
-        eventsTable.tableFooterView = UIView(frame: CGRect.zero)
-        eventsTable.estimatedRowHeight = UITableViewAutomaticDimension
-        eventsTable.rowHeight = UITableViewAutomaticDimension
-        eventsTable.layer.cornerRadius = 10
-        
-        let eventNib = UINib(nibName: "EventCell", bundle: nil)
-        eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
+        tableSetup()
         
         let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
         do {
@@ -52,10 +44,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("Error fetching events from managed object context")
         }
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         fetchAllLeadds()
         eventsTable.reloadData()
+        animateEventCells()
+ 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -103,6 +97,43 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             present(deleteAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func tableSetup() {
+        eventsTable.dataSource = self
+        eventsTable.delegate = self
+        eventsTable.separatorColor = Settings.shared.accentColor
+        eventsTable.backgroundColor = UIColor.clear
+        eventsTable.tableFooterView = UIView(frame: CGRect.zero)
+        eventsTable.estimatedRowHeight = UITableViewAutomaticDimension
+        eventsTable.rowHeight = UITableViewAutomaticDimension
+        eventsTable.layer.cornerRadius = 10
+        
+        
+        let eventNib = UINib(nibName: "EventCell", bundle: nil)
+        eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
+    }
+    
+    func animateEventCells() {
+        if animateFlag == false && events.count >= 1 {
+            eventsTable.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            let visibleCells = eventsTable.visibleCells.map { (cell) -> EventCell in
+                cell.transform = CGAffineTransform(translationX: 0, y: eventsTable.bounds.size.height)
+
+                return cell as! EventCell
+            }
+        
+            var index = 0
+        
+            for cell in visibleCells {
+                UIView.animate(withDuration: 0.50, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                cell.transform =  CGAffineTransform.identity
+                })
+                index += 1
+            }
+        
+            animateFlag = true
         }
     }
     

@@ -11,7 +11,6 @@ import UIKit
 class AddLeadViewController: UIViewController {
     
     var currentEvent : Event!
-    
     var delegate : AddLeadDelegate?
     
     @IBOutlet weak var nameField: UITextField!
@@ -33,15 +32,6 @@ class AddLeadViewController: UIViewController {
         thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(thankYouAlert, animated: true, completion: nil)
 
-    }
-    
-    
-    // Note to self: Set minimum date
-    @IBAction func dateEditingDidBegin(_ sender: UITextField) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        sender.text = dateFormatter.string(from: Date())
     }
     
     override func viewDidLoad() {
@@ -73,10 +63,18 @@ class AddLeadViewController: UIViewController {
     
     func createLead() {
         let newLead = Lead(context: PersistenceService.context)
-        newLead.name = nameField.text
+        if nameField.text == "" {
+            newLead.name = "No Name Given"
+        } else {
+            newLead.name = nameField.text
+        }
+        if dateField.text == "" {
+            newLead.date = "No Date Given"
+        } else {
+            newLead.date = dateField.text
+        }
         newLead.email = emailField.text
         newLead.phoneNum = phoneField.text
-        newLead.date = dateField.text
         newLead.comments = infoField.text
         newLead.createdOn = NSDate()
         newLead.leadID = UUID().uuidString

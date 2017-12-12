@@ -10,9 +10,12 @@ import UIKit
 
 class LeadCell: UITableViewCell {
 
+    @IBOutlet weak var nameField: UILabel!
+    @IBOutlet weak var dateField: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        nameField.adjustsFontSizeToFitWidth = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

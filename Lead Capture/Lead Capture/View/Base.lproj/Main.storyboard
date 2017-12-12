@@ -228,23 +228,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ats-WL-peJ">
-                                <rect key="frame" x="0.0" y="64" width="414" height="672"/>
+                                <rect key="frame" x="10" y="74" width="394" height="652"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ats-WL-peJ" firstAttribute="bottom" secondItem="3fN-ap-qPq" secondAttribute="bottom" id="XNC-Fc-NBn"/>
-                            <constraint firstItem="ats-WL-peJ" firstAttribute="top" secondItem="3fN-ap-qPq" secondAttribute="top" id="dNM-RC-G5Y"/>
-                            <constraint firstItem="ats-WL-peJ" firstAttribute="leading" secondItem="3fN-ap-qPq" secondAttribute="leading" id="gXW-q3-czb"/>
-                            <constraint firstItem="ats-WL-peJ" firstAttribute="trailing" secondItem="3fN-ap-qPq" secondAttribute="trailing" id="gjX-ED-4Je"/>
+                            <constraint firstItem="ats-WL-peJ" firstAttribute="bottom" secondItem="3fN-ap-qPq" secondAttribute="bottom" constant="-10" id="XNC-Fc-NBn"/>
+                            <constraint firstItem="ats-WL-peJ" firstAttribute="top" secondItem="3fN-ap-qPq" secondAttribute="top" constant="10" id="dNM-RC-G5Y"/>
+                            <constraint firstItem="ats-WL-peJ" firstAttribute="leading" secondItem="3fN-ap-qPq" secondAttribute="leading" constant="10" id="gXW-q3-czb"/>
+                            <constraint firstItem="ats-WL-peJ" firstAttribute="trailing" secondItem="3fN-ap-qPq" secondAttribute="trailing" constant="-10" id="gjX-ED-4Je"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3fN-ap-qPq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Event Name" id="skd-xU-Ze2">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="ioF-Z6-dkT">
                             <connections>
-                                <action selector="addButtonPressed:" destination="1SS-lz-p5r" id="Ma8-sA-mgb"/>
                                 <segue destination="jHG-aP-wZ5" kind="presentation" id="CDP-ch-8iE"/>
                             </connections>
                         </barButtonItem>
@@ -257,7 +256,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jR-jT-Z4L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1213.5999999999999" y="103.89805097451276"/>
+            <point key="canvasLocation" x="1213.0434782608697" y="103.53260869565219"/>
         </scene>
         <!--Add Event Alert Controller-->
         <scene sceneID="bF5-bG-yDE">
@@ -410,9 +409,6 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="dateEditingDidBegin:" destination="jHG-aP-wZ5" eventType="editingDidBegin" id="f1m-ED-oSG"/>
-                                </connections>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="info" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V6p-PT-rOY">
                                 <rect key="frame" x="20" y="288" width="275" height="128"/>

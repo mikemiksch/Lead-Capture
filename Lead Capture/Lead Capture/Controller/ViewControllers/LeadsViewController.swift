@@ -22,18 +22,15 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
 
-    @IBAction func addButtonPressed(_ sender: Any) {
-
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        leadsTable.dataSource = self
-        leadsTable.delegate = self
+        tableSetup()
         titleBar.title = selectedEvent.name
         self.leads = (selectedEvent.leads?.allObjects as! [Lead]).sorted(by: { (first, second) -> Bool in
             second.createdOn! as Date > first.createdOn! as Date
         })
+        applyFormatting()
+        animateLeadCells()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -58,19 +55,14 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        let cell = leadsTable.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath) as! LeadCell
         let lead = self.leads[indexPath.row]
-        if lead.name != "" {
-            cell.textLabel!.text = lead.name
+        if lead.partner != "" {
+            cell.nameField.text = "\(lead.name!) & \(String(describing: lead.partner))"
         } else {
-            cell.textLabel!.text = "No name given"
+            cell.nameField.text = lead.name
         }
-
-        if lead.date != "" {
-            cell.detailTextLabel!.text = lead.date
-        } else {
-            cell.detailTextLabel!.text = "No date given"
-        }
+        cell.dateField.text = lead.date
         return cell
     }
 
@@ -94,6 +86,45 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             present(deleteAlert, animated: true, completion: nil)
         }
+    }
+    
+    func tableSetup() {
+        leadsTable.dataSource = self
+        leadsTable.delegate = self
+        leadsTable.separatorColor = Settings.shared.accentColor
+        leadsTable.backgroundColor = UIColor.clear
+        leadsTable.tableFooterView = UIView(frame: CGRect.zero)
+        leadsTable.estimatedRowHeight = UITableViewAutomaticDimension
+        leadsTable.rowHeight = UITableViewAutomaticDimension
+        leadsTable.layer.cornerRadius = 10
+        
+        
+        let eventNib = UINib(nibName: "LeadCell", bundle: nil)
+        leadsTable.register(eventNib, forCellReuseIdentifier: LeadCell.identifier)
+    }
+    
+    func animateLeadCells() {
+        if leads.count >= 1 {
+            leadsTable.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            let visibleCells = leadsTable.visibleCells.map { (cell) -> LeadCell in
+                cell.transform = CGAffineTransform(translationX: 0, y: leadsTable.bounds.size.height)
+                
+                return cell as! LeadCell
+            }
+            
+            var index = 0
+            
+            for cell in visibleCells {
+                UIView.animate(withDuration: 0.50, delay: 0.05 * Double(index), usingSpringWithDamping: 0.8, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+                    cell.transform =  CGAffineTransform.identity
+                })
+                index += 1
+            }
+        }
+    }
+    
+    func applyFormatting() {
+        self.view.backgroundColor = Settings.shared.backgroundColor
     }
     
     func deleteLead(index: Int, lead: Lead) {
