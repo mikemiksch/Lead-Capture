@@ -129,6 +129,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             newEvent.name = name
         }
+        newEvent.date = date
         newEvent.createdOn = NSDate()
         newEvent.eventID = UUID().uuidString
         PersistenceService.saveContext()

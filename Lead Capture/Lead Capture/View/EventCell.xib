@@ -35,11 +35,8 @@
                             <constraint firstAttribute="height" constant="50" id="dXM-eO-wVA"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-yr-1Rd">
-                        <rect key="frame" x="58" y="7" width="200" height="28"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="200" id="l9H-R6-E2C"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Event Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v8N-yr-1Rd">
+                        <rect key="frame" x="58" y="7" width="209" height="28"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -67,6 +64,7 @@
                     <constraint firstItem="4E4-Mg-7hi" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="MEl-gb-hlJ"/>
                     <constraint firstAttribute="trailing" secondItem="X4U-pk-qfX" secondAttribute="trailing" id="Njj-20-oOJ"/>
                     <constraint firstItem="KXU-oV-aD1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="OHj-A3-e0n"/>
+                    <constraint firstItem="shj-B8-KU5" firstAttribute="leading" secondItem="v8N-yr-1Rd" secondAttribute="trailing" constant="16" id="OUe-UJ-90k"/>
                     <constraint firstItem="X4U-pk-qfX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Rw1-gW-W5W"/>
                     <constraint firstItem="4E4-Mg-7hi" firstAttribute="leading" secondItem="KXU-oV-aD1" secondAttribute="trailing" constant="8" id="gYZ-kf-4hn"/>
                     <constraint firstAttribute="bottom" secondItem="X4U-pk-qfX" secondAttribute="bottom" id="lVZ-0m-0xc"/>
