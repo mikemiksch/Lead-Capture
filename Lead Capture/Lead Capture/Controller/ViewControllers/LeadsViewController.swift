@@ -51,14 +51,26 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.leads.count
+        let noLeadsLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        noLeadsLabel.text = "You have no leads saved for this event"
+        noLeadsLabel.textAlignment = .center
+        noLeadsLabel.font = UIFont(name: "Existence-UnicaseLight", size: 17.0)
+        noLeadsLabel.textColor = UIColor.gray
+        self.leadsTable.backgroundView = noLeadsLabel
+        if leads.count == 0 {
+            noLeadsLabel.isHidden = false
+            return 0
+        } else {
+            noLeadsLabel.isHidden = true
+            return leads.count
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = leadsTable.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath) as! LeadCell
         let lead = self.leads[indexPath.row]
         if lead.partner != "" {
-            cell.nameField.text = "\(lead.name!) & \(String(describing: lead.partner))"
+            cell.nameField.text = "\(lead.name!) & \(lead.partner!)"
         } else {
             cell.nameField.text = lead.name
         }

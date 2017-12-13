@@ -14,10 +14,13 @@ class AddLeadViewController: UIViewController {
     var delegate : AddLeadDelegate?
     
     @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var partnerField: UITextField!
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var phoneField: UITextField!
     @IBOutlet weak var dateField: UITextField!
+    @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var infoField: UITextView!
+    @IBOutlet weak var subscribe: UISwitch!
     
     @IBAction func dismissButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -74,8 +77,11 @@ class AddLeadViewController: UIViewController {
             newLead.date = dateField.text
         }
         newLead.email = emailField.text
+        newLead.partner = partnerField.text
+        newLead.location = locationField.text
         newLead.phoneNum = phoneField.text
         newLead.comments = infoField.text
+        newLead.subscribe = subscribe.isOn
         newLead.createdOn = NSDate()
         newLead.leadID = UUID().uuidString
         newLead.event = self.currentEvent

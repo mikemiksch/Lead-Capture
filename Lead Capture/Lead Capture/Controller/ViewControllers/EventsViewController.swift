@@ -65,7 +65,19 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.count
+        let noEventLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: self.view.bounds.size.height))
+        noEventLabel.text = "You have no events saved"
+        noEventLabel.textAlignment = .center
+        noEventLabel.font = UIFont(name: "Existence-UnicaseLight", size: 17.0)
+        noEventLabel.textColor = UIColor.gray
+        self.eventsTable.backgroundView = noEventLabel
+        if events.count == 0 {
+            noEventLabel.isHidden = false
+            return 0
+        } else {
+            noEventLabel.isHidden = true
+            return events.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
