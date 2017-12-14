@@ -21,6 +21,7 @@ class AddLeadViewController: UIViewController {
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var infoField: UITextView!
     @IBOutlet weak var subscribe: UISwitch!
+    @IBOutlet weak var imageViewBG: UIImageView!
     
     @IBAction func dismissButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -47,6 +48,9 @@ class AddLeadViewController: UIViewController {
         
         dateField.inputView = datePicker
         dateField.inputAccessoryView = toolBar
+        imageViewBG.layer.borderColor = Settings.shared.accentColor.cgColor
+        imageViewBG.layer.borderWidth = 6
+        subscribe.onTintColor = Settings.shared.accentColor
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

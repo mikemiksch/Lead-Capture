@@ -145,8 +145,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 index += 1
             }
         
-            animateFlag = true
         }
+        animateFlag = true
     }
     
     func deleteEvent(index: Int, event: Event) {
