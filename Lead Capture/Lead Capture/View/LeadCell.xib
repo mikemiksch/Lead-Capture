@@ -24,6 +24,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="64.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-Eq-TUg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="leadIcon" translatesAutoresizingMaskIntoConstraints="NO" id="uQU-7D-wD5">
                         <rect key="frame" x="0.0" y="7" width="50" height="50"/>
                         <constraints>
@@ -32,26 +36,29 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wedding Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLF-xE-FP3">
-                        <rect key="frame" x="58" y="37" width="103" height="20"/>
+                        <rect key="frame" x="58" y="37" width="112.5" height="20"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="OaY-4K-XcK">
-                        <rect key="frame" x="58" y="7" width="59.5" height="28"/>
+                        <rect key="frame" x="58" y="7" width="64" height="28"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[DATE]" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIs-Bk-b58">
-                        <rect key="frame" x="169" y="37" width="41" height="20"/>
+                        <rect key="frame" x="178.5" y="37" width="50.5" height="20"/>
                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                         <color key="textColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="vIs-Bk-b58" secondAttribute="bottom" constant="7.5" id="0Je-71-2PU"/>
+                    <constraint firstAttribute="trailing" secondItem="6sj-Eq-TUg" secondAttribute="trailing" id="2Zp-9t-Ap0"/>
+                    <constraint firstAttribute="bottom" secondItem="6sj-Eq-TUg" secondAttribute="bottom" id="2ps-A8-ets"/>
                     <constraint firstItem="vIs-Bk-b58" firstAttribute="leading" secondItem="SLF-xE-FP3" secondAttribute="trailing" constant="8" id="EGy-ID-gkZ"/>
                     <constraint firstItem="uQU-7D-wD5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="HWq-b5-1Pv"/>
                     <constraint firstAttribute="bottom" secondItem="SLF-xE-FP3" secondAttribute="bottom" constant="7.5" id="e4p-qy-F8x"/>
@@ -59,8 +66,10 @@
                     <constraint firstItem="SLF-xE-FP3" firstAttribute="leading" secondItem="uQU-7D-wD5" secondAttribute="trailing" constant="8" id="i4M-X7-F2r"/>
                     <constraint firstItem="OaY-4K-XcK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="j57-48-3op"/>
                     <constraint firstItem="OaY-4K-XcK" firstAttribute="leading" secondItem="uQU-7D-wD5" secondAttribute="trailing" constant="8" id="jWj-pO-J2e"/>
+                    <constraint firstItem="6sj-Eq-TUg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jYn-Ez-ptm"/>
                     <constraint firstItem="uQU-7D-wD5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sQz-Iv-5cv"/>
                     <constraint firstItem="SLF-xE-FP3" firstAttribute="leading" secondItem="uQU-7D-wD5" secondAttribute="trailing" constant="8" id="vpi-gZ-bFt"/>
+                    <constraint firstItem="6sj-Eq-TUg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wXN-29-z9m"/>
                     <constraint firstItem="vIs-Bk-b58" firstAttribute="leading" secondItem="SLF-xE-FP3" secondAttribute="trailing" constant="8" id="zTB-HR-b2R"/>
                 </constraints>
             </tableViewCellContentView>
@@ -69,6 +78,7 @@
                 <outlet property="dateField" destination="vIs-Bk-b58" id="FIl-gD-ed0"/>
                 <outlet property="nameField" destination="OaY-4K-XcK" id="W2g-Ae-npj"/>
             </connections>
+            <point key="canvasLocation" x="29" y="45.5"/>
         </tableViewCell>
     </objects>
     <resources>

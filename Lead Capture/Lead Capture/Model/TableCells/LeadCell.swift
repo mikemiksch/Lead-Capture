@@ -16,6 +16,7 @@ class LeadCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         nameField.adjustsFontSizeToFitWidth = true
+        self.backgroundColor = .clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
