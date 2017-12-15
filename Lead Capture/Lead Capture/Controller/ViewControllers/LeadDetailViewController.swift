@@ -25,11 +25,11 @@ class LeadDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nameField.text = currentLead.name
-        emailField.text = currentLead.email
-        phoneField.text = currentLead.phoneNum
-        dateField.text = currentLead.date
-        infoField.text = currentLead.comments
+//        nameField.text = currentLead.name
+//        emailField.text = currentLead.email
+//        phoneField.text = currentLead.phoneNum
+//        dateField.text = currentLead.date
+//        infoField.text = currentLead.comments
         navBarTitle.title = currentLead.name
     }
 

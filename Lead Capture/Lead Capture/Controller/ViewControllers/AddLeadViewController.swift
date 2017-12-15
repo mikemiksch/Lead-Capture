@@ -22,6 +22,7 @@ class AddLeadViewController: UIViewController {
     @IBOutlet weak var infoField: UITextView!
     @IBOutlet weak var subscribe: UISwitch!
     @IBOutlet weak var imageViewBG: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
     
     @IBAction func dismissButtonPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
@@ -40,17 +41,8 @@ class AddLeadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let datePicker = UIDatePicker()
-        let toolBar = UIToolbar().ToolbarButtons(selection: #selector(self.dismissPicker))
-        
-        datePicker.datePickerMode = .date
-        datePicker.addTarget(self, action: #selector(dateValueChanged(sender:)), for: UIControlEvents.valueChanged)
-        
-        dateField.inputView = datePicker
-        dateField.inputAccessoryView = toolBar
-        imageViewBG.layer.borderColor = Settings.shared.accentColor.cgColor
-        imageViewBG.layer.borderWidth = 6
-        subscribe.onTintColor = Settings.shared.accentColor
+        handleDatePicker()
+        applyFormatting()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -66,6 +58,23 @@ class AddLeadViewController: UIViewController {
     
     @objc func dismissPicker() {
         view.endEditing(true)
+    }
+    
+    func handleDatePicker() {
+        let datePicker = UIDatePicker()
+        let toolBar = UIToolbar().ToolbarButtons(selection: #selector(self.dismissPicker))
+        datePicker.datePickerMode = .date
+        datePicker.addTarget(self, action: #selector(dateValueChanged(sender:)), for: UIControlEvents.valueChanged)
+        dateField.inputView = datePicker
+        dateField.inputAccessoryView = toolBar
+    }
+    
+    func applyFormatting() {
+        imageViewBG.layer.borderColor = Settings.shared.accentColor.cgColor
+        imageViewBG.layer.borderWidth = 6
+        subscribe.onTintColor = Settings.shared.accentColor
+        saveButton.layer.cornerRadius = 10
+        
     }
     
     func createLead() {
