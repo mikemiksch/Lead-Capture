@@ -9,9 +9,7 @@
 import UIKit
 
 extension UIImage {
-    
     typealias ImageCallback = (UIImage?)->()
-    
     class func fetchImageWith(_ urlString : String, callback: @escaping ImageCallback) {
         OperationQueue().addOperation {
             guard let url = URL(string: urlString) else { callback(nil); return }
@@ -33,10 +31,8 @@ extension UIResponder {
     }
 }
 
-extension UIImage
-{
-    func resized(size: CGSize) -> UIImage?
-    {
+extension UIImage {
+    func resized(size: CGSize) -> UIImage? {
         UIGraphicsBeginImageContext(size)
         
         let newFrame = CGRect(x: 0.0,
@@ -47,11 +43,42 @@ extension UIImage
         self.draw(in: newFrame)
         
         defer { //This line will execute immediately after the return statement.
-            
             UIGraphicsEndImageContext()
         }
-        
         return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+
+extension UIToolbar {
+    
+    func ToolbarButtons(selection : Selector) -> UIToolbar {
+        let toolBar = UIToolbar()
+        
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.isTranslucent = true
+        toolBar.tintColor = UIColor.black
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: selection)
+        
+        let space = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        
+        toolBar.setItems([space, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        
+        return toolBar
+        
+    }
+}
+
+extension UIColor {
+    func asShadowImage() -> UIImage {
+        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
+        setFill()
+        UIGraphicsGetCurrentContext()?.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
+        let image = UIGraphicsGetImageFromCurrentImageContext() ?? UIImage()
+        UIGraphicsEndImageContext()
+        return image
     }
 }
 
