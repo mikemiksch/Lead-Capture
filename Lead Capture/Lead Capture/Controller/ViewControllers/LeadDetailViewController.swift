@@ -31,20 +31,20 @@ class LeadDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventName.adjustsFontSizeToFitWidth = true
-        eventName.text = currentEvent.name!
-        nameLabel.text = currentLead.name
-        partnerLabel.text = currentLead.partner
-        dateLabel.text = currentLead.date
-        locationLabel.text = currentLead.location
-        phoneLabel.text = currentLead.phoneNum
-        emailLabel.text = currentLead.email
-        if currentLead.subscribe == true {
-            contactLabel.text = "Yes"
-        } else {
-            contactLabel.text = "No"
-        }
-        commentsLabel.text = currentLead.comments
+        populateLabels()
+//
+//        nameLabel.text = currentLead.name
+//        partnerLabel.text = currentLead.partner
+//        dateLabel.text = currentLead.date
+//        locationLabel.text = currentLead.location
+//        phoneLabel.text = currentLead.phoneNum
+//        emailLabel.text = currentLead.email
+//        if currentLead.subscribe == true {
+//            contactLabel.text = "Yes"
+//        } else {
+//            contactLabel.text = "No"
+//        }
+//        commentsLabel.text = currentLead.comments
         
         navBarTitle.title = currentLead.name
     
@@ -55,16 +55,47 @@ class LeadDetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func populateLabels() {
+        nameLabel.text = currentLead.name
+        eventName.adjustsFontSizeToFitWidth = true
+        eventName.text = currentEvent.name!
+        
+        if currentLead.partner != "" {
+            partnerLabel.text = currentLead.partner
+        } else {
+            partnerLabel.text = "No Name Given"
+        }
+        
+        if currentLead.location != "" {
+            locationLabel.text = currentLead.location
+        } else {
+            locationLabel.text = "No Location Given"
+        }
+        
+        if currentLead.phoneNum != "" {
+            phoneLabel.text = currentLead.phoneNum
+        } else {
+            phoneLabel.text = "No Phone Number Given"
+        }
+        
+        if currentLead.email != "" {
+            emailLabel.text = currentLead.email
+        } else {
+            emailLabel.text = "No Email Given"
+        }
+        
+        if !currentLead.subscribe {
+            contactLabel.text = "No"
+        } else {
+            contactLabel.text = "Yes"
+        }
+        
+        if currentLead.comments != "" {
+            commentsLabel.text = currentLead.comments
+        } else {
+            commentsLabel.text = "No Additional Comments"
+        }
     }
-    */
 
 }
 
