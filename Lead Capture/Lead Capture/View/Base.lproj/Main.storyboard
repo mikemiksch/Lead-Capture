@@ -502,7 +502,7 @@
                                 </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="V6p-PT-rOY">
-                                <rect key="frame" x="13" y="314" width="294" height="115.5"/>
+                                <rect key="frame" x="13" y="314" width="294" height="115"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -530,7 +530,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="May We Contact You?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="omC-Fi-Ri2">
-                                <rect key="frame" x="13" y="449.5" width="162.5" height="20.5"/>
+                                <rect key="frame" x="13" y="449" width="162.5" height="20.5"/>
                                 <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -552,8 +552,12 @@
                                         <rect key="frame" x="98.5" y="22.5" width="123" height="46"/>
                                         <color key="backgroundColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="9Tl-Ct-IDE"/>
-                                            <constraint firstAttribute="height" constant="46" id="Wr0-XT-ef6"/>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="9Tl-Ct-IDE">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="336"/>
+                                            </constraint>
+                                            <constraint firstAttribute="height" constant="46" id="Wr0-XT-ef6">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                                            </constraint>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Save">
@@ -574,7 +578,7 @@
                                 </constraints>
                             </view>
                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yMl-eL-f4L">
-                                <rect key="frame" x="191.5" y="445" width="51" height="31"/>
+                                <rect key="frame" x="191.5" y="444" width="51" height="31"/>
                             </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.99215686270000003" green="0.97647058819999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -883,33 +887,56 @@
                                     <constraint firstItem="271-Cy-xjN" firstAttribute="leading" secondItem="nrW-bk-30b" secondAttribute="trailing" constant="8" id="zXE-h1-Euw"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQj-OB-wVc">
-                                <rect key="frame" x="16" y="538" width="288" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Dismiss">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="dismissButtonPressed:" destination="cT4-pL-Cbx" eventType="touchUpInside" id="HoC-IO-owh"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aj8-uo-g9V">
+                                <rect key="frame" x="0.0" y="477" width="320" height="91"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DQj-OB-wVc">
+                                        <rect key="frame" x="99" y="23" width="123" height="46"/>
+                                        <color key="backgroundColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="b0T-Bb-YUu">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="336"/>
+                                            </constraint>
+                                            <constraint firstAttribute="height" constant="46" id="t7K-1P-UlI">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="100"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
+                                        <state key="normal" title="Close">
+                                            <color key="titleColor" red="0.99215686270000003" green="0.97647058819999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <variation key="heightClass=regular-widthClass=regular">
+                                            <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="40"/>
+                                        </variation>
+                                        <connections>
+                                            <action selector="dismissButtonPressed:" destination="cT4-pL-Cbx" eventType="touchUpInside" id="HoC-IO-owh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="DQj-OB-wVc" firstAttribute="centerX" secondItem="aj8-uo-g9V" secondAttribute="centerX" id="ebY-YD-TV6"/>
+                                    <constraint firstItem="DQj-OB-wVc" firstAttribute="centerY" secondItem="aj8-uo-g9V" secondAttribute="centerY" id="p9w-tQ-VP0"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="dzv-gw-QMq" firstAttribute="bottom" secondItem="aj8-uo-g9V" secondAttribute="bottom" id="1W9-bm-kYl"/>
                             <constraint firstItem="ans-e1-abc" firstAttribute="top" secondItem="krM-Z9-2jo" secondAttribute="top" id="B2G-ZP-oNW"/>
-                            <constraint firstItem="DQj-OB-wVc" firstAttribute="bottom" secondItem="dzv-gw-QMq" secondAttribute="bottom" id="E8O-rI-GcL"/>
                             <constraint firstItem="rl9-c6-Www" firstAttribute="leading" secondItem="dzv-gw-QMq" secondAttribute="leading" id="IKj-Pa-Czo"/>
                             <constraint firstAttribute="bottom" secondItem="ans-e1-abc" secondAttribute="bottom" id="Nxh-OS-U6J"/>
+                            <constraint firstItem="aj8-uo-g9V" firstAttribute="leading" secondItem="dzv-gw-QMq" secondAttribute="leading" id="PuX-xm-0yQ"/>
                             <constraint firstItem="dzv-gw-QMq" firstAttribute="trailing" secondItem="ans-e1-abc" secondAttribute="trailing" id="WEa-ZO-Ds4"/>
                             <constraint firstItem="XzT-FS-kM8" firstAttribute="bottom" secondItem="dzv-gw-QMq" secondAttribute="bottom" id="Wyq-dv-kGy"/>
                             <constraint firstItem="XzT-FS-kM8" firstAttribute="top" secondItem="rl9-c6-Www" secondAttribute="bottom" id="f5E-an-oV1"/>
                             <constraint firstItem="ans-e1-abc" firstAttribute="leading" secondItem="dzv-gw-QMq" secondAttribute="leading" id="jfr-St-pJQ"/>
-                            <constraint firstItem="DQj-OB-wVc" firstAttribute="leading" secondItem="dzv-gw-QMq" secondAttribute="leading" constant="16" id="lAW-qz-6HY"/>
+                            <constraint firstItem="dzv-gw-QMq" firstAttribute="trailing" secondItem="aj8-uo-g9V" secondAttribute="trailing" id="vdD-H1-QFp"/>
                             <constraint firstItem="XzT-FS-kM8" firstAttribute="leading" secondItem="dzv-gw-QMq" secondAttribute="leading" id="vz1-4D-ySc"/>
                             <constraint firstItem="rl9-c6-Www" firstAttribute="trailing" secondItem="dzv-gw-QMq" secondAttribute="trailing" id="wlw-4P-7Zz"/>
                             <constraint firstItem="rl9-c6-Www" firstAttribute="top" secondItem="dzv-gw-QMq" secondAttribute="top" id="xDe-iJ-wh1"/>
+                            <constraint firstItem="aj8-uo-g9V" firstAttribute="height" secondItem="krM-Z9-2jo" secondAttribute="height" multiplier="0.16" id="xa8-fR-6oU"/>
                             <constraint firstItem="XzT-FS-kM8" firstAttribute="trailing" secondItem="dzv-gw-QMq" secondAttribute="trailing" id="xkG-cR-6Ic"/>
-                            <constraint firstItem="dzv-gw-QMq" firstAttribute="trailing" secondItem="DQj-OB-wVc" secondAttribute="trailing" constant="16" id="yey-Q3-VnD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dzv-gw-QMq"/>
                     </view>
