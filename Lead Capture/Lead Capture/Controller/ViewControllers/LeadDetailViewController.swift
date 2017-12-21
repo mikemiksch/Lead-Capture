@@ -10,13 +10,19 @@ import UIKit
 
 class LeadDetailViewController: UIViewController {
     
+    var currentEvent : Event!
     var currentLead : Lead!
     
-    @IBOutlet weak var nameField: UILabel!
-    @IBOutlet weak var emailField: UILabel!
-    @IBOutlet weak var phoneField: UILabel!
-    @IBOutlet weak var dateField: UILabel!
-    @IBOutlet weak var infoField: UILabel!
+    @IBOutlet weak var eventName: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var partnerLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var contactLabel: UILabel!
+    @IBOutlet weak var commentsLabel: UILabel!
+    
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
     @IBAction func dismissButtonPressed(_ sender: Any) {
@@ -25,12 +31,23 @@ class LeadDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        nameField.text = currentLead.name
-//        emailField.text = currentLead.email
-//        phoneField.text = currentLead.phoneNum
-//        dateField.text = currentLead.date
-//        infoField.text = currentLead.comments
+        eventName.adjustsFontSizeToFitWidth = true
+        eventName.text = currentEvent.name!
+        nameLabel.text = currentLead.name
+        partnerLabel.text = currentLead.partner
+        dateLabel.text = currentLead.date
+        locationLabel.text = currentLead.location
+        phoneLabel.text = currentLead.phoneNum
+        emailLabel.text = currentLead.email
+        if currentLead.subscribe == true {
+            contactLabel.text = "Yes"
+        } else {
+            contactLabel.text = "No"
+        }
+        commentsLabel.text = currentLead.comments
+        
         navBarTitle.title = currentLead.name
+    
     }
 
     override func didReceiveMemoryWarning() {

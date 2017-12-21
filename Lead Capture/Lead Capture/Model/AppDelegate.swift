@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:
         [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        var navBarAppearance = UINavigationBar.appearance()
-        var navBarButtonAppearance = UIBarButtonItem.appearance()
+        let navBarAppearance = UINavigationBar.appearance()
+        let navBarButtonAppearance = UIBarButtonItem.appearance()
         
         let buttonAttributes = [NSAttributedStringKey.font: Settings.shared.navBarFont]
         let titleAttributes = [NSAttributedStringKey.font : Settings.shared.titleFont]

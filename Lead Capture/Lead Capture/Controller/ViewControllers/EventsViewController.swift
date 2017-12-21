@@ -86,7 +86,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.dateField.text = event.date
         cell.eventNameField.text = event.name
         cell.eventNameField.adjustsFontSizeToFitWidth = true
-        cell.leadCountField.text = "\(event.leads!.count) Leads"
+        if event.leads!.count == 1 {
+            cell.leadCountField.text = "\(event.leads!.count) Lead"
+        } else {
+            cell.leadCountField.text = "\(event.leads!.count) Leads"
+        }
         return cell
     }
     
