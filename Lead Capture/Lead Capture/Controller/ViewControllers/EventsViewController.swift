@@ -46,9 +46,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        fetchAllLeadds()
         eventsTable.reloadData()
-        animateEventCells()
+//        animateEventCells()
  
     }
     
@@ -86,7 +85,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         cell.dateField.text = event.date
         cell.eventNameField.text = event.name
         cell.eventNameField.adjustsFontSizeToFitWidth = true
-        cell.leadCountField.text = "\(event.leads!.count) Leads"
+        if event.leads!.count == 1 {
+            cell.leadCountField.text = "\(event.leads!.count) Lead"
+        } else {
+            cell.leadCountField.text = "\(event.leads!.count) Leads"
+        }
         return cell
     }
     
@@ -177,20 +180,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         newEvent.eventID = UUID().uuidString
         PersistenceService.saveContext()
         self.events.append(newEvent)
-    }
-    
-    // MARK: - fetchAllLeads function
-    
-    func fetchAllLeadds() {
-        let fetchRequest : NSFetchRequest<Lead> = Lead.fetchRequest()
-        
-        do {
-            let leads = try PersistenceService.context.fetch(fetchRequest)
-            print("Leads count")
-            print(leads.count)
-        } catch {
-            print("Error fetching all leads")
-        }
     }
 
 }

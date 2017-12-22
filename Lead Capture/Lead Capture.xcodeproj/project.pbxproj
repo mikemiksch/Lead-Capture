@@ -28,6 +28,7 @@
 		839BD1A41FDF2B8D00D81BC0 /* EventCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1A21FDF2B8D00D81BC0 /* EventCell.xib */; };
 		839BD1A71FDF2BA300D81BC0 /* LeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 839BD1A51FDF2BA300D81BC0 /* LeadCell.swift */; };
 		839BD1A81FDF2BA300D81BC0 /* LeadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 839BD1A61FDF2BA300D81BC0 /* LeadCell.xib */; };
+		83C619E71FEC86B5008E9A0C /* VSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C619E61FEC86B5008E9A0C /* VSTextField.swift */; };
 		83CACF1A1FE064D200E4CDB7 /* Lead+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CACF181FE064D200E4CDB7 /* Lead+CoreDataClass.swift */; };
 		83CACF1B1FE064D200E4CDB7 /* Lead+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CACF191FE064D200E4CDB7 /* Lead+CoreDataProperties.swift */; };
 		83F46C881FBCFA1300CCACD7 /* EventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */; };
@@ -61,6 +62,7 @@
 		839BD1A21FDF2B8D00D81BC0 /* EventCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EventCell.xib; sourceTree = "<group>"; };
 		839BD1A51FDF2BA300D81BC0 /* LeadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadCell.swift; sourceTree = "<group>"; };
 		839BD1A61FDF2BA300D81BC0 /* LeadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeadCell.xib; sourceTree = "<group>"; };
+		83C619E61FEC86B5008E9A0C /* VSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VSTextField.swift; sourceTree = "<group>"; };
 		83CACF181FE064D200E4CDB7 /* Lead+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataClass.swift"; sourceTree = "<group>"; };
 		83CACF191FE064D200E4CDB7 /* Lead+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		83F46C871FBCFA1300CCACD7 /* EventsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventsViewController.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				836B5FD71FB4E34300B78D74 /* AppDelegate.swift */,
 				836AD34D1FD0D8A700450EEF /* UIExtensions.swift */,
 				839ADBC91FD88302000F15A0 /* PersistenceService.swift */,
+				83C619E61FEC86B5008E9A0C /* VSTextField.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
 				839ADBCA1FD88302000F15A0 /* PersistenceService.swift in Sources */,
 				839BD1A31FDF2B8D00D81BC0 /* EventCell.swift in Sources */,
+				83C619E71FEC86B5008E9A0C /* VSTextField.swift in Sources */,
 				8368B1B61FD8AF9A0087B97D /* Event+CoreDataProperties.swift in Sources */,
 				83CACF1B1FE064D200E4CDB7 /* Lead+CoreDataProperties.swift in Sources */,
 				839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */,

@@ -30,7 +30,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             second.createdOn! as Date > first.createdOn! as Date
         })
         applyFormatting()
-        animateLeadCells()
+//        animateLeadCells()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -47,6 +47,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let selectedIndex = leadsTable.indexPathForSelectedRow!.row
             let selectedLead = self.leads[selectedIndex]
             destinationViewController.currentLead = selectedLead
+            destinationViewController.currentEvent = self.selectedEvent
         }
     }
 
@@ -74,6 +75,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             cell.nameField.text = lead.name
         }
+        cell.nameField.adjustsFontSizeToFitWidth = true
         cell.dateField.text = lead.date
         return cell
     }

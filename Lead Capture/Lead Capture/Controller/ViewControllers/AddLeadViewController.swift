@@ -16,7 +16,7 @@ class AddLeadViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var partnerField: UITextField!
     @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var phoneField: UITextField!
+    @IBOutlet weak var phoneField: VSTextField!
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var infoField: UITextView!
@@ -29,10 +29,19 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        createLead()
-        resetForm()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
+        if phoneField.text.count == 10 || phoneField.text == "" {
+            if validateEmail(email: emailField.text!) || emailField.text == "" {
+                createLead()
+                resetForm()
+            } else {
+                thankYouAlert.message = "Please Enter a Valid Email Address!"
+            }
+        } else {
+            thankYouAlert.message = "Please Enter a Valid Phone Number!"
+        }
+
         thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(thankYouAlert, animated: true, completion: nil)
@@ -43,6 +52,7 @@ class AddLeadViewController: UIViewController {
         super.viewDidLoad()
         handleDatePicker()
         applyFormatting()
+        phoneField.setFormatting("###-###-####", replacementChar: "#")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,6 +119,13 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
+    }
+    
+    func validateEmail(email: String) -> Bool {
+        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        
+        let validation = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return validation.evaluate(with: email)
     }
 
 }
