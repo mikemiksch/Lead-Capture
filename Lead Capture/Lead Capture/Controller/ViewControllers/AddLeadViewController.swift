@@ -31,7 +31,7 @@ class AddLeadViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
-        if validatePhoneNum(phoneNum: phoneField.text!) {
+        if phoneField.text.count == 10 || phoneField.text == "" {
             createLead()
             resetForm()
         } else {
@@ -115,12 +115,6 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
-    }
-    
-    func validatePhoneNum(phoneNum: String) -> Bool {
-        let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
-        let validation = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
-        return validation.evaluate(with: phoneNum) || phoneNum == ""
     }
 
 }

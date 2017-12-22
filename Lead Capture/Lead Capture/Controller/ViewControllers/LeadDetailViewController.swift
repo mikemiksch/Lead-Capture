@@ -42,8 +42,7 @@ class LeadDetailViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self.view)
-            guard let phoneText = phoneLabel.text?.trimmingCharacters(in: CharacterSet.decimalDigits.inverted) else { return }
-            guard let phoneURL = URL(string: "tel://\(phoneText)") else { return }
+            guard let phoneURL = URL(string: "tel://\(String(describing: currentLead.phoneNum))") else { return }
             if phoneLabel.frame.contains(location) {
                 UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
             }
