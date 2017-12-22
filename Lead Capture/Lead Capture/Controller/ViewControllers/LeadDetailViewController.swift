@@ -32,31 +32,28 @@ class LeadDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         populateLabels()
-//
-//        nameLabel.text = currentLead.name
-//        partnerLabel.text = currentLead.partner
-//        dateLabel.text = currentLead.date
-//        locationLabel.text = currentLead.location
-//        phoneLabel.text = currentLead.phoneNum
-//        emailLabel.text = currentLead.email
-//        if currentLead.subscribe == true {
-//            contactLabel.text = "Yes"
-//        } else {
-//            contactLabel.text = "No"
-//        }
-//        commentsLabel.text = currentLead.comments
-        
         navBarTitle.title = currentLead.name
     
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch: AnyObject in touches {
+            let location = touch.location(in: self.view)
+            guard let phoneText = phoneLabel.text?.trimmingCharacters(in: CharacterSet.decimalDigits.inverted) else { return }
+            guard let phoneURL = URL(string: "tel://\(phoneText)") else { return }
+            if phoneLabel.frame.contains(location) && isValidPhoneNum(phoneNum: phoneText) {
+                UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+        }
     }
     
     func populateLabels() {
         nameLabel.text = currentLead.name
+        dateLabel.text = currentLead.date
         eventName.adjustsFontSizeToFitWidth = true
         eventName.text = currentEvent.name!
         
@@ -95,6 +92,12 @@ class LeadDetailViewController: UIViewController {
         } else {
             commentsLabel.text = "No Additional Comments"
         }
+    }
+    
+    
+    
+    func isValidPhoneNum(phoneNum: String) -> Bool {
+        return true
     }
 
 }

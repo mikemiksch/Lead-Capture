@@ -16,7 +16,7 @@ class AddLeadViewController: UIViewController {
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var partnerField: UITextField!
     @IBOutlet weak var emailField: UITextField!
-    @IBOutlet weak var phoneField: UITextField!
+    @IBOutlet weak var phoneField: VSTextField!
     @IBOutlet weak var dateField: UITextField!
     @IBOutlet weak var locationField: UITextField!
     @IBOutlet weak var infoField: UITextView!
@@ -29,6 +29,11 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
+        if validatePhoneNum(phoneNum: phoneField.text!) {
+            print("Valid phone number!")
+        } else {
+            print("Invalid phone number!")
+        }
         createLead()
         resetForm()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -43,6 +48,7 @@ class AddLeadViewController: UIViewController {
         super.viewDidLoad()
         handleDatePicker()
         applyFormatting()
+        phoneField.setFormatting("###-###-####", replacementChar: "#")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -109,6 +115,12 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
+    }
+    
+    func validatePhoneNum(phoneNum: String) -> Bool {
+        let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
+        let validation = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        return validation.evaluate(with: phoneNum)
     }
 
 }
