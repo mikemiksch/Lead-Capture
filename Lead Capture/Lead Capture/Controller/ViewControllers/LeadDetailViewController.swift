@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class LeadDetailViewController: UIViewController {
+class LeadDetailViewController: UIViewController, MFMailComposeViewControllerDelegate {
     
     var currentEvent : Event!
     var currentLead : Lead!
@@ -42,10 +43,23 @@ class LeadDetailViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch: AnyObject in touches {
             let location = touch.location(in: self.view)
-            guard let phoneText = phoneLabel.text else { return }
-            guard let phoneURL = URL(string: "tel://\(phoneText)") else { return }
-            if phoneLabel.frame.contains(location) {
+            guard let phone = currentLead.phoneNum else { return }
+            guard let email = currentLead.email else { return }
+            guard let phoneURL = URL(string: "tel://\(phone)") else { return }
+            
+            if phoneLabel.frame.contains(location) && currentLead.phoneNum != "" {
                 UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
+            }
+            
+            if emailLabel.frame.contains(location) && currentLead.email != "" {
+                if MFMailComposeViewController.canSendMail() {
+                    let mail = MFMailComposeViewController()
+                    mail.mailComposeDelegate = self
+                    mail.setToRecipients([email])
+                    present(mail, animated: true, completion: nil)
+                } else {
+                    print("Cannot send mail from this device")
+                }
             }
         }
     }
@@ -77,6 +91,7 @@ class LeadDetailViewController: UIViewController {
         
         if currentLead.email != "" {
             emailLabel.text = currentLead.email
+            emailLabel.textColor = Settings.shared.accentColor
         } else {
             emailLabel.text = "No Email Given"
         }
@@ -92,6 +107,10 @@ class LeadDetailViewController: UIViewController {
         } else {
             commentsLabel.text = "No Additional Comments"
         }
+    }
+    
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 
 }
