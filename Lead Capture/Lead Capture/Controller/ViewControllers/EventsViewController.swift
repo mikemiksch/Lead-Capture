@@ -48,7 +48,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidAppear(_ animated: Bool) {
         fetchAllLeadds()
         eventsTable.reloadData()
-        animateEventCells()
+//        animateEventCells()
  
     }
     
@@ -181,20 +181,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         newEvent.eventID = UUID().uuidString
         PersistenceService.saveContext()
         self.events.append(newEvent)
-    }
-    
-    // MARK: - fetchAllLeads function
-    
-    func fetchAllLeadds() {
-        let fetchRequest : NSFetchRequest<Lead> = Lead.fetchRequest()
-        
-        do {
-            let leads = try PersistenceService.context.fetch(fetchRequest)
-            print("Leads count")
-            print(leads.count)
-        } catch {
-            print("Error fetching all leads")
-        }
     }
 
 }
