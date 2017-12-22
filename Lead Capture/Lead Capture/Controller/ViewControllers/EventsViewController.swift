@@ -46,7 +46,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        fetchAllLeadds()
         eventsTable.reloadData()
 //        animateEventCells()
  

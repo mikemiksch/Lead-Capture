@@ -32,8 +32,12 @@ class AddLeadViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
         if phoneField.text.count == 10 || phoneField.text == "" {
-            createLead()
-            resetForm()
+            if validateEmail(email: emailField.text!) || emailField.text == "" {
+                createLead()
+                resetForm()
+            } else {
+                thankYouAlert.message = "Please Enter a Valid Email Address!"
+            }
         } else {
             thankYouAlert.message = "Please Enter a Valid Phone Number!"
         }
@@ -115,6 +119,13 @@ class AddLeadViewController: UIViewController {
             }
         }
         infoField.text = nil
+    }
+    
+    func validateEmail(email: String) -> Bool {
+        let emailRegEx = "^(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?(?:(?:(?:[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+(?:\\.[-A-Za-z0-9!#$%&’*+/=?^_'{|}~]+)*)|(?:\"(?:(?:(?:(?: )*(?:(?:[!#-Z^-~]|\\[|\\])|(?:\\\\(?:\\t|[ -~]))))+(?: )*)|(?: )+)\"))(?:@)(?:(?:(?:[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)(?:\\.[A-Za-z0-9](?:[-A-Za-z0-9]{0,61}[A-Za-z0-9])?)*)|(?:\\[(?:(?:(?:(?:(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))\\.){3}(?:[0-9]|(?:[1-9][0-9])|(?:1[0-9][0-9])|(?:2[0-4][0-9])|(?:25[0-5]))))|(?:(?:(?: )*[!-Z^-~])*(?: )*)|(?:[Vv][0-9A-Fa-f]+\\.[-A-Za-z0-9._~!$&'()*+,;=:]+))\\])))(?:(?:(?:(?: )*(?:(?:(?:\\t| )*\\r\\n)?(?:\\t| )+))+(?: )*)|(?: )+)?$"
+        
+        let validation = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        return validation.evaluate(with: email)
     }
 
 }
