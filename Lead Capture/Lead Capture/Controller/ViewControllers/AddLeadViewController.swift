@@ -29,15 +29,15 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if validatePhoneNum(phoneNum: phoneField.text!) {
-            print("Valid phone number!")
-        } else {
-            print("Invalid phone number!")
-        }
-        createLead()
-        resetForm()
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
+        if validatePhoneNum(phoneNum: phoneField.text!) {
+            createLead()
+            resetForm()
+        } else {
+            thankYouAlert.message = "Please Enter a Valid Phone Number!"
+        }
+
         thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(thankYouAlert, animated: true, completion: nil)
@@ -120,7 +120,7 @@ class AddLeadViewController: UIViewController {
     func validatePhoneNum(phoneNum: String) -> Bool {
         let PHONE_REGEX = "^\\d{3}-\\d{3}-\\d{4}$"
         let validation = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
-        return validation.evaluate(with: phoneNum)
+        return validation.evaluate(with: phoneNum) || phoneNum == ""
     }
 
 }

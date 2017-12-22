@@ -118,6 +118,8 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func animateLeadCells() {
+        print("HEY!")
+        print(leadsTable.visibleCells.count)
         if leads.count >= 1 {
             leadsTable.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             let visibleCells = leadsTable.visibleCells.map { (cell) -> LeadCell in

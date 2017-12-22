@@ -33,7 +33,6 @@ class LeadDetailViewController: UIViewController {
         super.viewDidLoad()
         populateLabels()
         navBarTitle.title = currentLead.name
-    
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,7 +44,7 @@ class LeadDetailViewController: UIViewController {
             let location = touch.location(in: self.view)
             guard let phoneText = phoneLabel.text?.trimmingCharacters(in: CharacterSet.decimalDigits.inverted) else { return }
             guard let phoneURL = URL(string: "tel://\(phoneText)") else { return }
-            if phoneLabel.frame.contains(location) && isValidPhoneNum(phoneNum: phoneText) {
+            if phoneLabel.frame.contains(location) {
                 UIApplication.shared.open(phoneURL, options: [:], completionHandler: nil)
             }
         }
@@ -71,6 +70,7 @@ class LeadDetailViewController: UIViewController {
         
         if currentLead.phoneNum != "" {
             phoneLabel.text = currentLead.phoneNum
+            phoneLabel.textColor = Settings.shared.accentColor
         } else {
             phoneLabel.text = "No Phone Number Given"
         }
@@ -92,12 +92,6 @@ class LeadDetailViewController: UIViewController {
         } else {
             commentsLabel.text = "No Additional Comments"
         }
-    }
-    
-    
-    
-    func isValidPhoneNum(phoneNum: String) -> Bool {
-        return true
     }
 
 }

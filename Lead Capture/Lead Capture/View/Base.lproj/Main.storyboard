@@ -725,6 +725,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="messageLabel" destination="i8P-jQ-yHI" id="6iA-Yh-fKS"/>
                         <outlet property="viewBox" destination="SYr-BD-KuN" id="Rnn-Le-CrG"/>
                     </connections>
                 </viewController>

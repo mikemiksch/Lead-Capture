@@ -9,13 +9,17 @@
 import UIKit
 
 class ThankYouAlertController: UIViewController {
-
+    
+    var message : String?
+    
+    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var viewBox: UIView!
     @IBAction func tapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        messageLabel.text = message ?? "Thank You!"
         applyFormatting()
     }
     
