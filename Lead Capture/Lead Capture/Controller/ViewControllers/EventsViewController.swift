@@ -65,9 +65,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let export = UITableViewRowAction(style: .normal, title: "Export CSV") { (action, indexPath) in
+            let selectedEvent = self.events[indexPath.row]
+            self.createCSV(event: selectedEvent)
             return
         }
-        export.backgroundColor = UIColor.green
+        export.backgroundColor = UIColor.blue
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -149,6 +151,31 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let eventNib = UINib(nibName: "EventCell", bundle: nil)
         eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
+    }
+    
+    func createCSV(event: Event) {
+        let fileName = "\(String(describing: event.name!)) Leads.csv"
+        let tempDirectory = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
+        let fileURL = tempDirectory.appendingPathComponent(fileName)
+        
+        var csvText = "Name,Partner,Date,Location,Phone Number,Email,OK to Contact,Comments\n"
+        
+        guard let leads = event.leads else { return }
+        for each in leads {
+            let lead = each as! Lead
+            let newLine = "\(lead.name!),\(lead.partner!),\(lead.date!),\(lead.location!),\(lead.phoneNum!),\(lead.email!),\(lead.subscribe),\(lead.comments!)\n"
+            csvText.append(newLine)
+        }
+        
+        do {
+            try csvText.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
+            print(csvText)
+        } catch {
+            print("Failed to create CSV file: \(error)")
+        }
+        
+        let activityView = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+        present(activityView, animated: true, completion: nil)
     }
     
     func animateEventCells() {
