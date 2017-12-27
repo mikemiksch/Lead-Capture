@@ -175,6 +175,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         let activityView = UIActivityViewController(activityItems: [fileURL], applicationActivities: [])
+        activityView.title = "Export CSV File"
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            activityView.popoverPresentationController?.sourceView = self.view
+            activityView.popoverPresentationController?.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            activityView.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
+        }
         present(activityView, animated: true, completion: nil)
     }
     
