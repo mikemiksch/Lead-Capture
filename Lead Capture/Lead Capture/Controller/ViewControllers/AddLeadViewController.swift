@@ -12,6 +12,7 @@ class AddLeadViewController: UIViewController {
     
     var currentEvent : Event!
     var delegate : AddLeadDelegate?
+    var currentLead : Lead?
     
     @IBOutlet weak var nameField: UITextField!
     @IBOutlet weak var partnerField: UITextField!
@@ -33,8 +34,21 @@ class AddLeadViewController: UIViewController {
         let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
         if phoneField.text.count == 10 || phoneField.text == "" {
             if validateEmail(email: emailField.text!) || emailField.text == "" {
+                if let currentLead = currentLead {
+                    currentLead.name = nameField.text
+                    currentLead.partner = partnerField.text
+                    currentLead.email = emailField.text
+                    currentLead.phoneNum = phoneField.text
+                    currentLead.date = dateField.text
+                    currentLead.location = locationField.text
+                    currentLead.comments = infoField.text
+                    currentLead.subscribe = subscribe.isOn
+                    PersistenceService.saveContext()
+                    self.dismiss(animated: true, completion: nil)
+                } else {
                 createLead()
                 resetForm()
+                }
             } else {
                 thankYouAlert.message = "Please Enter a Valid Email Address!"
             }
@@ -45,14 +59,24 @@ class AddLeadViewController: UIViewController {
         thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         present(thankYouAlert, animated: true, completion: nil)
-
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         handleDatePicker()
         applyFormatting()
         phoneField.setFormatting("###-###-####", replacementChar: "#")
+        if let currentLead = currentLead {
+            nameField.text = currentLead.name
+            partnerField.text = currentLead.partner
+            emailField.text = currentLead.email
+            phoneField.text = currentLead.phoneNum
+            dateField.text = currentLead.date
+            locationField.text = currentLead.location
+            infoField.text = currentLead.comments
+            subscribe.isOn = currentLead.subscribe
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

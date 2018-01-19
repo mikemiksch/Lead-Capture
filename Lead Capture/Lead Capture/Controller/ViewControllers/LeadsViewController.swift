@@ -21,7 +21,16 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
-
+    @IBAction func editButtonPressed(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
+        addEventAlert.currentEvent = selectedEvent
+        addEventAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        addEventAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(addEventAlert, animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableSetup()

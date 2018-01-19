@@ -26,18 +26,27 @@ class LeadDetailViewController: UIViewController, MFMailComposeViewControllerDel
     
     @IBOutlet weak var navBarTitle: UINavigationItem!
     
-    @IBAction func dismissButtonPressed(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+    @IBAction func editButtonPressed(_ sender: Any) {
     }
+    //    @IBAction func dismissButtonPressed(_ sender: Any) {
+//        self.dismiss(animated: true, completion: nil)
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         populateLabels()
         navBarTitle.title = currentLead.name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        populateLabels()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let destinationViewController = segue.destination as? AddLeadViewController {
+            destinationViewController.currentLead = currentLead
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
