@@ -32,6 +32,8 @@ class AddEventAlertController: UIViewController {
         if let currentEvent = currentEvent {
             currentEvent.name = nameField.text
             currentEvent.date = dateField.text
+            PersistenceService.saveContext()
+            self.dismiss(animated: true, completion: nil)
         } else {
             self.delegate?.addEvent(name: nameField.text!, date: dateField.text!)
             self.dismiss(animated: true, completion: nil)

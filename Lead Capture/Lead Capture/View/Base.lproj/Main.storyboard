@@ -8,6 +8,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -225,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="192.75362318840581" y="103.53260869565219"/>
+            <point key="canvasLocation" x="137" y="102"/>
         </scene>
         <!--Event Name-->
         <scene sceneID="hAh-Jn-cYM">
@@ -250,11 +251,18 @@
                         <viewLayoutGuide key="safeArea" id="3fN-ap-qPq"/>
                     </view>
                     <navigationItem key="navigationItem" title="Event Name" id="skd-xU-Ze2">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ioF-Z6-dkT">
-                            <connections>
-                                <segue destination="FWz-B4-ZGQ" kind="presentation" id="Wf7-ve-JqM"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="ioF-Z6-dkT">
+                                <connections>
+                                    <segue destination="FWz-B4-ZGQ" kind="presentation" id="Wf7-ve-JqM"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="edit" id="bGE-XR-HjS">
+                                <connections>
+                                    <action selector="editButtonPressed:" destination="1SS-lz-p5r" id="Dve-n9-VcC"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="leadsTable" destination="ats-WL-peJ" id="Ymb-q5-RXe"/>
@@ -293,7 +301,7 @@
                                             <action selector="cancelButtonPressed:" destination="wKv-T7-XmR" eventType="touchUpInside" id="ef6-kV-Fh4"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a name and date for a new event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-4t-SW5">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter a name and date for your event" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-4t-SW5">
                                         <rect key="frame" x="14.5" y="8" width="245.5" height="40.5"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -318,7 +326,7 @@
                                         <rect key="frame" x="142" y="130" width="123" height="46"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
-                                        <state key="normal" title="Create"/>
+                                        <state key="normal" title="Done"/>
                                         <connections>
                                             <action selector="createButtonPressed:" destination="7SN-bC-k8B" eventType="touchUpInside" id="OUq-GD-4Rb"/>
                                             <action selector="deleteButtonPressed:" destination="wKv-T7-XmR" eventType="touchUpInside" id="NwB-Gw-b6Q"/>
@@ -372,7 +380,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zi8-FR-eLI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="191.19999999999999" y="811.33004926108379"/>
+            <point key="canvasLocation" x="671" y="905"/>
         </scene>
         <!--Add Lead View Controller-->
         <scene sceneID="Yg3-ui-GtF">
@@ -672,7 +680,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Mg-th-h8z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1205.625" y="808.09859154929575"/>
+            <point key="canvasLocation" x="1770" y="906"/>
         </scene>
         <!--Thank You Alert Controller-->
         <scene sceneID="tbM-0N-yZp">
@@ -736,7 +744,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1212" y="1541.3793103448277"/>
+            <point key="canvasLocation" x="1770" y="1585"/>
         </scene>
         <!--Title-->
         <scene sceneID="3oj-J1-owe">
@@ -991,7 +999,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="dzv-gw-QMq"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="DrF-9R-tgR"/>
+                    <navigationItem key="navigationItem" title="Title" id="DrF-9R-tgR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="rZv-KX-naD">
+                            <connections>
+                                <action selector="editButtonPressed:" destination="cT4-pL-Cbx" id="Q2K-KY-DoU"/>
+                                <segue destination="FWz-B4-ZGQ" kind="presentation" id="XH0-vL-Xkv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="commentsLabel" destination="dlr-m4-DST" id="nFT-2J-Lyn"/>
                         <outlet property="contactLabel" destination="wi6-JJ-C2u" id="T7z-8z-wF4"/>
@@ -1031,4 +1046,7 @@
     <resources>
         <image name="ivory-off-white-paper-texture" width="3888" height="2592"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="XH0-vL-Xkv"/>
+    </inferredMetricsTieBreakers>
 </document>
