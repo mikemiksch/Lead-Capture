@@ -37,9 +37,16 @@ class LeadDetailViewController: UIViewController, MFMailComposeViewControllerDel
         populateLabels()
         navBarTitle.title = currentLead.name
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        populateLabels()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        if let destinationViewController = segue.destination as? AddLeadViewController {
+            destinationViewController.currentLead = currentLead
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
