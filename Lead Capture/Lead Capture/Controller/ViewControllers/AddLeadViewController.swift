@@ -30,35 +30,35 @@ class AddLeadViewController: UIViewController {
     }
     
     @IBAction func saveButtonPressed(_ sender: Any) {
-        if let currentLead = currentLead {
-            currentLead.name = nameField.text
-            currentLead.partner = partnerField.text
-            currentLead.email = emailField.text
-            currentLead.phoneNum = phoneField.text
-            currentLead.date = dateField.text
-            currentLead.location = locationField.text
-            currentLead.comments = infoField.text
-            currentLead.subscribe = subscribe.isOn
-            PersistenceService.saveContext()
-            self.dismiss(animated: true, completion: nil)
-        } else {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
-            if phoneField.text.count == 10 || phoneField.text == "" {
-                if validateEmail(email: emailField.text!) || emailField.text == "" {
-                    createLead()
-                    resetForm()
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let thankYouAlert = storyboard.instantiateViewController(withIdentifier: "ThankYouAlert") as! ThankYouAlertController
+        if phoneField.text.count == 10 || phoneField.text == "" {
+            if validateEmail(email: emailField.text!) || emailField.text == "" {
+                if let currentLead = currentLead {
+                    currentLead.name = nameField.text
+                    currentLead.partner = partnerField.text
+                    currentLead.email = emailField.text
+                    currentLead.phoneNum = phoneField.text
+                    currentLead.date = dateField.text
+                    currentLead.location = locationField.text
+                    currentLead.comments = infoField.text
+                    currentLead.subscribe = subscribe.isOn
+                    PersistenceService.saveContext()
+                    self.dismiss(animated: true, completion: nil)
                 } else {
-                    thankYouAlert.message = "Please Enter a Valid Email Address!"
+                createLead()
+                resetForm()
                 }
             } else {
-                thankYouAlert.message = "Please Enter a Valid Phone Number!"
+                thankYouAlert.message = "Please Enter a Valid Email Address!"
             }
-
-            thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-            thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            present(thankYouAlert, animated: true, completion: nil)
+        } else {
+            thankYouAlert.message = "Please Enter a Valid Phone Number!"
         }
+
+        thankYouAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        thankYouAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        present(thankYouAlert, animated: true, completion: nil)
     }
 
     
