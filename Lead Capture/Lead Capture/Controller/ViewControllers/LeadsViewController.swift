@@ -86,6 +86,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
         cell.dateField.text = lead.date
+        print(lead.flagged)
         return cell
     }
 
