@@ -94,7 +94,6 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         } else {
             cell.icon.image = #imageLiteral(resourceName: "flagged")
         }
-        print(lead.flagged)
         return cell
     }
 

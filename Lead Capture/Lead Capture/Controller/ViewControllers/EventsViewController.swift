@@ -145,18 +145,24 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let tempDirectory = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
         let fileURL = tempDirectory.appendingPathComponent(fileName)
         
-        var csvText = "Name,Partner,Date,Location,Phone Number,Email,OK to Contact,Comments\n"
+        var csvText = "Flagged,Name,Partner,Date,Location,Phone Number,Email,OK to Contact,Comments\n"
         
-        guard let leads = event.leads else { return }
+        guard let leads = event.leads?.sorted(by: { (first, second) -> Bool in
+            let firstLead = first as! Lead
+            let secondLead = second as! Lead
+            if firstLead.flagged == secondLead.flagged {
+                return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+            }
+            return firstLead.flagged && !secondLead.flagged
+        }) else { return }
         for each in leads {
             let lead = each as! Lead
-            let newLine = "\(lead.name!),\(lead.partner!),\(lead.date!),\(lead.location!),\(lead.phoneNum!),\(lead.email!),\(lead.subscribe),\(lead.comments!)\n"
+            let newLine = "\(lead.flagged),\(lead.name!),\(lead.partner!),\(lead.date!),\(lead.location!),\(lead.phoneNum!),\(lead.email!),\(lead.subscribe),\(lead.comments!)\n"
             csvText.append(newLine)
         }
         
         do {
             try csvText.write(to: fileURL, atomically: true, encoding: String.Encoding.utf8)
-            print(csvText)
         } catch {
             print("Failed to create CSV file: \(error)")
         }
