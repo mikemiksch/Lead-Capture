@@ -125,19 +125,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.delete {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteEventAlert") as! DeleteEventAlertController
-//            deleteAlert.delegate = self
-//            deleteAlert.event = self.events[indexPath.row]
-//            deleteAlert.index = indexPath.row
-//            deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-//            deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//            present(deleteAlert, animated: true, completion: nil)
-//        }
-//    }
-    
     func tableSetup() {
         eventsTable.dataSource = self
         eventsTable.delegate = self
