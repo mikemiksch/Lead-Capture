@@ -113,6 +113,12 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
             selectedLead.flagged = !selectedLead.flagged
             PersistenceService.saveContext()
+            let cell = tableView.cellForRow(at: indexPath) as! LeadCell
+            if selectedLead.flagged {
+                cell.icon.image = #imageLiteral(resourceName: "flagged")
+            } else {
+                cell.icon.image = #imageLiteral(resourceName: "leadIcon")
+            }
             return
         }
         flag.backgroundColor = UIColor.orange
