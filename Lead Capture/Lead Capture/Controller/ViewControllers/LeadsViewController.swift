@@ -89,6 +89,11 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
         cell.dateField.text = lead.date
+        if !lead.flagged {
+            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "flagged")
+        }
         print(lead.flagged)
         return cell
     }
@@ -131,20 +136,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return [delete, flag]
     }
-    
-//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-//        if editingStyle == UITableViewCellEditingStyle.delete {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteLeadAlert") as! DeleteLeadAlertController
-//            deleteAlert.delegate = self
-//            deleteAlert.lead = self.leads[indexPath.row]
-//            deleteAlert.index = indexPath.row
-//            deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-//            deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//            present(deleteAlert, animated: true, completion: nil)
-//        }
-//    }
-    
+
     func tableSetup() {
         leadsTable.dataSource = self
         leadsTable.delegate = self

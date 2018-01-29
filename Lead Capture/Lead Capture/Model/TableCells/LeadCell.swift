@@ -12,6 +12,7 @@ class LeadCell: UITableViewCell {
 
     @IBOutlet weak var nameField: UILabel!
     @IBOutlet weak var dateField: UILabel!
+    @IBOutlet weak var icon: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

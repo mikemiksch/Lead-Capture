@@ -78,6 +78,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="dateField" destination="vIs-Bk-b58" id="FIl-gD-ed0"/>
+                <outlet property="icon" destination="uQU-7D-wD5" id="7eg-C2-jAj"/>
                 <outlet property="nameField" destination="OaY-4K-XcK" id="W2g-Ae-npj"/>
             </connections>
             <point key="canvasLocation" x="29" y="45.5"/>
