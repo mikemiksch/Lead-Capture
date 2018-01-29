@@ -2,8 +2,8 @@
 //  Event+CoreDataProperties.swift
 //  Lead Capture
 //
-//  Created by Mike Miksch on 12/6/17.
-//  Copyright © 2017 Mike MIksch. All rights reserved.
+//  Created by Mike Miksch on 1/26/18.
+//  Copyright © 2018 Mike MIksch. All rights reserved.
 //
 //
 
@@ -25,19 +25,19 @@ extension Event {
 
 }
 
-// MARK: Generated accessors for lead
+// MARK: Generated accessors for leads
 extension Event {
 
-    @objc(addLeadObject:)
+    @objc(addLeadsObject:)
     @NSManaged public func addToLeads(_ value: Lead)
 
-    @objc(removeLeadObject:)
+    @objc(removeLeadsObject:)
     @NSManaged public func removeFromLeads(_ value: Lead)
 
-    @objc(addLead:)
+    @objc(addLeads:)
     @NSManaged public func addToLeads(_ values: NSSet)
 
-    @objc(removeLead:)
+    @objc(removeLeads:)
     @NSManaged public func removeFromLeads(_ values: NSSet)
 
 }

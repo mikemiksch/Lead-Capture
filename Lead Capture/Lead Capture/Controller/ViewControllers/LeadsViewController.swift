@@ -36,7 +36,10 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableSetup()
         titleBar.title = selectedEvent.name
         self.leads = (selectedEvent.leads?.allObjects as! [Lead]).sorted(by: { (first, second) -> Bool in
-            second.createdOn! as Date > first.createdOn! as Date
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
         })
         applyFormatting()
 //        animateLeadCells()
@@ -86,6 +89,11 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
         cell.dateField.text = lead.date
+        if !lead.flagged {
+            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "flagged")
+        }
         return cell
     }
 
@@ -98,19 +106,42 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == UITableViewCellEditingStyle.delete {
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let selectedLead = self.leads[indexPath.row]
+        
+        let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
+            selectedLead.flagged = !selectedLead.flagged
+            PersistenceService.saveContext()
+            let cell = tableView.cellForRow(at: indexPath) as! LeadCell
+            if selectedLead.flagged {
+                cell.icon.image = #imageLiteral(resourceName: "flagged")
+            } else {
+                cell.icon.image = #imageLiteral(resourceName: "leadIcon")
+            }
+            return
+        }
+        flag.backgroundColor = UIColor.orange
+        
+        if selectedLead.flagged == true {
+            flag.title = "Unflag"
+            flag.backgroundColor = UIColor.darkGray
+        }
+        
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteLeadAlert") as! DeleteLeadAlertController
+            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteEventAlert") as! DeleteLeadAlertController
             deleteAlert.delegate = self
-            deleteAlert.lead = self.leads[indexPath.row]
+            deleteAlert.lead = selectedLead
             deleteAlert.index = indexPath.row
             deleteAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             deleteAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            present(deleteAlert, animated: true, completion: nil)
+            self.present(deleteAlert, animated: true, completion: nil)
+            return
         }
+        
+        return [delete, flag]
     }
-    
+
     func tableSetup() {
         leadsTable.dataSource = self
         leadsTable.delegate = self
