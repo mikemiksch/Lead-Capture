@@ -318,6 +318,8 @@
                         <outlet property="eventsTable" destination="tbN-RP-WSL" id="aX7-jO-CLV"/>
                         <outlet property="sortButton" destination="LNs-z3-dAK" id="U13-Rh-k03"/>
                         <outlet property="sortMenuView" destination="2DI-Rt-aTb" id="vvF-14-oY3"/>
+                        <outlet property="sortMenuViewTrailingConstraint" destination="j4g-Og-wWj" id="WuK-3s-2i6"/>
+                        <outlet property="sortMenuViewWidthConstraint" destination="XXN-p1-cIV" id="qLP-et-dG4"/>
                         <segue destination="1SS-lz-p5r" kind="show" identifier="LeadsViewController" id="dUi-xY-SLU"/>
                     </connections>
                 </viewController>

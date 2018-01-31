@@ -18,13 +18,33 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     var animateFlag = false
+    var isSortMenuHidden = true
     
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var sortMenuView: UIView!
+    @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
     
     @IBAction func sortButtonPressed(_ sender: Any) {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Sort Events By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortButton.setTitle("Sort Events", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
     }
     
     @IBAction func nameButtonPressed(_ sender: Any) {
@@ -77,6 +97,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } catch {
             print("Error fetching events from managed object context")
         }
+        
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
     }
 
     override func viewDidAppear(_ animated: Bool) {
