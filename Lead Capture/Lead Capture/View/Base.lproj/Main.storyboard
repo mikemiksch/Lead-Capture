@@ -202,27 +202,6 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXn-yH-p1o">
-                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNs-z3-dAK">
-                                        <rect key="frame" x="218" y="-2" width="85" height="33"/>
-                                        <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
-                                        <state key="normal" title="Sort Events">
-                                            <color key="titleColor" red="0.98859995603561401" green="0.97290569543838501" blue="0.9518163800239563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sortButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KdB-4R-scM"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.80467164516448975" green="0.2296411395072937" blue="0.19444927573204041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstItem="LNs-z3-dAK" firstAttribute="centerY" secondItem="tXn-yH-p1o" secondAttribute="centerY" id="3YT-yP-iRX"/>
-                                    <constraint firstItem="LNs-z3-dAK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tXn-yH-p1o" secondAttribute="leading" constant="20" symbolic="YES" id="JVi-N5-FpC"/>
-                                    <constraint firstAttribute="height" constant="30" id="gl1-r4-5h2"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DI-Rt-aTb">
                                 <rect key="frame" x="175" y="94" width="145" height="148"/>
                                 <subviews>
@@ -285,6 +264,27 @@
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="leading" secondItem="cvD-jO-qsd" secondAttribute="leading" id="kVM-S4-PPI"/>
                                     <constraint firstItem="HR6-pb-ePs" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leading" constant="8" id="lXD-jO-YN9"/>
                                     <constraint firstItem="iwV-HV-HEx" firstAttribute="centerX" secondItem="2DI-Rt-aTb" secondAttribute="centerX" id="t1t-3k-N7K"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tXn-yH-p1o">
+                                <rect key="frame" x="0.0" y="64" width="320" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNs-z3-dAK">
+                                        <rect key="frame" x="218" y="-2" width="85" height="33"/>
+                                        <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
+                                        <state key="normal" title="Sort Events">
+                                            <color key="titleColor" red="0.98859995603561401" green="0.97290569543838501" blue="0.9518163800239563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sortButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KdB-4R-scM"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.80467164516448975" green="0.2296411395072937" blue="0.19444927573204041" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="LNs-z3-dAK" firstAttribute="centerY" secondItem="tXn-yH-p1o" secondAttribute="centerY" id="3YT-yP-iRX"/>
+                                    <constraint firstItem="LNs-z3-dAK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tXn-yH-p1o" secondAttribute="leading" constant="20" symbolic="YES" id="JVi-N5-FpC"/>
+                                    <constraint firstAttribute="height" constant="30" id="gl1-r4-5h2"/>
                                 </constraints>
                             </view>
                         </subviews>

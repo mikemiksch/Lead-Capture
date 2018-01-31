@@ -99,6 +99,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+        
+        sortMenuView.layer.shadowColor = UIColor.black.cgColor
+        sortMenuView.layer.shadowOpacity = 0.5
+        sortMenuView.layer.shadowOffset = CGSize.zero
+        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
     }
 
     override func viewDidAppear(_ animated: Bool) {
