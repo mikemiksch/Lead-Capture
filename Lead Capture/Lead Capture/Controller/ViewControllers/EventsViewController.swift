@@ -20,7 +20,26 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var animateFlag = false
     
     @IBOutlet weak var eventsTable: UITableView!
-
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var sortMenuView: UIView!
+    
+    
+    @IBAction func sortButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func nameButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func dateButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func leadsButtonPressed(_ sender: Any) {
+    }
+    
+    @IBAction func creationOrderButtonPressed(_ sender: Any) {
+    }
+    
+    
     @IBAction func addButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
