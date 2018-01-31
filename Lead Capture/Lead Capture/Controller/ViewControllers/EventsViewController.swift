@@ -28,15 +28,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func nameButtonPressed(_ sender: Any) {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.name! > first.name!
+        })
     }
     
     @IBAction func dateButtonPressed(_ sender: Any) {
+        events = events.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+        })
     }
     
     @IBAction func leadsButtonPressed(_ sender: Any) {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return first.leads!.count > second.leads!.count
+        })
     }
     
     @IBAction func creationOrderButtonPressed(_ sender: Any) {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
     }
     
     
