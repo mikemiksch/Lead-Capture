@@ -89,9 +89,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
         cell.dateField.text = lead.date
-        if !lead.flagged {
-            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
-        } else {
+        if lead.flagged {
             cell.icon.image = #imageLiteral(resourceName: "flagged")
         }
         return cell
@@ -129,7 +127,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteEventAlert") as! DeleteLeadAlertController
+            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteLeadAlert") as! DeleteLeadAlertController
             deleteAlert.delegate = self
             deleteAlert.lead = selectedLead
             deleteAlert.index = indexPath.row
