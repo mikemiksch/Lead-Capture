@@ -74,10 +74,22 @@ class LeadDetailViewController: UIViewController, MFMailComposeViewControllerDel
     }
     
     func populateLabels() {
-        nameLabel.text = currentLead.name
-        dateLabel.text = currentLead.date
+//        nameLabel.text = currentLead.name
+//        dateLabel.text = currentLead.date
         eventName.adjustsFontSizeToFitWidth = true
         eventName.text = currentEvent.name!
+        
+        if currentLead.name != "" {
+            nameLabel.text = currentLead.name
+        } else {
+            nameLabel.text = "No Name Given"
+        }
+        
+        if currentLead.date != "" {
+            dateLabel.text = currentLead.date
+        } else {
+            dateLabel.text = "No Date Given"
+        }
         
         if currentLead.partner != "" {
             partnerLabel.text = currentLead.partner

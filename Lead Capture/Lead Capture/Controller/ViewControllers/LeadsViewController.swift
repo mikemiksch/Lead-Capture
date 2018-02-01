@@ -130,13 +130,28 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = leadsTable.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath) as! LeadCell
         let lead = self.leads[indexPath.row]
-        if lead.partner != "" {
-            cell.nameField.text = "\(lead.name!) & \(lead.partner!)"
+        
+        if lead.name != "" {
+            if lead.partner != "" {
+                cell.nameField.text = "\(lead.name!) & \(lead.partner!)"
+            } else {
+                cell.nameField.text = lead.name
+            }
         } else {
-            cell.nameField.text = lead.name
+            if lead.partner != "" {
+                cell.nameField.text = lead.partner!
+            } else {
+                cell.nameField.text = "No Name Given"
+            }
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
-        cell.dateField.text = lead.date
+        
+        if lead.date != "" {
+            cell.dateField.text = lead.date
+        } else {
+            cell.dateField.text = "No Date Given"
+        }
+
         if lead.flagged {
             cell.icon.image = #imageLiteral(resourceName: "flagged")
         } else {
