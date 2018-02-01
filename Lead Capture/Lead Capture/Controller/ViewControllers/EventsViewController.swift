@@ -20,6 +20,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var animateFlag = false
     var isSortMenuHidden = true
     
+    private let userDefaults = UserDefaults.standard
+    
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var sortMenuView: UIView!
@@ -31,33 +33,23 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     @IBAction func nameButtonPressed(_ sender: Any) {
-        events = events.sorted(by: { (first, second) -> Bool in
-            return second.name! > first.name!
-        })
+        sortByName()
+        userDefaults.set("byName", forKey: "Event Sort Key")
     }
     
     @IBAction func dateButtonPressed(_ sender: Any) {
-        events = events.sorted(by: { (first, second) -> Bool in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            if first.date == "" || second.date == "" {
-                return first.date! > second.date!
-            }
-            return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
-        })
+        sortByDates()
+        userDefaults.set("byDate", forKey: "Event Sort Key")
     }
     
     @IBAction func leadsButtonPressed(_ sender: Any) {
-        events = events.sorted(by: { (first, second) -> Bool in
-            return first.leads!.count > second.leads!.count
-        })
+        sortByLeads()
+        userDefaults.set("byLeads", forKey: "Event Sort Key")
     }
     
     @IBAction func creationOrderButtonPressed(_ sender: Any) {
-        events = events.sorted(by: { (first, second) -> Bool in
-            return second.createdOn! as Date > first.createdOn! as Date
-        })
+        sortByCreation()
+        userDefaults.set("byCreation", forKey: "Event Sort Key")
     }
     
     
@@ -73,15 +65,29 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         tableSetup()
-        
         let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
         do {
-            let events = try PersistenceService.context.fetch(fetchRequest)
-            self.events = events.sorted(by: { (first, second) -> Bool in
-                second.createdOn! as Date > first.createdOn! as Date
-            })
+            self.events = try PersistenceService.context.fetch(fetchRequest)
         } catch {
             print("Error fetching events from managed object context")
+        }
+        if let defaultsKey = userDefaults.object(forKey: "Event Sort Key") {
+            let sortKey = defaultsKey as! String
+            
+            switch sortKey {
+            case "byCreation":
+                sortByCreation()
+            case "byLeads":
+                sortByLeads()
+            case "byDate":
+                sortByDates()
+            case "byName":
+                sortByName()
+            default:
+                sortByCreation()
+            }
+        } else {
+            sortByCreation()
         }
         
         sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
@@ -115,7 +121,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let export = UITableViewRowAction(style: .normal, title: "Export CSV") { (action, indexPath) in
+        let export = UITableViewRowAction(style: .normal, title: "Export\nCSV") { (action, indexPath) in
             let selectedEvent = self.events[indexPath.row]
             self.createCSV(event: selectedEvent)
             return
@@ -174,6 +180,36 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func sortByName() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.name! > first.name!
+        })
+    }
+    
+    func sortByDates() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            if first.date == "" || second.date == "" {
+                return first.date! > second.date!
+            }
+            return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+        })
+    }
+    
+    func sortByLeads() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return first.leads!.count > second.leads!.count
+        })
+    }
+    
+    func sortByCreation() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
     }
     
     func tableSetup() {
