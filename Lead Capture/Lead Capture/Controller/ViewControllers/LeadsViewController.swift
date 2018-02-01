@@ -28,23 +28,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
     @IBAction func sortButtonPressed(_ sender: Any) {
-        if isSortMenuHidden {
-            sortMenuViewTrailingConstraint.constant = 0
-            sortButton.setTitle("Sort Leads By", for: .normal)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-            })
-            
-        } else {
-            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
-            sortButton.setTitle("Sort Leads", for: .normal)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        isSortMenuHidden = !isSortMenuHidden
+        handleSortMenu()
     }
     
     @IBAction func flagStatusButtonPressed(_ sender: Any) {
@@ -122,6 +106,8 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             destinationViewController.currentLead = selectedLead
             destinationViewController.currentEvent = self.selectedEvent
         }
+        
+        handleSortMenu()
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -216,6 +202,26 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let eventNib = UINib(nibName: "LeadCell", bundle: nil)
         leadsTable.register(eventNib, forCellReuseIdentifier: LeadCell.identifier)
+    }
+    
+    func handleSortMenu() {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Close", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortButton.setTitle("Sort Leads By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
     }
     
     func animateLeadCells() {

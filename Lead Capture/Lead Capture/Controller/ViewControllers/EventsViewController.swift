@@ -27,23 +27,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
     @IBAction func sortButtonPressed(_ sender: Any) {
-        if isSortMenuHidden {
-            sortMenuViewTrailingConstraint.constant = 0
-            sortButton.setTitle("Sort Events By", for: .normal)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-            })
-            
-        } else {
-            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
-            sortButton.setTitle("Sort Events", for: .normal)
-            
-            UIView.animate(withDuration: 0.2, animations: {
-                self.view.layoutIfNeeded()
-            })
-        }
-        isSortMenuHidden = !isSortMenuHidden
+        handleSortMenu()
     }
     
     @IBAction func nameButtonPressed(_ sender: Any) {
@@ -110,7 +94,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        animateEventCells()
  
     }
-
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
@@ -122,6 +105,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 destinationViewController.selectedEvent = selectedEvent
             }
         }
+        
+        handleSortMenu()
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
@@ -199,6 +184,26 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         let eventNib = UINib(nibName: "EventCell", bundle: nil)
         eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
+    }
+    
+    func handleSortMenu() {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Close", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortButton.setTitle("Sort Events By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
     }
     
     func createCSV(event: Event) {
