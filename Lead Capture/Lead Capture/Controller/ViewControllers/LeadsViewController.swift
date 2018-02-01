@@ -34,21 +34,25 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     @IBAction func flagStatusButtonPressed(_ sender: Any) {
         sortByFlag()
         selectedEvent.sortKey = "byFlag"
+        PersistenceService.saveContext()
     }
     
     @IBAction func collectionOrderButtonPressed(_ sender: Any) {
         sortByCollection()
         selectedEvent.sortKey = "byCollection"
+        PersistenceService.saveContext()
     }
     
     @IBAction func contactNameButtonPressed(_ sender: Any) {
         sortByName()
         selectedEvent.sortKey = "byName"
+        PersistenceService.saveContext()
     }
     
     @IBAction func weddingDateButtonPressed(_ sender: Any) {
         sortByDate()
         selectedEvent.sortKey = "byDate"
+        PersistenceService.saveContext()
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -69,6 +73,8 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableSetup()
         titleBar.title = selectedEvent.name
         leads = (selectedEvent.leads?.allObjects as! [Lead])
+        print("HEY")
+        print(selectedEvent.sortKey)
         if let sortKey = selectedEvent.sortKey {
             switch sortKey {
             case "byFlag":
@@ -224,7 +230,11 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func sortByName() {
         leads = leads.sorted(by: { (first, second) -> Bool in
-            return second.name! > first.name!
+            if (first.name == "No Name Given" || first.name == "") || (second.name == "No Name Give" || second.name == "") {
+                return first.name! > second.name!
+            } else {
+                return second.name! > first.name!
+            }
         })
     }
     
@@ -233,8 +243,10 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
-            if (first.date == "No Date Given" || first.date == "") || (second.date == "No Date Given" || second.date == "") {
+            if first.date == "No Date Given" || second.date == "No Date Given"  {
                 return second.date! > first.date!
+            } else if first.date == "" || second.date == "" {
+                return first.date! > second.date!
             } else {
                 return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
             }
