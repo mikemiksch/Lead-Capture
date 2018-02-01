@@ -73,8 +73,6 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableSetup()
         titleBar.title = selectedEvent.name
         leads = (selectedEvent.leads?.allObjects as! [Lead])
-        print("HEY")
-        print(selectedEvent.sortKey)
         if let sortKey = selectedEvent.sortKey {
             switch sortKey {
             case "byFlag":
@@ -310,7 +308,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func applyFormatting() {
         self.view.backgroundColor = Settings.shared.backgroundColor
-        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
         
         sortMenuView.layer.shadowColor = UIColor.black.cgColor
         sortMenuView.layer.shadowOpacity = 0.5

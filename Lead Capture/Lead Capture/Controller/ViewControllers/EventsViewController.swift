@@ -24,7 +24,11 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var eventsTable: UITableView!
     @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var creationOrderButton: UIButton!
+    @IBOutlet weak var eventNameButton: UIButton!
+    @IBOutlet weak var eventDateButton: UIButton!
     @IBOutlet weak var sortMenuView: UIView!
+    @IBOutlet weak var numberofLeadsButton: UIButton!
     @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
@@ -68,6 +72,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         tableSetup()
+        applyFormatting()
         let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
         do {
             self.events = try PersistenceService.context.fetch(fetchRequest)
@@ -92,13 +97,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             sortByCreation()
         }
-        
-        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
-        
-        sortMenuView.layer.shadowColor = UIColor.black.cgColor
-        sortMenuView.layer.shadowOpacity = 0.5
-        sortMenuView.layer.shadowOffset = CGSize.zero
-        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -233,6 +231,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
     }
     
+    func applyFormatting() {
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
+        
+        sortMenuView.layer.shadowColor = UIColor.black.cgColor
+        sortMenuView.layer.shadowOpacity = 0.5
+        sortMenuView.layer.shadowOffset = CGSize.zero
+        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
+    }
+    
     func handleSortMenu() {
         if isSortMenuHidden {
             sortMenuViewTrailingConstraint.constant = 0
@@ -243,7 +250,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             
         } else {
-            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
             sortButton.setTitle("Sort Events By", for: .normal)
             
             UIView.animate(withDuration: 0.2, animations: {
