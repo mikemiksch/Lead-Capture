@@ -106,7 +106,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
-        handleSortMenu()
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {

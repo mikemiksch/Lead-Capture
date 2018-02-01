@@ -106,8 +106,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             destinationViewController.currentLead = selectedLead
             destinationViewController.currentEvent = self.selectedEvent
         }
-        
-        handleSortMenu()
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

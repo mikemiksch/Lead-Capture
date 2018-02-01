@@ -270,9 +270,9 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LNs-z3-dAK">
-                                        <rect key="frame" x="218" y="-2" width="85" height="33"/>
+                                        <rect key="frame" x="196" y="-2" width="107" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
-                                        <state key="normal" title="Sort Events">
+                                        <state key="normal" title="Sort Events By">
                                             <color key="titleColor" red="0.98859995603561401" green="0.97290569543838501" blue="0.9518163800239563" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
@@ -406,9 +406,9 @@
                                 <rect key="frame" x="0.0" y="64" width="320" height="30"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BOt-2W-fEU">
-                                        <rect key="frame" x="224" y="-2" width="79" height="33"/>
+                                        <rect key="frame" x="203" y="-2" width="100" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
-                                        <state key="normal" title="Sort Leads">
+                                        <state key="normal" title="Sort Leads By">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
