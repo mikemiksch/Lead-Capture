@@ -41,6 +41,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
+            if first.date == "" || second.date == "" {
+                return first.date! > second.date!
+            }
             return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
         })
     }
