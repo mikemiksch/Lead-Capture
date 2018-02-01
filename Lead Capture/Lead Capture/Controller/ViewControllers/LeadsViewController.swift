@@ -32,38 +32,23 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func flagStatusButtonPressed(_ sender: Any) {
-        leads = leads.sorted(by: { (first, second) -> Bool in
-            if first.flagged == second.flagged {
-                return second.createdOn! as Date > first.createdOn! as Date
-            }
-            return first.flagged && !second.flagged
-        })
-        
+        sortByFlag()
+        selectedEvent.sortKey = "byFlag"
     }
     
     @IBAction func collectionOrderButtonPressed(_ sender: Any) {
-        leads = leads.sorted(by: { (first, second) -> Bool in
-            return second.createdOn! as Date > first.createdOn! as Date
-        })
+        sortByCollection()
+        selectedEvent.sortKey = "byCollection"
     }
     
     @IBAction func contactNameButtonPressed(_ sender: Any) {
-        leads = leads.sorted(by: { (first, second) -> Bool in
-            return second.name! > first.name!
-        })
+        sortByName()
+        selectedEvent.sortKey = "byName"
     }
     
     @IBAction func weddingDateButtonPressed(_ sender: Any) {
-        leads = leads.sorted(by: { (first, second) -> Bool in
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            if first.date == "No Date Given" || second.date == "No Date Given" {
-               return second.date! > first.date!
-            } else {
-                return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
-            }
-        })
+        sortByDate()
+        selectedEvent.sortKey = "byDate"
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -80,12 +65,23 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         tableSetup()
         titleBar.title = selectedEvent.name
-        self.leads = (selectedEvent.leads?.allObjects as! [Lead]).sorted(by: { (first, second) -> Bool in
-            if first.flagged == second.flagged {
-                return second.createdOn! as Date > first.createdOn! as Date
+        leads = (selectedEvent.leads?.allObjects as! [Lead])
+        if let sortKey = selectedEvent.sortKey {
+            switch sortKey {
+            case "byFlag":
+                sortByFlag()
+            case "byCollection":
+                sortByCollection()
+            case "byName":
+                sortByName()
+            case "byDate":
+                sortByDate()
+            default:
+                sortByFlag()
             }
-            return first.flagged && !second.flagged
-        })
+        } else {
+            sortByFlag()
+        }
         applyFormatting()
 //        animateLeadCells()
     }
@@ -204,6 +200,40 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         return [delete, flag]
     }
+    
+    func sortByFlag() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
+        })
+    }
+    
+    func sortByCollection() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
+    }
+    
+    func sortByName() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            return second.name! > first.name!
+        })
+    }
+    
+    func sortByDate() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            if (first.date == "No Date Given" || first.date == "") || (second.date == "No Date Given" || second.date == "") {
+                return second.date! > first.date!
+            } else {
+                return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+            }
+        })
+    }
 
     func tableSetup() {
         leadsTable.dataSource = self
@@ -279,15 +309,15 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 PersistenceService.context.delete(object as! NSManagedObject)
             }
             PersistenceService.saveContext()
-            self.leads.remove(at: index)
+            leads.remove(at: index)
         } catch {
             print(error)
         }
     }
 
     func addLead(lead: Lead) {
-        self.leads.append(lead)
-        self.selectedEvent.leads?.adding(lead)
+        leads.append(lead)
+        selectedEvent.leads?.adding(lead)
         PersistenceService.saveContext()
     }
 
