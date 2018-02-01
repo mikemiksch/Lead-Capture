@@ -26,7 +26,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
-    
     @IBAction func sortButtonPressed(_ sender: Any) {
         if isSortMenuHidden {
             sortMenuViewTrailingConstraint.constant = 0
@@ -111,6 +110,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        animateEventCells()
  
     }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)

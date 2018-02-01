@@ -12,6 +12,7 @@ import CoreData
 class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate, DeleteLeadDelegate {
 
     var selectedEvent : Event!
+    var isSortMenuHidden = true
     
     var leads = [Lead]() {
         didSet {
@@ -21,6 +22,66 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var sortMenuView: UIView!
+    @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBAction func sortButtonPressed(_ sender: Any) {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Sort Leads By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortButton.setTitle("Sort Leads", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
+    }
+    
+    @IBAction func flagStatusButtonPressed(_ sender: Any) {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
+        })
+        
+    }
+    
+    @IBAction func collectionOrderButtonPressed(_ sender: Any) {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
+    }
+    
+    @IBAction func contactNameButtonPressed(_ sender: Any) {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            return second.name! > first.name!
+        })
+    }
+    
+    @IBAction func weddingDateButtonPressed(_ sender: Any) {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            if first.date == "No Date Given" || second.date == "No Date Given" {
+               return second.date! > first.date!
+            } else {
+                return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+            }
+        })
+    }
+    
     @IBAction func editButtonPressed(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
@@ -91,6 +152,8 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.dateField.text = lead.date
         if lead.flagged {
             cell.icon.image = #imageLiteral(resourceName: "flagged")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
         }
         return cell
     }
@@ -177,7 +240,12 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func applyFormatting() {
         self.view.backgroundColor = Settings.shared.backgroundColor
-    }
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+        
+        sortMenuView.layer.shadowColor = UIColor.black.cgColor
+        sortMenuView.layer.shadowOpacity = 0.5
+        sortMenuView.layer.shadowOffset = CGSize.zero
+        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath    }
     
     func deleteLead(index: Int, lead: Lead) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Lead")
