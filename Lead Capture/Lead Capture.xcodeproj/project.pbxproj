@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8303A3712023B75100267742 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303A36F2023B75100267742 /* Event+CoreDataProperties.swift */; };
+		8303A3722023B75100267742 /* Lead+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8303A3702023B75100267742 /* Lead+CoreDataProperties.swift */; };
 		833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */; };
 		835DD149201BE589007AE374 /* Event+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835DD145201BE589007AE374 /* Event+CoreDataClass.swift */; };
-		835DD14A201BE589007AE374 /* Event+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835DD146201BE589007AE374 /* Event+CoreDataProperties.swift */; };
 		835DD14B201BE589007AE374 /* Lead+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835DD147201BE589007AE374 /* Lead+CoreDataClass.swift */; };
-		835DD14C201BE589007AE374 /* Lead+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835DD148201BE589007AE374 /* Lead+CoreDataProperties.swift */; };
 		836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836AD34D1FD0D8A700450EEF /* UIExtensions.swift */; };
 		836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836B5FD71FB4E34300B78D74 /* AppDelegate.swift */; };
 		836B5FDD1FB4E34300B78D74 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 836B5FDB1FB4E34300B78D74 /* Main.storyboard */; };
@@ -38,12 +38,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8303A36A2023B68F00267742 /* Lead Capture v 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lead Capture v 3.xcdatamodel"; sourceTree = "<group>"; };
+		8303A36F2023B75100267742 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		8303A3702023B75100267742 /* Lead+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lead Capture.xcdatamodel"; sourceTree = "<group>"; };
 		835DD144201BE500007AE374 /* Lead Capture v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Lead Capture v2.xcdatamodel"; sourceTree = "<group>"; };
 		835DD145201BE589007AE374 /* Event+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataClass.swift"; sourceTree = "<group>"; };
-		835DD146201BE589007AE374 /* Event+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Event+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		835DD147201BE589007AE374 /* Lead+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataClass.swift"; sourceTree = "<group>"; };
-		835DD148201BE589007AE374 /* Lead+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Lead+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		836AD34D1FD0D8A700450EEF /* UIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
 		836B5FD41FB4E34300B78D74 /* Lead Capture.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lead Capture.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		836B5FD71FB4E34300B78D74 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -139,10 +140,10 @@
 		839ADBCB1FD88A54000F15A0 /* CoreData Objects */ = {
 			isa = PBXGroup;
 			children = (
+				8303A36F2023B75100267742 /* Event+CoreDataProperties.swift */,
+				8303A3702023B75100267742 /* Lead+CoreDataProperties.swift */,
 				835DD145201BE589007AE374 /* Event+CoreDataClass.swift */,
-				835DD146201BE589007AE374 /* Event+CoreDataProperties.swift */,
 				835DD147201BE589007AE374 /* Lead+CoreDataClass.swift */,
-				835DD148201BE589007AE374 /* Lead+CoreDataProperties.swift */,
 				833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */,
 			);
 			path = "CoreData Objects";
@@ -293,7 +294,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				835DD14A201BE589007AE374 /* Event+CoreDataProperties.swift in Sources */,
 				83F46C8A1FBCFDAE00CCACD7 /* LeadsViewController.swift in Sources */,
 				833140C91FD602AA00D4CDFB /* Lead Capture.xcdatamodeld in Sources */,
 				83F46C8C1FBD010E00CCACD7 /* LeadDetailViewController.swift in Sources */,
@@ -302,10 +302,11 @@
 				836AD34E1FD0D8A700450EEF /* UIExtensions.swift in Sources */,
 				839ADBCA1FD88302000F15A0 /* PersistenceService.swift in Sources */,
 				839BD1A31FDF2B8D00D81BC0 /* EventCell.swift in Sources */,
-				835DD14C201BE589007AE374 /* Lead+CoreDataProperties.swift in Sources */,
 				83C619E71FEC86B5008E9A0C /* VSTextField.swift in Sources */,
+				8303A3722023B75100267742 /* Lead+CoreDataProperties.swift in Sources */,
 				839BD18E1FDB558A00D81BC0 /* DeleteLeadAlertController.swift in Sources */,
 				839BD1931FDB736300D81BC0 /* ThankYouAlertController.swift in Sources */,
+				8303A3712023B75100267742 /* Event+CoreDataProperties.swift in Sources */,
 				83F46C8E1FBD011F00CCACD7 /* AddLeadViewController.swift in Sources */,
 				836B5FD81FB4E34300B78D74 /* AppDelegate.swift in Sources */,
 				839BD1A71FDF2BA300D81BC0 /* LeadCell.swift in Sources */,
@@ -506,10 +507,11 @@
 		833140C71FD602AA00D4CDFB /* Lead Capture.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				8303A36A2023B68F00267742 /* Lead Capture v 3.xcdatamodel */,
 				835DD144201BE500007AE374 /* Lead Capture v2.xcdatamodel */,
 				833140C81FD602AA00D4CDFB /* Lead Capture.xcdatamodel */,
 			);
-			currentVersion = 835DD144201BE500007AE374 /* Lead Capture v2.xcdatamodel */;
+			currentVersion = 8303A36A2023B68F00267742 /* Lead Capture v 3.xcdatamodel */;
 			path = "Lead Capture.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

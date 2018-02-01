@@ -2,7 +2,7 @@
 //  Lead+CoreDataProperties.swift
 //  Lead Capture
 //
-//  Created by Mike Miksch on 1/26/18.
+//  Created by Mike Miksch on 2/1/18.
 //  Copyright © 2018 Mike MIksch. All rights reserved.
 //
 //
@@ -22,6 +22,7 @@ extension Lead {
     @NSManaged public var date: String?
     @NSManaged public var email: String?
     @NSManaged public var eventID: String?
+    @NSManaged public var flagged: Bool
     @NSManaged public var image: NSData?
     @NSManaged public var leadID: String?
     @NSManaged public var location: String?
@@ -29,7 +30,6 @@ extension Lead {
     @NSManaged public var partner: String?
     @NSManaged public var phoneNum: String?
     @NSManaged public var subscribe: Bool
-    @NSManaged public var flagged: Bool
     @NSManaged public var event: Event?
 
 }

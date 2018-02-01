@@ -2,7 +2,7 @@
 //  Event+CoreDataProperties.swift
 //  Lead Capture
 //
-//  Created by Mike Miksch on 1/26/18.
+//  Created by Mike Miksch on 2/1/18.
 //  Copyright © 2018 Mike MIksch. All rights reserved.
 //
 //
@@ -21,6 +21,7 @@ extension Event {
     @NSManaged public var date: String?
     @NSManaged public var eventID: String?
     @NSManaged public var name: String?
+    @NSManaged public var sortKey: String?
     @NSManaged public var leads: NSSet?
 
 }
