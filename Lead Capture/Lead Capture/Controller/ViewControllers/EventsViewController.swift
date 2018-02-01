@@ -54,6 +54,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     
     @IBAction func addButtonPressed(_ sender: Any) {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
         addEventAlert.delegate = self
@@ -121,6 +124,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let export = UITableViewRowAction(style: .normal, title: "Export\nCSV") { (action, indexPath) in
             let selectedEvent = self.events[indexPath.row]
             self.createCSV(event: selectedEvent)

@@ -52,6 +52,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
         addEventAlert.currentEvent = selectedEvent
@@ -166,6 +169,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let selectedLead = self.leads[indexPath.row]
         
         let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
