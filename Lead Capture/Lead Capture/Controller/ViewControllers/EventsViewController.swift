@@ -254,14 +254,44 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var csvText = "Flagged,Name,Partner,Date,Location,Phone Number,Email,OK to Contact,Comments\n"
         
-        guard let leads = event.leads?.sorted(by: { (first, second) -> Bool in
+        guard let leads = event.leads?
+            .sorted(by: { (first, second) -> Bool in
             let firstLead = first as! Lead
             let secondLead = second as! Lead
-            if firstLead.flagged == secondLead.flagged {
-                return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+            if let sortKey = event.sortKey {
+                switch sortKey {
+                case "byFlag":
+                    if firstLead.flagged == secondLead.flagged {
+                        return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                    }
+                    return firstLead.flagged && !secondLead.flagged
+                case "byCollection":
+                    return secondLead.createdOn! as Date > firstLead.createdOn!as Date
+                case "byName":
+                    return secondLead.name! > firstLead.name!
+                case "byDate":
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateStyle = .short
+                    dateFormatter.timeStyle = .none
+                    if (firstLead.date == "No Date Given" || firstLead.date == "") || (secondLead.date == "No Date Given" || secondLead.date == "") {
+                        return secondLead.date! > firstLead.date!
+                    } else {
+                        return dateFormatter.date(from: secondLead.date!)! > dateFormatter.date(from: firstLead.date!)!
+                    }
+                default:
+                    if firstLead.flagged == secondLead.flagged {
+                        return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                    }
+                    return firstLead.flagged && !secondLead.flagged
+                }
+            } else {
+                if firstLead.flagged == secondLead.flagged {
+                    return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                }
+                return firstLead.flagged && !secondLead.flagged
             }
-            return firstLead.flagged && !secondLead.flagged
-        }) else { return }
+        })
+            else { return }
         for each in leads {
             let lead = each as! Lead
             let newLine = "\(lead.flagged),\(lead.name!),\(lead.partner!),\(lead.date!),\(lead.location!),\(lead.phoneNum!),\(lead.email!),\(lead.subscribe),\(lead.comments!)\n"
