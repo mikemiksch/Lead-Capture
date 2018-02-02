@@ -39,21 +39,26 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBAction func nameButtonPressed(_ sender: Any) {
         sortByName()
         userDefaults.set("byName", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func dateButtonPressed(_ sender: Any) {
         sortByDates()
         userDefaults.set("byDate", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func leadsButtonPressed(_ sender: Any) {
         sortByLeads()
         userDefaults.set("byLeads", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func creationOrderButtonPressed(_ sender: Any) {
+        print("Creation order pressed")
         sortByCreation()
         userDefaults.set("byCreation", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     
@@ -211,6 +216,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func sortByCreation() {
+        print("Sorting by creation")
         events = events.sorted(by: { (first, second) -> Bool in
             return second.createdOn! as Date > first.createdOn! as Date
         })
@@ -241,7 +247,9 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func handleSortMenu() {
+        print("Handling sort menu")
         if isSortMenuHidden {
+            print("Show sort menu")
             sortMenuViewTrailingConstraint.constant = 0
             sortButton.setTitle("Close", for: .normal)
             
@@ -250,6 +258,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
             
         } else {
+            print("Hide sort menu")
             sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
             sortButton.setTitle("Sort Events By", for: .normal)
             
@@ -258,6 +267,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             })
         }
         isSortMenuHidden = !isSortMenuHidden
+        print(isSortMenuHidden)
     }
     
     func createCSV(event: Event) {
