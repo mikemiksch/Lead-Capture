@@ -18,10 +18,49 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     var animateFlag = false
+    var isSortMenuHidden = true
+    
+    private let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var eventsTable: UITableView!
-
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var creationOrderButton: UIButton!
+    @IBOutlet weak var eventNameButton: UIButton!
+    @IBOutlet weak var eventDateButton: UIButton!
+    @IBOutlet weak var sortMenuView: UIView!
+    @IBOutlet weak var numberofLeadsButton: UIButton!
+    @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBAction func sortButtonPressed(_ sender: Any) {
+        handleSortMenu()
+    }
+    
+    @IBAction func nameButtonPressed(_ sender: Any) {
+        sortByName()
+        userDefaults.set("byName", forKey: "Event Sort Key")
+    }
+    
+    @IBAction func dateButtonPressed(_ sender: Any) {
+        sortByDates()
+        userDefaults.set("byDate", forKey: "Event Sort Key")
+    }
+    
+    @IBAction func leadsButtonPressed(_ sender: Any) {
+        sortByLeads()
+        userDefaults.set("byLeads", forKey: "Event Sort Key")
+    }
+    
+    @IBAction func creationOrderButtonPressed(_ sender: Any) {
+        sortByCreation()
+        userDefaults.set("byCreation", forKey: "Event Sort Key")
+    }
+    
+    
     @IBAction func addButtonPressed(_ sender: Any) {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
         addEventAlert.delegate = self
@@ -33,15 +72,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         tableSetup()
-        
+        applyFormatting()
         let fetchRequest : NSFetchRequest<Event> = Event.fetchRequest()
         do {
-            let events = try PersistenceService.context.fetch(fetchRequest)
-            self.events = events.sorted(by: { (first, second) -> Bool in
-                second.createdOn! as Date > first.createdOn! as Date
-            })
+            self.events = try PersistenceService.context.fetch(fetchRequest)
         } catch {
             print("Error fetching events from managed object context")
+        }
+        if let defaultsKey = userDefaults.object(forKey: "Event Sort Key") {
+            let sortKey = defaultsKey as! String
+            
+            switch sortKey {
+            case "byCreation":
+                sortByCreation()
+            case "byLeads":
+                sortByLeads()
+            case "byDate":
+                sortByDates()
+            case "byName":
+                sortByName()
+            default:
+                sortByCreation()
+            }
+        } else {
+            sortByCreation()
         }
     }
 
@@ -61,10 +115,17 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 destinationViewController.selectedEvent = selectedEvent
             }
         }
+        
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        let export = UITableViewRowAction(style: .normal, title: "Export CSV") { (action, indexPath) in
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
+        let export = UITableViewRowAction(style: .normal, title: "Export\nCSV") { (action, indexPath) in
             let selectedEvent = self.events[indexPath.row]
             self.createCSV(event: selectedEvent)
             return
@@ -125,6 +186,36 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
+    func sortByName() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.name! > first.name!
+        })
+    }
+    
+    func sortByDates() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            if first.date == "" || second.date == "" {
+                return first.date! > second.date!
+            }
+            return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+        })
+    }
+    
+    func sortByLeads() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return first.leads!.count > second.leads!.count
+        })
+    }
+    
+    func sortByCreation() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
+    }
+    
     func tableSetup() {
         eventsTable.dataSource = self
         eventsTable.delegate = self
@@ -140,6 +231,35 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         eventsTable.register(eventNib, forCellReuseIdentifier: EventCell.identifier)
     }
     
+    func applyFormatting() {
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
+        
+        sortMenuView.layer.shadowColor = UIColor.black.cgColor
+        sortMenuView.layer.shadowOpacity = 0.5
+        sortMenuView.layer.shadowOffset = CGSize.zero
+        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
+    }
+    
+    func handleSortMenu() {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Close", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
+            sortButton.setTitle("Sort Events By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
+    }
+    
     func createCSV(event: Event) {
         let fileName = "\(String(describing: event.name!)) Leads.csv"
         let tempDirectory = NSURL.fileURL(withPath: NSTemporaryDirectory(), isDirectory: true)
@@ -147,14 +267,44 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var csvText = "Flagged,Name,Partner,Date,Location,Phone Number,Email,OK to Contact,Comments\n"
         
-        guard let leads = event.leads?.sorted(by: { (first, second) -> Bool in
+        guard let leads = event.leads?
+            .sorted(by: { (first, second) -> Bool in
             let firstLead = first as! Lead
             let secondLead = second as! Lead
-            if firstLead.flagged == secondLead.flagged {
-                return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+            if let sortKey = event.sortKey {
+                switch sortKey {
+                case "byFlag":
+                    if firstLead.flagged == secondLead.flagged {
+                        return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                    }
+                    return firstLead.flagged && !secondLead.flagged
+                case "byCollection":
+                    return secondLead.createdOn! as Date > firstLead.createdOn!as Date
+                case "byName":
+                    return secondLead.name! > firstLead.name!
+                case "byDate":
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateStyle = .short
+                    dateFormatter.timeStyle = .none
+                    if (firstLead.date == "No Date Given" || firstLead.date == "") || (secondLead.date == "No Date Given" || secondLead.date == "") {
+                        return secondLead.date! > firstLead.date!
+                    } else {
+                        return dateFormatter.date(from: secondLead.date!)! > dateFormatter.date(from: firstLead.date!)!
+                    }
+                default:
+                    if firstLead.flagged == secondLead.flagged {
+                        return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                    }
+                    return firstLead.flagged && !secondLead.flagged
+                }
+            } else {
+                if firstLead.flagged == secondLead.flagged {
+                    return secondLead.createdOn! as Date > firstLead.createdOn! as Date
+                }
+                return firstLead.flagged && !secondLead.flagged
             }
-            return firstLead.flagged && !secondLead.flagged
-        }) else { return }
+        })
+            else { return }
         for each in leads {
             let lead = each as! Lead
             let newLine = "\(lead.flagged),\(lead.name!),\(lead.partner!),\(lead.date!),\(lead.location!),\(lead.phoneNum!),\(lead.email!),\(lead.subscribe),\(lead.comments!)\n"

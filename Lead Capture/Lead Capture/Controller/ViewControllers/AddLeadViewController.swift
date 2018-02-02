@@ -113,16 +113,8 @@ class AddLeadViewController: UIViewController {
     
     func createLead() {
         let newLead = Lead(context: PersistenceService.context)
-        if nameField.text == "" {
-            newLead.name = "No Name Given"
-        } else {
-            newLead.name = nameField.text
-        }
-        if dateField.text == "" {
-            newLead.date = "No Date Given"
-        } else {
-            newLead.date = dateField.text
-        }
+        newLead.name = nameField.text
+        newLead.date = dateField.text
         newLead.email = emailField.text
         newLead.partner = partnerField.text
         newLead.location = locationField.text

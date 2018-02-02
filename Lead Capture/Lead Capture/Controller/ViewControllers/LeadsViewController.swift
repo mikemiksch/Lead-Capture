@@ -12,6 +12,7 @@ import CoreData
 class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate, DeleteLeadDelegate {
 
     var selectedEvent : Event!
+    var isSortMenuHidden = true
     
     var leads = [Lead]() {
         didSet {
@@ -21,7 +22,43 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
+    @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var sortMenuView: UIView!
+    @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
+    
+    @IBAction func sortButtonPressed(_ sender: Any) {
+        handleSortMenu()
+    }
+    
+    @IBAction func flagStatusButtonPressed(_ sender: Any) {
+        sortByFlag()
+        selectedEvent.sortKey = "byFlag"
+        PersistenceService.saveContext()
+    }
+    
+    @IBAction func collectionOrderButtonPressed(_ sender: Any) {
+        sortByCollection()
+        selectedEvent.sortKey = "byCollection"
+        PersistenceService.saveContext()
+    }
+    
+    @IBAction func contactNameButtonPressed(_ sender: Any) {
+        sortByName()
+        selectedEvent.sortKey = "byName"
+        PersistenceService.saveContext()
+    }
+    
+    @IBAction func weddingDateButtonPressed(_ sender: Any) {
+        sortByDate()
+        selectedEvent.sortKey = "byDate"
+        PersistenceService.saveContext()
+    }
+    
     @IBAction func editButtonPressed(_ sender: Any) {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let addEventAlert = storyboard.instantiateViewController(withIdentifier: "AddEventAlert") as! AddEventAlertController
         addEventAlert.currentEvent = selectedEvent
@@ -35,12 +72,23 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         super.viewDidLoad()
         tableSetup()
         titleBar.title = selectedEvent.name
-        self.leads = (selectedEvent.leads?.allObjects as! [Lead]).sorted(by: { (first, second) -> Bool in
-            if first.flagged == second.flagged {
-                return second.createdOn! as Date > first.createdOn! as Date
+        leads = (selectedEvent.leads?.allObjects as! [Lead])
+        if let sortKey = selectedEvent.sortKey {
+            switch sortKey {
+            case "byFlag":
+                sortByFlag()
+            case "byCollection":
+                sortByCollection()
+            case "byName":
+                sortByName()
+            case "byDate":
+                sortByDate()
+            default:
+                sortByFlag()
             }
-            return first.flagged && !second.flagged
-        })
+        } else {
+            sortByFlag()
+        }
         applyFormatting()
 //        animateLeadCells()
     }
@@ -60,6 +108,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             let selectedLead = self.leads[selectedIndex]
             destinationViewController.currentLead = selectedLead
             destinationViewController.currentEvent = self.selectedEvent
+        }
+        if !isSortMenuHidden {
+            handleSortMenu()
         }
     }
 
@@ -82,17 +133,32 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = leadsTable.dequeueReusableCell(withIdentifier: "LeadCell", for: indexPath) as! LeadCell
         let lead = self.leads[indexPath.row]
-        if lead.partner != "" {
-            cell.nameField.text = "\(lead.name!) & \(lead.partner!)"
+        
+        if lead.name != "" {
+            if lead.partner != "" {
+                cell.nameField.text = "\(lead.name!) & \(lead.partner!)"
+            } else {
+                cell.nameField.text = lead.name
+            }
         } else {
-            cell.nameField.text = lead.name
+            if lead.partner != "" {
+                cell.nameField.text = lead.partner!
+            } else {
+                cell.nameField.text = "No Name Given"
+            }
         }
         cell.nameField.adjustsFontSizeToFitWidth = true
-        cell.dateField.text = lead.date
-        if !lead.flagged {
-            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
+        
+        if lead.date != "" {
+            cell.dateField.text = lead.date
         } else {
+            cell.dateField.text = "No Date Given"
+        }
+
+        if lead.flagged {
             cell.icon.image = #imageLiteral(resourceName: "flagged")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "leadIcon")
         }
         return cell
     }
@@ -107,6 +173,9 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if !isSortMenuHidden {
+            handleSortMenu()
+        }
         let selectedLead = self.leads[indexPath.row]
         
         let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
@@ -129,7 +198,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteEventAlert") as! DeleteLeadAlertController
+            let deleteAlert = storyboard.instantiateViewController(withIdentifier: "DeleteLeadAlert") as! DeleteLeadAlertController
             deleteAlert.delegate = self
             deleteAlert.lead = selectedLead
             deleteAlert.index = indexPath.row
@@ -140,6 +209,46 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
         return [delete, flag]
+    }
+    
+    func sortByFlag() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
+        })
+    }
+    
+    func sortByCollection() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            return second.createdOn! as Date > first.createdOn! as Date
+        })
+    }
+    
+    func sortByName() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            if (first.name == "No Name Given" || first.name == "") || (second.name == "No Name Give" || second.name == "") {
+                return first.name! > second.name!
+            } else {
+                return second.name! > first.name!
+            }
+        })
+    }
+    
+    func sortByDate() {
+        leads = leads.sorted(by: { (first, second) -> Bool in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            if first.date == "No Date Given" || second.date == "No Date Given"  {
+                return second.date! > first.date!
+            } else if first.date == "" || second.date == "" {
+                return first.date! > second.date!
+            } else {
+                return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
+            }
+        })
     }
 
     func tableSetup() {
@@ -155,6 +264,26 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let eventNib = UINib(nibName: "LeadCell", bundle: nil)
         leadsTable.register(eventNib, forCellReuseIdentifier: LeadCell.identifier)
+    }
+    
+    func handleSortMenu() {
+        if isSortMenuHidden {
+            sortMenuViewTrailingConstraint.constant = 0
+            sortButton.setTitle("Close", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+            
+        } else {
+            sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant
+            sortButton.setTitle("Sort Leads By", for: .normal)
+            
+            UIView.animate(withDuration: 0.2, animations: {
+                self.view.layoutIfNeeded()
+            })
+        }
+        isSortMenuHidden = !isSortMenuHidden
     }
     
     func animateLeadCells() {
@@ -179,7 +308,12 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func applyFormatting() {
         self.view.backgroundColor = Settings.shared.backgroundColor
-    }
+        sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
+        
+        sortMenuView.layer.shadowColor = UIColor.black.cgColor
+        sortMenuView.layer.shadowOpacity = 0.5
+        sortMenuView.layer.shadowOffset = CGSize.zero
+        sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath    }
     
     func deleteLead(index: Int, lead: Lead) {
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Lead")
@@ -191,15 +325,15 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 PersistenceService.context.delete(object as! NSManagedObject)
             }
             PersistenceService.saveContext()
-            self.leads.remove(at: index)
+            leads.remove(at: index)
         } catch {
             print(error)
         }
     }
 
     func addLead(lead: Lead) {
-        self.leads.append(lead)
-        self.selectedEvent.leads?.adding(lead)
+        leads.append(lead)
+        selectedEvent.leads?.adding(lead)
         PersistenceService.saveContext()
     }
 
