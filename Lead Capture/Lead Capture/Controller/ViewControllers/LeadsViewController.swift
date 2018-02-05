@@ -35,24 +35,28 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         sortByFlag()
         selectedEvent.sortKey = "byFlag"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func collectionOrderButtonPressed(_ sender: Any) {
         sortByCollection()
         selectedEvent.sortKey = "byCollection"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func contactNameButtonPressed(_ sender: Any) {
         sortByName()
         selectedEvent.sortKey = "byName"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func weddingDateButtonPressed(_ sender: Any) {
         sortByDate()
         selectedEvent.sortKey = "byDate"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
