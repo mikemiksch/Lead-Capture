@@ -130,6 +130,28 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if !isSortMenuHidden {
             handleSortMenu()
         }
+        
+        let selectedEvent = self.events[indexPath.row]
+        
+        let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
+            selectedEvent.flagged = !selectedEvent.flagged
+            PersistenceService.saveContext()
+            let cell = tableView.cellForRow(at: indexPath) as! EventCell
+            if selectedEvent.flagged {
+                cell.icon.image = #imageLiteral(resourceName: "flaggedevent")
+            } else {
+                cell.icon.image = #imageLiteral(resourceName: "eventIcon")
+            }
+            return
+        }
+        
+        flag.backgroundColor = UIColor.orange
+        
+        if selectedEvent.flagged == true {
+            flag.title = "Unflag"
+            flag.backgroundColor = UIColor.darkGray
+        }
+        
         let export = UITableViewRowAction(style: .normal, title: "Export\nCSV") { (action, indexPath) in
             let selectedEvent = self.events[indexPath.row]
             self.createCSV(event: selectedEvent)
@@ -149,7 +171,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        return [delete, export]
+        return [delete, export, flag]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

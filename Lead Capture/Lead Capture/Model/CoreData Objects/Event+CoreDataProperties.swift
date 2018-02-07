@@ -23,6 +23,7 @@ extension Event {
     @NSManaged public var name: String?
     @NSManaged public var sortKey: String?
     @NSManaged public var leads: NSSet?
+    @NSManaged public var flagged: Bool
 
 }
 

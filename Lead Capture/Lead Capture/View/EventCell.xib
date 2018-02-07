@@ -78,6 +78,7 @@
             <connections>
                 <outlet property="dateField" destination="shj-B8-KU5" id="2Wz-9d-1jo"/>
                 <outlet property="eventNameField" destination="v8N-yr-1Rd" id="5P2-UW-xqe"/>
+                <outlet property="icon" destination="KXU-oV-aD1" id="klN-4c-n64"/>
                 <outlet property="leadCountField" destination="4E4-Mg-7hi" id="XeV-Ay-HLc"/>
             </connections>
             <point key="canvasLocation" x="34" y="87.5"/>

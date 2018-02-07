@@ -160,7 +160,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
         if lead.flagged {
-            cell.icon.image = #imageLiteral(resourceName: "flagged")
+            cell.icon.image = #imageLiteral(resourceName: "flaggedlead")
         } else {
             cell.icon.image = #imageLiteral(resourceName: "leadIcon")
         }
@@ -187,7 +187,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             PersistenceService.saveContext()
             let cell = tableView.cellForRow(at: indexPath) as! LeadCell
             if selectedLead.flagged {
-                cell.icon.image = #imageLiteral(resourceName: "flagged")
+                cell.icon.image = #imageLiteral(resourceName: "flaggedlead")
             } else {
                 cell.icon.image = #imageLiteral(resourceName: "leadIcon")
             }
