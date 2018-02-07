@@ -203,10 +203,10 @@
                                 <color key="separatorColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DI-Rt-aTb">
-                                <rect key="frame" x="170" y="94" width="150" height="189"/>
+                                <rect key="frame" x="150" y="94" width="170" height="189"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-pb-ePs">
-                                        <rect key="frame" x="8" y="41" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="41" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Creation Order">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,7 +216,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9F-Hr-xBB">
-                                        <rect key="frame" x="8" y="78" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="78" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Event Name">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -226,7 +226,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvD-jO-qsd">
-                                        <rect key="frame" x="8" y="115" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="115" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Event Date">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -236,7 +236,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwV-HV-HEx">
-                                        <rect key="frame" x="8" y="152" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="152" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Number of Leads">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -246,7 +246,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bM-eW-ivx" userLabel="Flag Status">
-                                        <rect key="frame" x="8" y="4" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="4" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Flag Status">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -267,7 +267,7 @@
                                     <constraint firstAttribute="trailing" secondItem="4bM-eW-ivx" secondAttribute="trailing" constant="8" id="Meb-jk-Kel"/>
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leadingMargin" id="WGU-Tz-jBD"/>
                                     <constraint firstItem="HR6-pb-ePs" firstAttribute="top" secondItem="4bM-eW-ivx" secondAttribute="bottom" constant="4" id="WoH-eD-gJS"/>
-                                    <constraint firstAttribute="width" constant="150" id="XXN-p1-cIV"/>
+                                    <constraint firstAttribute="width" constant="170" id="XXN-p1-cIV"/>
                                     <constraint firstItem="iwV-HV-HEx" firstAttribute="top" secondItem="cvD-jO-qsd" secondAttribute="bottom" constant="4" id="Xsh-th-HO5"/>
                                     <constraint firstItem="cvD-jO-qsd" firstAttribute="centerX" secondItem="2DI-Rt-aTb" secondAttribute="centerX" id="cBE-wa-AXk"/>
                                     <constraint firstItem="4bM-eW-ivx" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leading" constant="8" id="dQE-hU-uKY"/>
