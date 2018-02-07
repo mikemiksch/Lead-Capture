@@ -23,6 +23,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     private let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var flagStatusButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var creationOrderButton: UIButton!
     @IBOutlet weak var eventNameButton: UIButton!
@@ -33,6 +34,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
     
     @IBAction func sortButtonPressed(_ sender: Any) {
+        handleSortMenu()
+    }
+    
+    
+    @IBAction func flaggedStatusButtonPressed(_ sender: Any) {
+        sortByFlag()
+        userDefaults.set("byFlag", forKey: "Event Sort Key")
         handleSortMenu()
     }
     
@@ -88,6 +96,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let sortKey = defaultsKey as! String
             
             switch sortKey {
+            case "byFlag":
+                sortByFlag()
             case "byCreation":
                 sortByCreation()
             case "byLeads":
@@ -100,7 +110,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 sortByCreation()
             }
         } else {
-            sortByCreation()
+            sortByFlag()
         }
     }
 
@@ -201,6 +211,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             cell.leadCountField.text = "\(event.leads!.count) Leads"
         }
+        
+        if event.flagged {
+            cell.icon.image = #imageLiteral(resourceName: "flaggedevent")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "eventIcon")
+        }
+        
         return cell
     }
     
@@ -211,6 +228,15 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
+    }
+    
+    func sortByFlag() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
+        })
     }
     
     func sortByName() {
