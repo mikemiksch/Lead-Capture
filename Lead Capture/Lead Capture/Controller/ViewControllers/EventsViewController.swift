@@ -237,19 +237,21 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return first.flagged && !second.flagged
         })
+        handleCheckmark(button: flagStatusButton)
         
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-        flagStatusButton.setTitle((flagStatusButton.titleLabel?.text)! + " ✓", for: .normal)
-        currentCriteriaButton = flagStatusButton
+//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+//        flagStatusButton.setTitle((flagStatusButton.titleLabel?.text)! + " ✓", for: .normal)
+//        currentCriteriaButton = flagStatusButton
     }
     
     func sortByName() {
         events = events.sorted(by: { (first, second) -> Bool in
             return second.name! > first.name!
         })
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-        eventNameButton.setTitle((eventNameButton.titleLabel?.text)! + " ✓", for: .normal)
-        currentCriteriaButton = eventNameButton
+        handleCheckmark(button: eventNameButton)
+//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+//        eventNameButton.setTitle((eventNameButton.titleLabel?.text)! + " ✓", for: .normal)
+//        currentCriteriaButton = eventNameButton
     }
     
     func sortByDates() {
@@ -262,27 +264,30 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
         })
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-        eventDateButton.setTitle((eventDateButton.titleLabel?.text)! + " ✓", for: .normal)
-        currentCriteriaButton = eventDateButton
+        handleCheckmark(button: eventDateButton)
+//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+//        eventDateButton.setTitle((eventDateButton.titleLabel?.text)! + " ✓", for: .normal)
+//        currentCriteriaButton = eventDateButton
     }
     
     func sortByLeads() {
         events = events.sorted(by: { (first, second) -> Bool in
             return first.leads!.count > second.leads!.count
         })
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-        numberofLeadsButton.setTitle((numberofLeadsButton.titleLabel?.text)! + " ✓", for: .normal)
-        currentCriteriaButton = numberofLeadsButton
+        handleCheckmark(button: numberofLeadsButton)
+//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+//        numberofLeadsButton.setTitle((numberofLeadsButton.titleLabel?.text)! + " ✓", for: .normal)
+//        currentCriteriaButton = numberofLeadsButton
     }
     
     func sortByCreation() {
         events = events.sorted(by: { (first, second) -> Bool in
             return second.createdOn! as Date > first.createdOn! as Date
         })
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-        creationOrderButton.setTitle((creationOrderButton.titleLabel?.text)! + " ✓", for: .normal)
-        currentCriteriaButton = creationOrderButton
+        handleCheckmark(button: creationOrderButton)
+//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+//        creationOrderButton.setTitle((creationOrderButton.titleLabel?.text)! + " ✓", for: .normal)
+//        currentCriteriaButton = creationOrderButton
     }
     
     func tableSetup() {
@@ -307,6 +312,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sortMenuView.layer.shadowOpacity = 0.5
         sortMenuView.layer.shadowOffset = CGSize.zero
         sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
+    }
+    
+    func handleCheckmark(button: UIButton) {
+        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+        button.setTitle((button.titleLabel?.text)! + " ✓", for: .normal)
+        currentCriteriaButton = button
     }
     
     func handleSortMenu() {

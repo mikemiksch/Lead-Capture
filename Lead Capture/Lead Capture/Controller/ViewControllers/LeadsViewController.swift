@@ -270,6 +270,10 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         leadsTable.register(eventNib, forCellReuseIdentifier: LeadCell.identifier)
     }
     
+    func handleCheckmark(_: UIButton) {
+        
+    }
+    
     func handleSortMenu() {
         if isSortMenuHidden {
             sortMenuViewTrailingConstraint.constant = 0
