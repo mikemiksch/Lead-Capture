@@ -357,10 +357,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8c-fc-rxk" userLabel="Sort Menu View">
-                                <rect key="frame" x="170" y="92" width="150" height="152"/>
+                                <rect key="frame" x="150" y="92" width="170" height="152"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aId-wy-oof">
-                                        <rect key="frame" x="8" y="4" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="4" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Flag Status">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -370,7 +370,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="259" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33X-9V-kju">
-                                        <rect key="frame" x="8" y="41" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="41" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Collection Order">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -380,7 +380,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsg-lt-eyj">
-                                        <rect key="frame" x="8" y="78" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="78" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Contact Name">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -390,7 +390,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="256" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qh-LY-8ee">
-                                        <rect key="frame" x="8" y="115" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="115" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Wedding Date">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -405,7 +405,7 @@
                                     <constraint firstAttribute="bottom" secondItem="4qh-LY-8ee" secondAttribute="bottom" constant="4" id="7qt-UW-JMz"/>
                                     <constraint firstAttribute="trailing" secondItem="Gsg-lt-eyj" secondAttribute="trailing" constant="8" id="DNQ-EP-Poo"/>
                                     <constraint firstItem="aId-wy-oof" firstAttribute="top" secondItem="q8c-fc-rxk" secondAttribute="top" constant="4" id="Dv4-J9-3e4"/>
-                                    <constraint firstAttribute="width" constant="150" id="Fdy-xj-HO3"/>
+                                    <constraint firstAttribute="width" constant="170" id="Fdy-xj-HO3"/>
                                     <constraint firstItem="Gsg-lt-eyj" firstAttribute="top" secondItem="33X-9V-kju" secondAttribute="bottom" constant="4" id="b7o-bq-fQ3"/>
                                     <constraint firstItem="4qh-LY-8ee" firstAttribute="top" secondItem="Gsg-lt-eyj" secondAttribute="bottom" constant="4" id="cBE-JT-yTT"/>
                                     <constraint firstItem="4qh-LY-8ee" firstAttribute="leading" secondItem="q8c-fc-rxk" secondAttribute="leading" constant="8" id="d6v-6s-0Pt"/>
@@ -470,12 +470,16 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionOrderButton" destination="33X-9V-kju" id="lma-uF-kLT"/>
+                        <outlet property="contactNameButton" destination="Gsg-lt-eyj" id="XdV-Xc-753"/>
+                        <outlet property="flagStatusButton" destination="aId-wy-oof" id="SSO-DR-rau"/>
                         <outlet property="leadsTable" destination="ats-WL-peJ" id="Ymb-q5-RXe"/>
                         <outlet property="sortButton" destination="BOt-2W-fEU" id="Fu9-fo-tch"/>
                         <outlet property="sortMenuView" destination="q8c-fc-rxk" id="azK-z6-LkN"/>
                         <outlet property="sortMenuViewTrailingConstraint" destination="P76-fW-bzN" id="z1C-OK-YAB"/>
                         <outlet property="sortMenuViewWidthConstraint" destination="Fdy-xj-HO3" id="9Na-wW-yl0"/>
                         <outlet property="titleBar" destination="skd-xU-Ze2" id="Feh-Nk-QEW"/>
+                        <outlet property="weddingDateButton" destination="4qh-LY-8ee" id="dE1-Zh-jSJ"/>
                         <segue destination="cT4-pL-Cbx" kind="show" identifier="LeadDetailViewController" id="d3i-oE-ag7"/>
                     </connections>
                 </viewController>
@@ -1296,6 +1300,6 @@
         <image name="ivory-off-white-paper-texture" width="3888" height="2592"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XH0-vL-Xkv"/>
+        <segue reference="Wf7-ve-JqM"/>
     </inferredMetricsTieBreakers>
 </document>

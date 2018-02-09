@@ -238,10 +238,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return first.flagged && !second.flagged
         })
         handleCheckmark(button: flagStatusButton)
-        
-//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-//        flagStatusButton.setTitle((flagStatusButton.titleLabel?.text)! + " ✓", for: .normal)
-//        currentCriteriaButton = flagStatusButton
     }
     
     func sortByName() {
@@ -249,9 +245,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return second.name! > first.name!
         })
         handleCheckmark(button: eventNameButton)
-//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-//        eventNameButton.setTitle((eventNameButton.titleLabel?.text)! + " ✓", for: .normal)
-//        currentCriteriaButton = eventNameButton
     }
     
     func sortByDates() {
@@ -265,9 +258,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
         })
         handleCheckmark(button: eventDateButton)
-//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-//        eventDateButton.setTitle((eventDateButton.titleLabel?.text)! + " ✓", for: .normal)
-//        currentCriteriaButton = eventDateButton
     }
     
     func sortByLeads() {
@@ -275,9 +265,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return first.leads!.count > second.leads!.count
         })
         handleCheckmark(button: numberofLeadsButton)
-//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-//        numberofLeadsButton.setTitle((numberofLeadsButton.titleLabel?.text)! + " ✓", for: .normal)
-//        currentCriteriaButton = numberofLeadsButton
     }
     
     func sortByCreation() {
@@ -285,9 +272,6 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return second.createdOn! as Date > first.createdOn! as Date
         })
         handleCheckmark(button: creationOrderButton)
-//        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
-//        creationOrderButton.setTitle((creationOrderButton.titleLabel?.text)! + " ✓", for: .normal)
-//        currentCriteriaButton = creationOrderButton
     }
     
     func tableSetup() {
