@@ -10,19 +10,25 @@ import UIKit
 import CoreData
 
 class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AddLeadDelegate, DeleteLeadDelegate {
-
-    var selectedEvent : Event!
-    var isSortMenuHidden = true
     
     var leads = [Lead]() {
         didSet {
             leadsTable.reloadData()
         }
     }
+    
+    
+    var selectedEvent : Event!
+    var isSortMenuHidden = true
+    var currentCriteriaButton : UIButton?
 
     @IBOutlet weak var leadsTable: UITableView!
     @IBOutlet weak var titleBar: UINavigationItem!
     @IBOutlet weak var sortButton: UIButton!
+    @IBOutlet weak var flagStatusButton: UIButton!
+    @IBOutlet weak var collectionOrderButton: UIButton!
+    @IBOutlet weak var contactNameButton: UIButton!
+    @IBOutlet weak var weddingDateButton: UIButton!
     @IBOutlet weak var sortMenuView: UIView!
     @IBOutlet weak var sortMenuViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var sortMenuViewWidthConstraint: NSLayoutConstraint!
@@ -35,24 +41,28 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         sortByFlag()
         selectedEvent.sortKey = "byFlag"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func collectionOrderButtonPressed(_ sender: Any) {
         sortByCollection()
         selectedEvent.sortKey = "byCollection"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func contactNameButtonPressed(_ sender: Any) {
         sortByName()
         selectedEvent.sortKey = "byName"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func weddingDateButtonPressed(_ sender: Any) {
         sortByDate()
         selectedEvent.sortKey = "byDate"
         PersistenceService.saveContext()
+        handleSortMenu()
     }
     
     @IBAction func editButtonPressed(_ sender: Any) {
@@ -156,7 +166,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
 
         if lead.flagged {
-            cell.icon.image = #imageLiteral(resourceName: "flagged")
+            cell.icon.image = #imageLiteral(resourceName: "flaggedlead")
         } else {
             cell.icon.image = #imageLiteral(resourceName: "leadIcon")
         }
@@ -183,7 +193,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             PersistenceService.saveContext()
             let cell = tableView.cellForRow(at: indexPath) as! LeadCell
             if selectedLead.flagged {
-                cell.icon.image = #imageLiteral(resourceName: "flagged")
+                cell.icon.image = #imageLiteral(resourceName: "flaggedlead")
             } else {
                 cell.icon.image = #imageLiteral(resourceName: "leadIcon")
             }
@@ -218,12 +228,15 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             return first.flagged && !second.flagged
         })
+        handleCheckmark(button: flagStatusButton)
+        
     }
     
     func sortByCollection() {
         leads = leads.sorted(by: { (first, second) -> Bool in
             return second.createdOn! as Date > first.createdOn! as Date
         })
+        handleCheckmark(button: collectionOrderButton)
     }
     
     func sortByName() {
@@ -234,6 +247,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 return second.name! > first.name!
             }
         })
+        handleCheckmark(button: contactNameButton)
     }
     
     func sortByDate() {
@@ -249,6 +263,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
                 return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
             }
         })
+        handleCheckmark(button: weddingDateButton)
     }
 
     func tableSetup() {
@@ -264,6 +279,12 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         let eventNib = UINib(nibName: "LeadCell", bundle: nil)
         leadsTable.register(eventNib, forCellReuseIdentifier: LeadCell.identifier)
+    }
+    
+    func handleCheckmark(button: UIButton) {
+        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+        button.setTitle((button.titleLabel?.text)! + " ✓", for: .normal)
+        currentCriteriaButton = button
     }
     
     func handleSortMenu() {

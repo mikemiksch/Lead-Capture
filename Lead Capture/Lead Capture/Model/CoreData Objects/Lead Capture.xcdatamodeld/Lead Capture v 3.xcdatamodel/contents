@@ -4,6 +4,7 @@
         <attribute name="createdOn" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="eventID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flagged" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="sortKey" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="leads" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Lead" inverseName="event" inverseEntity="Lead" syncable="YES"/>
@@ -25,7 +26,7 @@
         <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="leads" inverseEntity="Event" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Event" positionX="205" positionY="72" width="128" height="135"/>
+        <element name="Event" positionX="205" positionY="72" width="128" height="150"/>
         <element name="Lead" positionX="9" positionY="36" width="128" height="255"/>
     </elements>
 </model>

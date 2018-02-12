@@ -19,10 +19,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var animateFlag = false
     var isSortMenuHidden = true
+    var currentCriteriaButton : UIButton?
     
     private let userDefaults = UserDefaults.standard
     
     @IBOutlet weak var eventsTable: UITableView!
+    @IBOutlet weak var flagStatusButton: UIButton!
     @IBOutlet weak var sortButton: UIButton!
     @IBOutlet weak var creationOrderButton: UIButton!
     @IBOutlet weak var eventNameButton: UIButton!
@@ -36,24 +38,35 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         handleSortMenu()
     }
     
+    
+    @IBAction func flaggedStatusButtonPressed(_ sender: Any) {
+        sortByFlag()
+        userDefaults.set("byFlag", forKey: "Event Sort Key")
+        handleSortMenu()
+    }
+    
     @IBAction func nameButtonPressed(_ sender: Any) {
         sortByName()
         userDefaults.set("byName", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func dateButtonPressed(_ sender: Any) {
         sortByDates()
         userDefaults.set("byDate", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func leadsButtonPressed(_ sender: Any) {
         sortByLeads()
         userDefaults.set("byLeads", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     @IBAction func creationOrderButtonPressed(_ sender: Any) {
         sortByCreation()
         userDefaults.set("byCreation", forKey: "Event Sort Key")
+        handleSortMenu()
     }
     
     
@@ -83,6 +96,8 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let sortKey = defaultsKey as! String
             
             switch sortKey {
+            case "byFlag":
+                sortByFlag()
             case "byCreation":
                 sortByCreation()
             case "byLeads":
@@ -95,7 +110,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 sortByCreation()
             }
         } else {
-            sortByCreation()
+            sortByFlag()
         }
     }
 
@@ -125,6 +140,28 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         if !isSortMenuHidden {
             handleSortMenu()
         }
+        
+        let selectedEvent = self.events[indexPath.row]
+        
+        let flag = UITableViewRowAction(style: .normal, title: "Flag") { (action, indexPath) in
+            selectedEvent.flagged = !selectedEvent.flagged
+            PersistenceService.saveContext()
+            let cell = tableView.cellForRow(at: indexPath) as! EventCell
+            if selectedEvent.flagged {
+                cell.icon.image = #imageLiteral(resourceName: "flaggedevent")
+            } else {
+                cell.icon.image = #imageLiteral(resourceName: "eventIcon")
+            }
+            return
+        }
+        
+        flag.backgroundColor = UIColor.orange
+        
+        if selectedEvent.flagged == true {
+            flag.title = "Unflag"
+            flag.backgroundColor = UIColor.darkGray
+        }
+        
         let export = UITableViewRowAction(style: .normal, title: "Export\nCSV") { (action, indexPath) in
             let selectedEvent = self.events[indexPath.row]
             self.createCSV(event: selectedEvent)
@@ -144,7 +181,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
-        return [delete, export]
+        return [delete, export, flag]
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -174,6 +211,13 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             cell.leadCountField.text = "\(event.leads!.count) Leads"
         }
+        
+        if event.flagged {
+            cell.icon.image = #imageLiteral(resourceName: "flaggedevent")
+        } else {
+            cell.icon.image = #imageLiteral(resourceName: "eventIcon")
+        }
+        
         return cell
     }
     
@@ -186,10 +230,21 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
     
+    func sortByFlag() {
+        events = events.sorted(by: { (first, second) -> Bool in
+            if first.flagged == second.flagged {
+                return second.createdOn! as Date > first.createdOn! as Date
+            }
+            return first.flagged && !second.flagged
+        })
+        handleCheckmark(button: flagStatusButton)
+    }
+    
     func sortByName() {
         events = events.sorted(by: { (first, second) -> Bool in
             return second.name! > first.name!
         })
+        handleCheckmark(button: eventNameButton)
     }
     
     func sortByDates() {
@@ -202,18 +257,21 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             return dateFormatter.date(from: second.date!)! > dateFormatter.date(from: first.date!)!
         })
+        handleCheckmark(button: eventDateButton)
     }
     
     func sortByLeads() {
         events = events.sorted(by: { (first, second) -> Bool in
             return first.leads!.count > second.leads!.count
         })
+        handleCheckmark(button: numberofLeadsButton)
     }
     
     func sortByCreation() {
         events = events.sorted(by: { (first, second) -> Bool in
             return second.createdOn! as Date > first.createdOn! as Date
         })
+        handleCheckmark(button: creationOrderButton)
     }
     
     func tableSetup() {
@@ -238,6 +296,12 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         sortMenuView.layer.shadowOpacity = 0.5
         sortMenuView.layer.shadowOffset = CGSize.zero
         sortMenuView.layer.shadowPath = UIBezierPath(rect: sortMenuView.bounds).cgPath
+    }
+    
+    func handleCheckmark(button: UIButton) {
+        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+        button.setTitle((button.titleLabel?.text)! + " ✓", for: .normal)
+        currentCriteriaButton = button
     }
     
     func handleSortMenu() {

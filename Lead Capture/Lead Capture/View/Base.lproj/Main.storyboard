@@ -203,21 +203,20 @@
                                 <color key="separatorColor" red="0.74901960779999999" green="0.14901960780000001" blue="0.14901960780000001" alpha="1" colorSpace="calibratedRGB"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2DI-Rt-aTb">
-                                <rect key="frame" x="170" y="94" width="150" height="148"/>
+                                <rect key="frame" x="150" y="94" width="170" height="189"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HR6-pb-ePs">
-                                        <rect key="frame" x="8" y="4" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="41" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Creation Order">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <action selector="creationOrderButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vx2-0j-l51"/>
-                                            <action selector="leadsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYQ-5N-Ft7"/>
+                                            <action selector="creationOrderButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="dPs-yK-Rvp"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9F-Hr-xBB">
-                                        <rect key="frame" x="8" y="41" width="134" height="29"/>
+                                        <rect key="frame" x="8" y="78" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Event Name">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -227,7 +226,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvD-jO-qsd">
-                                        <rect key="frame" x="8" y="74" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="115" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Event Date">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -237,7 +236,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iwV-HV-HEx">
-                                        <rect key="frame" x="8" y="111" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="152" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Number of Leads">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -246,20 +245,32 @@
                                             <action selector="leadsButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DEu-Sa-yOM"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bM-eW-ivx" userLabel="Flag Status">
+                                        <rect key="frame" x="8" y="4" width="154" height="33"/>
+                                        <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
+                                        <state key="normal" title="Flag Status">
+                                            <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="flaggedStatusButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K0b-sB-bzM"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.70196078431372544" green="0.097371174229515925" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="HR6-pb-ePs" secondAttribute="trailing" constant="8" id="3Tv-nk-XIf"/>
                                     <constraint firstItem="cvD-jO-qsd" firstAttribute="top" secondItem="j9F-Hr-xBB" secondAttribute="bottom" constant="4" id="5nH-Tu-5SK"/>
+                                    <constraint firstItem="4bM-eW-ivx" firstAttribute="top" secondItem="2DI-Rt-aTb" secondAttribute="top" constant="4" id="GQa-sf-gIp"/>
                                     <constraint firstAttribute="bottom" secondItem="iwV-HV-HEx" secondAttribute="bottom" constant="4" id="JZf-oo-R28"/>
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="top" secondItem="HR6-pb-ePs" secondAttribute="bottom" constant="4" id="LKm-Uu-qG8"/>
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="centerX" secondItem="2DI-Rt-aTb" secondAttribute="centerX" id="Ldb-k4-2LJ"/>
-                                    <constraint firstAttribute="height" constant="148" id="Ugi-Hs-9NC"/>
+                                    <constraint firstAttribute="trailing" secondItem="4bM-eW-ivx" secondAttribute="trailing" constant="8" id="Meb-jk-Kel"/>
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leadingMargin" id="WGU-Tz-jBD"/>
-                                    <constraint firstAttribute="width" constant="150" id="XXN-p1-cIV"/>
+                                    <constraint firstItem="HR6-pb-ePs" firstAttribute="top" secondItem="4bM-eW-ivx" secondAttribute="bottom" constant="4" id="WoH-eD-gJS"/>
+                                    <constraint firstAttribute="width" constant="170" id="XXN-p1-cIV"/>
                                     <constraint firstItem="iwV-HV-HEx" firstAttribute="top" secondItem="cvD-jO-qsd" secondAttribute="bottom" constant="4" id="Xsh-th-HO5"/>
                                     <constraint firstItem="cvD-jO-qsd" firstAttribute="centerX" secondItem="2DI-Rt-aTb" secondAttribute="centerX" id="cBE-wa-AXk"/>
-                                    <constraint firstItem="HR6-pb-ePs" firstAttribute="top" secondItem="2DI-Rt-aTb" secondAttribute="top" constant="4" id="e9H-dT-aYK"/>
+                                    <constraint firstItem="4bM-eW-ivx" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leading" constant="8" id="dQE-hU-uKY"/>
                                     <constraint firstItem="cvD-jO-qsd" firstAttribute="leading" secondItem="iwV-HV-HEx" secondAttribute="leading" id="i2a-aS-xCW"/>
                                     <constraint firstItem="j9F-Hr-xBB" firstAttribute="leading" secondItem="cvD-jO-qsd" secondAttribute="leading" id="kVM-S4-PPI"/>
                                     <constraint firstItem="HR6-pb-ePs" firstAttribute="leading" secondItem="2DI-Rt-aTb" secondAttribute="leading" constant="8" id="lXD-jO-YN9"/>
@@ -320,6 +331,7 @@
                         <outlet property="eventDateButton" destination="cvD-jO-qsd" id="Y9g-zm-LhJ"/>
                         <outlet property="eventNameButton" destination="j9F-Hr-xBB" id="rWd-9a-aSX"/>
                         <outlet property="eventsTable" destination="tbN-RP-WSL" id="aX7-jO-CLV"/>
+                        <outlet property="flagStatusButton" destination="4bM-eW-ivx" id="lKU-gq-s3R"/>
                         <outlet property="numberofLeadsButton" destination="iwV-HV-HEx" id="sbK-1L-YaJ"/>
                         <outlet property="sortButton" destination="LNs-z3-dAK" id="U13-Rh-k03"/>
                         <outlet property="sortMenuView" destination="2DI-Rt-aTb" id="vvF-14-oY3"/>
@@ -345,10 +357,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q8c-fc-rxk" userLabel="Sort Menu View">
-                                <rect key="frame" x="170" y="92" width="150" height="152"/>
+                                <rect key="frame" x="150" y="92" width="170" height="152"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aId-wy-oof">
-                                        <rect key="frame" x="8" y="4" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="4" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Flag Status">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -358,7 +370,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="259" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="33X-9V-kju">
-                                        <rect key="frame" x="8" y="41" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="41" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Collection Order">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -368,7 +380,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="753" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gsg-lt-eyj">
-                                        <rect key="frame" x="8" y="78" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="78" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Contact Name">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -378,7 +390,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="256" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qh-LY-8ee">
-                                        <rect key="frame" x="8" y="115" width="134" height="33"/>
+                                        <rect key="frame" x="8" y="115" width="154" height="33"/>
                                         <fontDescription key="fontDescription" name="Existence-UnicaseLight" family="Existence" pointSize="17"/>
                                         <state key="normal" title="Wedding Date">
                                             <color key="titleColor" red="0.98859995599999995" green="0.97290569540000005" blue="0.95181638000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -393,7 +405,7 @@
                                     <constraint firstAttribute="bottom" secondItem="4qh-LY-8ee" secondAttribute="bottom" constant="4" id="7qt-UW-JMz"/>
                                     <constraint firstAttribute="trailing" secondItem="Gsg-lt-eyj" secondAttribute="trailing" constant="8" id="DNQ-EP-Poo"/>
                                     <constraint firstItem="aId-wy-oof" firstAttribute="top" secondItem="q8c-fc-rxk" secondAttribute="top" constant="4" id="Dv4-J9-3e4"/>
-                                    <constraint firstAttribute="width" constant="150" id="Fdy-xj-HO3"/>
+                                    <constraint firstAttribute="width" constant="170" id="Fdy-xj-HO3"/>
                                     <constraint firstItem="Gsg-lt-eyj" firstAttribute="top" secondItem="33X-9V-kju" secondAttribute="bottom" constant="4" id="b7o-bq-fQ3"/>
                                     <constraint firstItem="4qh-LY-8ee" firstAttribute="top" secondItem="Gsg-lt-eyj" secondAttribute="bottom" constant="4" id="cBE-JT-yTT"/>
                                     <constraint firstItem="4qh-LY-8ee" firstAttribute="leading" secondItem="q8c-fc-rxk" secondAttribute="leading" constant="8" id="d6v-6s-0Pt"/>
@@ -458,12 +470,16 @@
                         </rightBarButtonItems>
                     </navigationItem>
                     <connections>
+                        <outlet property="collectionOrderButton" destination="33X-9V-kju" id="lma-uF-kLT"/>
+                        <outlet property="contactNameButton" destination="Gsg-lt-eyj" id="XdV-Xc-753"/>
+                        <outlet property="flagStatusButton" destination="aId-wy-oof" id="SSO-DR-rau"/>
                         <outlet property="leadsTable" destination="ats-WL-peJ" id="Ymb-q5-RXe"/>
                         <outlet property="sortButton" destination="BOt-2W-fEU" id="Fu9-fo-tch"/>
                         <outlet property="sortMenuView" destination="q8c-fc-rxk" id="azK-z6-LkN"/>
                         <outlet property="sortMenuViewTrailingConstraint" destination="P76-fW-bzN" id="z1C-OK-YAB"/>
                         <outlet property="sortMenuViewWidthConstraint" destination="Fdy-xj-HO3" id="9Na-wW-yl0"/>
                         <outlet property="titleBar" destination="skd-xU-Ze2" id="Feh-Nk-QEW"/>
+                        <outlet property="weddingDateButton" destination="4qh-LY-8ee" id="dE1-Zh-jSJ"/>
                         <segue destination="cT4-pL-Cbx" kind="show" identifier="LeadDetailViewController" id="d3i-oE-ag7"/>
                     </connections>
                 </viewController>
@@ -1284,6 +1300,6 @@
         <image name="ivory-off-white-paper-texture" width="3888" height="2592"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="XH0-vL-Xkv"/>
+        <segue reference="Wf7-ve-JqM"/>
     </inferredMetricsTieBreakers>
 </document>

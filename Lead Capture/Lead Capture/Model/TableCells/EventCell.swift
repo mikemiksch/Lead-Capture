@@ -14,6 +14,7 @@ class EventCell: UITableViewCell {
     @IBOutlet weak var dateField: UILabel!
     @IBOutlet weak var eventNameField: UILabel!
     @IBOutlet weak var leadCountField: UILabel!
+    @IBOutlet weak var icon: UIImageView!
     
     
     override func awakeFromNib() {
