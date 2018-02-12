@@ -10,6 +10,7 @@ Leads are sorted by events, i.e. tradeshows, where multiple leads are potentiall
 * 1.1 Implemented the export of an event's leads as a CSV file
 * 1.2 Implemented the ability to edit the details of events and individual leads
 * 1.3 Implemented the ability to flag leads and sort them to the top of an event's list
+* 1.4 Added additional sort criteria that events and leads can be sorted by
 
 ## Author
 
