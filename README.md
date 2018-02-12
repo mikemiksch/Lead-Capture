@@ -1,4 +1,4 @@
-# WedCatch 1.3
+# WedCatch 1.4
 
 This is a lead capture app designed for wedding professionals. This is a project undertaken to provide something for the benefit of the extensive wedding professional community I'm a part of, as well as to have a project that has well-defined roadmap of features to be implemented with each iterative build.
 
