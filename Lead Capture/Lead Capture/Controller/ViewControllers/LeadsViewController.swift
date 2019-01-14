@@ -282,7 +282,7 @@ class LeadsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func handleCheckmark(button: UIButton) {
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+        currentCriteriaButton?.titleLabel?.text = currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "")
         button.setTitle((button.titleLabel?.text)! + " ✓", for: .normal)
         currentCriteriaButton = button
     }

@@ -299,7 +299,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func handleCheckmark(button: UIButton) {
-        currentCriteriaButton?.setTitle((currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "", options: NSString.CompareOptions.literal, range:nil))!, for: .normal)
+        currentCriteriaButton?.titleLabel?.text = currentCriteriaButton?.titleLabel?.text?.replacingOccurrences(of: " ✓", with: "")
         button.setTitle((button.titleLabel?.text)! + " ✓", for: .normal)
         currentCriteriaButton = button
     }
@@ -316,7 +316,7 @@ class EventsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         } else {
             sortMenuViewTrailingConstraint.constant = sortMenuViewWidthConstraint.constant + 5
             sortButton.setTitle("Sort Events By", for: .normal)
-            
+
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.layoutIfNeeded()
             })
